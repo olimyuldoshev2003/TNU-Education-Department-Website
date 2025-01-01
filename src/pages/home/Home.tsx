@@ -2,7 +2,7 @@ import EachDepartment from "../../components/eachDepartment/EachDepartment";
 import EachFaculty from "../../components/eachFaculty/EachFaculty";
 import EachTeacher from "../../components/eachTeacher/EachTeacher";
 
-//Iamges
+//Images
 import facultyImage from "../../assets/bg-image.jpg"
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
