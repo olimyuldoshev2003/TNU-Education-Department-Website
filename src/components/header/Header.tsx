@@ -6,7 +6,7 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Header.css"
 
 //Images
@@ -15,6 +15,8 @@ import logoHeader from "../../assets/logo_tnu.png";
 export function Header() {
   const [openNav, setOpenNav] = React.useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
+
+  const location = useLocation()
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -48,7 +50,9 @@ export function Header() {
       >
         <Link
           to={`/`}
-          className="flex items-center"
+          className={`flex items-center hover:underline hover:text-red-600 ${
+            location.pathname === "/" && `underline text-red-600`
+          }`}
           onClick={() => setOpenNav(false)}
         >
           Home
@@ -62,7 +66,9 @@ export function Header() {
       >
         <Link
           to={`/faculties`}
-          className="flex items-center"
+          className={`flex items-center hover:underline hover:text-red-600 ${
+            location.pathname === "/faculties" && `underline text-red-600`
+          }`}
           onClick={() => setOpenNav(false)}
         >
           Faculties
@@ -76,7 +82,9 @@ export function Header() {
       >
         <Link
           to={`/departments`}
-          className="flex items-center"
+          className={`flex items-center hover:underline hover:text-red-600 ${
+            location.pathname === "/departments" && `underline text-red-600`
+          }`}
           onClick={() => setOpenNav(false)}
         >
           Departments
@@ -90,7 +98,9 @@ export function Header() {
       >
         <Link
           to={`/teachers`}
-          className="flex items-center"
+          className={`flex items-center hover:underline hover:text-red-600 ${
+            location.pathname === "/teachers" && `underline text-red-600`
+          }`}
           onClick={() => setOpenNav(false)}
         >
           Teachers
@@ -101,19 +111,18 @@ export function Header() {
 
   return (
     <Navbar
-      className="mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4"
+      className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4"
       ref={navRef}
     >
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to={`/`} onClick={() => setOpenNav(false)}>
-          <img src={logoHeader} alt="" className="logo w-12" />
+          <img src={logoHeader} alt="" className="logo w-12 rounded-full" />
         </Link>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-1">
           <Button variant="filled" size="sm" className="hidden lg:inline-block">
             <span>Admin</span>
           </Button>
-          
         </div>
         <IconButton
           variant="text"
@@ -135,7 +144,6 @@ export function Header() {
             <Button fullWidth variant="gradient" size="sm" className="">
               <span>Admin</span>
             </Button>
-
           </div>
         </div>
       </MobileNav>

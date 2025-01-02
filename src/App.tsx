@@ -3,6 +3,9 @@ import { Suspense } from "react";
 import Layout from "./layout/Layout";
 import { Departments, Faculties, Home, Teachers } from "./routes/lazy";
 import NotFound from "./pages/notFound/NotFound";
+import Teacher from "./pages/teacher/Teacher";
+import Faculty from "./pages/faculty/Faculty";
+import Department from "./pages/department/Department";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -39,6 +42,30 @@ const App = () => {
           element: (
             <Suspense fallback={<div>Loading Teachers...</div>}>
               <Teachers />
+            </Suspense>
+          ),
+        },
+        {
+          path: "teacher",
+          element: (
+            <Suspense fallback={<div>Loading Teacher...</div>}>
+              <Teacher />
+            </Suspense>
+          ),
+        },
+        {
+          path: "faculty",
+          element: (
+            <Suspense fallback={<div>Loading Faculty...</div>}>
+              <Faculty />
+            </Suspense>
+          ),
+        },
+        {
+          path: "department",
+          element: (
+            <Suspense fallback={<div>Loading Department...</div>}>
+              <Department />
             </Suspense>
           ),
         },
