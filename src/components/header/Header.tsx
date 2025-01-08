@@ -98,7 +98,7 @@ export function Header() {
       >
         <Link
           to={`/teachers`}
-          className={`flex items-center hover:underline hover:text-red-600 ${
+          className={`fle items-center hover:underline hover:text-red-600 ${
             location.pathname === "/teachers" && `underline text-red-600`
           }`}
           onClick={() => setOpenNav(false)}
@@ -114,7 +114,7 @@ export function Header() {
       className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4"
       ref={navRef}
     >
-      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+      <div className="max-w-6xl mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to={`/`} onClick={() => setOpenNav(false)}>
           <img src={logoHeader} alt="" className="logo w-12 rounded-full" />
         </Link>
@@ -126,7 +126,7 @@ export function Header() {
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden outline-none"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
@@ -138,7 +138,7 @@ export function Header() {
         </IconButton>
       </div>
       <MobileNav open={openNav}>
-        <div className="container mx-auto">
+        <div className="max-w-6xl mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="gradient" size="sm" className="">

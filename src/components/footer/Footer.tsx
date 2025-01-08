@@ -23,22 +23,22 @@ const Footer = () => {
                 <h3 className="text-[#dadada]">Pages</h3>
               </li>
               <li className="mt-1">
-                <Link to={`/`} className="text-white">
+                <Link to={`/`} className="text-white hover:underline">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to={`/faculties`} className="text-white">
+                <Link to={`/faculties`} className="text-white hover:underline">
                   Faculties
                 </Link>
               </li>
               <li>
-                <Link to={`/departments`} className="text-white">
+                <Link to={`/departments`} className="text-white hover:underline">
                   Departments
                 </Link>
               </li>
               <li>
-                <Link to={`/teachers`} className="text-white">
+                <Link to={`/teachers`} className="text-white hover:underline">
                   Teachers
                 </Link>
               </li>

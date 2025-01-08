@@ -10,6 +10,12 @@ module.exports = withMT({
   ],
   theme: {
     extend: {},
+    screens: {
+      'sm': '290px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+    }
   },
   plugins: [],
 });

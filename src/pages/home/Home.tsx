@@ -1,11 +1,14 @@
+import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+
+//Components
 import EachDepartment from "../../components/eachDepartment/EachDepartment";
 import EachFaculty from "../../components/eachFaculty/EachFaculty";
 import EachTeacher from "../../components/eachTeacher/EachTeacher";
 
 //Images
 import facultyImage from "../../assets/bg-image.jpg";
-import { Link } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import teacherImage from "../../assets/bg-image.jpg";
 
 const Home = () => {
   return (
@@ -44,27 +47,27 @@ const Home = () => {
           <h1 className="text-center text-3xl font-bold">Teachers</h1>
           <div className="block_of_teachers flex flex-wrap justify-center gap-3 mt-5">
             <EachTeacher
-              teacherImg={facultyImage}
+              teacherImg={teacherImage}
               teacherName={`Taghoev Shamsullo`}
               teacherJobLevel={`muallimi kalon`}
             />
             <EachTeacher
-              teacherImg={facultyImage}
+              teacherImg={teacherImage}
               teacherName={`Taghoev Shamsullo`}
               teacherJobLevel={`muallimi kalon`}
             />
             <EachTeacher
-              teacherImg={facultyImage}
+              teacherImg={teacherImage}
               teacherName={`Taghoev Shamsullo`}
               teacherJobLevel={`muallimi kalon`}
             />
             <EachTeacher
-              teacherImg={facultyImage}
+              teacherImg={teacherImage}
               teacherName={`Taghoev Shamsullo`}
               teacherJobLevel={`muallimi kalon`}
             />
             <EachTeacher
-              teacherImg={facultyImage}
+              teacherImg={teacherImage}
               teacherName={`Taghoev Shamsullo`}
               teacherJobLevel={`muallimi kalon`}
             />
