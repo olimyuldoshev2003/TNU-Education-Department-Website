@@ -25,8 +25,12 @@ const EachTeacher = ({
             alt=""
           />
         </div>
-        <h1 className="text-[18px] font-[500] text-center">{teacherName}</h1>
-        <h1 className="text-[16px] font-[500] text-center">{teacherJobLevel}</h1>
+        <h1 className="text-[18px] font-[500] text-center dark:text-white duration-300">
+          {teacherName}
+        </h1>
+        <h1 className="text-[16px] font-[500] text-center dark:text-white duration-300">
+          {teacherJobLevel}
+        </h1>
       </Link>
     </>
   );
