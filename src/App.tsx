@@ -1,18 +1,27 @@
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
+import {
+  Department,
+  Departments,
+  Faculties,
+  Faculty,
+  Home,
+  NotFound,
+  Teacher,
+  Teachers,
+} from "./routes/lazy";
 import Layout from "./layout/Layout";
-import { Departments, Faculties, Home, Teachers } from "./routes/lazy";
-import NotFound from "./pages/notFound/NotFound";
-import Teacher from "./pages/teacher/Teacher";
-import Faculty from "./pages/faculty/Faculty";
-import Department from "./pages/department/Department";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <Suspense fallback={<div className="loader"></div>}>
+          <Layout />
+        </Suspense>
+      ),
       children: [
         {
           index: true,
@@ -74,7 +83,11 @@ const App = () => {
     },
     {
       path: "*",
-      element: <NotFound />,
+      element: (
+        <Suspense fallback={<div className="loader"></div>}>
+          <NotFound />
+        </Suspense>
+      ),
     },
   ]);
 
