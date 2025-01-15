@@ -15,6 +15,7 @@ import Switcher from "../switch-ui/Switcher";
 
 //Images
 import logoHeader from "../../assets/logo_tnu.png";
+import { useTranslation } from "react-i18next";
 
 export function Header() {
   const [openNav, setOpenNav] = React.useState<boolean>(false);
@@ -43,6 +44,13 @@ export function Header() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  //for translation
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -150,10 +158,11 @@ export function Header() {
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
+              onChange={(event) => changeLanguage(event.target.value)}
             >
-              <Option>En</Option>
-              <Option>Ru</Option>
-              <Option>Tj</Option>
+              <Option value="en">En</Option>
+              <Option value="ru">Ru</Option>
+              <Option value="tj">Tj</Option>
             </Select>
           </div>
           <Switcher />
@@ -195,10 +204,11 @@ export function Header() {
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
+              onChange={(event) => changeLanguage(event.target.value)}
             >
-              <Option>En</Option>
-              <Option>Ru</Option>
-              <Option>Tj</Option>
+              <Option value="en">En</Option>
+              <Option value="ru">Ru</Option>
+              <Option value="tj">Tj</Option>
             </Select>
             <Button
               fullWidth
