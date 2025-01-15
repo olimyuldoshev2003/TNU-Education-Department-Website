@@ -5,6 +5,8 @@ import {
   Typography,
   Button,
   IconButton,
+  Select,
+  Option,
 } from "@material-tailwind/react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
@@ -141,6 +143,19 @@ export function Header() {
         </Link>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-2">
+          <div className="block_for_select_language sm:hidden lg:block">
+            <Select
+              size="md"
+              label="Select Language"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              <Option>En</Option>
+              <Option>Ru</Option>
+              <Option>Tj</Option>
+            </Select>
+          </div>
           <Switcher />
           <Button
             variant="filled"
@@ -173,7 +188,18 @@ export function Header() {
       <MobileNav open={openNav}>
         <div className="max-w-6xl mx-auto">
           {navList}
-          <div className="flex items-center gap-x-3 justify-center">
+          <div className="space-y-3">
+            <Select
+              size="md"
+              label="Select Language"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              <Option>En</Option>
+              <Option>Ru</Option>
+              <Option>Tj</Option>
+            </Select>
             <Button
               fullWidth
               variant="gradient"
