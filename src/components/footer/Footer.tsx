@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
             <ul className="flex flex-col gap-1">
               <li>
-                <h3 className="text-[#dadada]">Pages</h3>
+                <h3 className="text-[gray]">Pages</h3>
               </li>
               <li className="mt-1">
                 <Link to={`/`} className="text-white hover:underline">
@@ -33,7 +33,10 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={`/departments`} className="text-white hover:underline">
+                <Link
+                  to={`/departments`}
+                  className="text-white hover:underline"
+                >
                   Departments
                 </Link>
               </li>

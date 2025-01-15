@@ -1,3 +1,4 @@
+import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
 import Layout from "./layout/Layout";
@@ -16,7 +17,7 @@ const App = () => {
         {
           index: true,
           element: (
-            <Suspense fallback={<div>Loading Home...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Home />
             </Suspense>
           ),
@@ -24,7 +25,7 @@ const App = () => {
         {
           path: "faculties",
           element: (
-            <Suspense fallback={<div>Loading Faculties...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Faculties />
             </Suspense>
           ),
@@ -32,7 +33,7 @@ const App = () => {
         {
           path: "departments",
           element: (
-            <Suspense fallback={<div>Loading Departments...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Departments />
             </Suspense>
           ),
@@ -40,7 +41,7 @@ const App = () => {
         {
           path: "teachers",
           element: (
-            <Suspense fallback={<div>Loading Teachers...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Teachers />
             </Suspense>
           ),
@@ -48,7 +49,7 @@ const App = () => {
         {
           path: "teacher",
           element: (
-            <Suspense fallback={<div>Loading Teacher...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Teacher />
             </Suspense>
           ),
@@ -56,7 +57,7 @@ const App = () => {
         {
           path: "faculty",
           element: (
-            <Suspense fallback={<div>Loading Faculty...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Faculty />
             </Suspense>
           ),
@@ -64,7 +65,7 @@ const App = () => {
         {
           path: "department",
           element: (
-            <Suspense fallback={<div>Loading Department...</div>}>
+            <Suspense fallback={<div className="loader"></div>}>
               <Department />
             </Suspense>
           ),
@@ -78,7 +79,7 @@ const App = () => {
   ]);
 
   return (
-    <Suspense fallback={<div>Loading Application...</div>}>
+    <Suspense fallback={<div className="loader"></div>}>
       <RouterProvider router={router} />
     </Suspense>
   );

@@ -73,7 +73,7 @@ const Home = () => {
             </Button>
           </Link>
         </section>
-        <section className="teachers mt-4">
+        <section className="teachers mt-8">
           <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
             Teachers
           </h1>
