@@ -17,5 +17,6 @@ module.exports = withMT({
       'xl': '1280px',
     }
   },
+  darkMode: "class",
   plugins: [],
 });

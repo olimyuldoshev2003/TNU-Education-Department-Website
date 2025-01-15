@@ -9,6 +9,8 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css"
 
+import Switcher from "../switch-ui/Switcher";
+
 //Images
 import logoHeader from "../../assets/logo_tnu.png";
 
@@ -50,8 +52,8 @@ export function Header() {
       >
         <Link
           to={`/`}
-          className={`flex items-center hover:underline hover:text-red-600 ${
-            location.pathname === "/" && `underline text-red-600`
+          className={`flex items-center hover:underline hover:text-red-600 dark:text-white duration-300 ${
+            location.pathname === "/" && `underline text-red-600 dark:text-red-600`
           }`}
           onClick={() => setOpenNav(false)}
         >
@@ -66,8 +68,8 @@ export function Header() {
       >
         <Link
           to={`/faculties`}
-          className={`flex items-center hover:underline hover:text-red-600 ${
-            location.pathname === "/faculties" && `underline text-red-600`
+          className={`flex items-center hover:underline hover:text-red-600 dark:text-white duration-300 ${
+            location.pathname === "/faculties" && `underline text-red-600 dark:text-red-600`
           }`}
           onClick={() => setOpenNav(false)}
         >
@@ -82,8 +84,8 @@ export function Header() {
       >
         <Link
           to={`/departments`}
-          className={`flex items-center hover:underline hover:text-red-600 ${
-            location.pathname === "/departments" && `underline text-red-600`
+          className={`flex items-center hover:underline hover:text-red-600 dark:text-white duration-300 ${
+            location.pathname === "/departments" && `underline text-red-600 dark:text-red-600`
           }`}
           onClick={() => setOpenNav(false)}
         >
@@ -98,8 +100,8 @@ export function Header() {
       >
         <Link
           to={`/teachers`}
-          className={`fle items-center hover:underline hover:text-red-600 ${
-            location.pathname === "/teachers" && `underline text-red-600`
+          className={`fle items-center hover:underline hover:text-red-600 dark:text-white duration-300 ${
+            location.pathname === "/teachers" && `underline text-red-600 dark:text-red-600`
           }`}
           onClick={() => setOpenNav(false)}
         >
@@ -111,7 +113,7 @@ export function Header() {
 
   return (
     <Navbar
-      className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4"
+      className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 dark:bg-black duration-300"
       ref={navRef}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between text-blue-gray-900">
@@ -119,11 +121,11 @@ export function Header() {
           <img src={logoHeader} alt="" className="logo w-12 rounded-full" />
         </Link>
         <div className="hidden lg:block">{navList}</div>
-        <div className="flex items-center gap-x-1">
-          <Button variant="filled" size="sm" className="hidden lg:inline-block">
+        <div className="flex items-center gap-x-2">
+            <Switcher/>
+          <Button variant="filled" color="blue" size="sm" className="hidden lg:inline-block">
             <span>Admin</span>
           </Button>
-        </div>
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden outline-none"
@@ -131,19 +133,21 @@ export function Header() {
           onClick={() => setOpenNav(!openNav)}
         >
           <div className={`menu-button ${openNav ? "open" : ""}`}>
-            <span className="bg-black" />
-            <span className="bg-black" />
-            <span className="bg-black" />
+            <span className="bg-black dark:bg-white" />
+            <span className="bg-black dark:bg-white" />
+            <span className="bg-black dark:bg-white" />
           </div>
         </IconButton>
+        </div>
       </div>
       <MobileNav open={openNav}>
         <div className="max-w-6xl mx-auto">
           {navList}
-          <div className="flex items-center gap-x-1">
-            <Button fullWidth variant="gradient" size="sm" className="">
+          <div className="flex items-center gap-x-3 justify-center">
+            <Button fullWidth  variant="gradient" color="blue" size="sm">
               <span>Admin</span>
             </Button>
+
           </div>
         </div>
       </MobileNav>
