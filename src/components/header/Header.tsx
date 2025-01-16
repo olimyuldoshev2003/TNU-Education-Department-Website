@@ -158,7 +158,10 @@ export function Header() {
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
-              onChange={(event) => changeLanguage(event.target.value)}
+              className=""
+              onChange={(event: string) => {
+                changeLanguage(event);
+              }}
             >
               <Option value="en">En</Option>
               <Option value="ru">Ru</Option>
@@ -204,7 +207,9 @@ export function Header() {
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
-              onChange={(event) => changeLanguage(event.target.value)}
+              onChange={(event: string) => {
+                changeLanguage(event);
+              }}
             >
               <Option value="en">En</Option>
               <Option value="ru">Ru</Option>
