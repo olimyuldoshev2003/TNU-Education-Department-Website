@@ -9,14 +9,18 @@ import EachTeacher from "../../components/eachTeacher/EachTeacher";
 //Images
 import facultyImage from "../../assets/bg-image.jpg";
 import teacherImage from "../../assets/bg-image.jpg";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  //for translation
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="home_component py-7 dark:bg-[#091220] duration-300">
         <section className="faculties mt-8 max-w-6xl mx-auto">
           <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
-            Faculties
+            {t("home.s1.t1")}
           </h1>
           <div className="block_of_faculties flex flex-wrap justify-center gap-3 mt-5">
             <EachFaculty facultyImg={facultyImage} facultyName={`Biology`} />
@@ -41,13 +45,13 @@ const Home = () => {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              See all of faculties
+              {t("home.s1.t2")}
             </Button>
           </Link>
         </section>
         <section className="departments mt-8 max-w-6xl mx-auto">
           <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
-            Departments
+            {t("home.s2.t1")}
           </h1>
           <div className="block_of_departments mt-5 flex flex-col gap-3 px-4">
             <EachDepartment department={`Informatics`} />
@@ -69,13 +73,13 @@ const Home = () => {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              See all of departments
+              {t("home.s2.t2")}
             </Button>
           </Link>
         </section>
         <section className="teachers mt-8">
           <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
-            Teachers
+            {t("home.s3.t1")}
           </h1>
           <div className="block_of_teachers flex flex-wrap justify-center gap-3 mt-5">
             <EachTeacher
@@ -115,7 +119,7 @@ const Home = () => {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              See all of teachers
+              {t("home.s3.t2")}
             </Button>
           </Link>
         </section>

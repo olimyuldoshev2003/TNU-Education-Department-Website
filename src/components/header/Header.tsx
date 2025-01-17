@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+
+//Material Tailwind
 import {
   Navbar,
   MobileNav,
@@ -8,6 +10,9 @@ import {
   Select,
   Option,
 } from "@material-tailwind/react";
+
+//Material UI
+
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
@@ -18,6 +23,8 @@ import logoHeader from "../../assets/logo_tnu.png";
 import { useTranslation } from "react-i18next";
 
 export function Header() {
+  //MUI Functions
+
   const [openNav, setOpenNav] = React.useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +78,7 @@ export function Header() {
           }`}
           onClick={() => setOpenNav(false)}
         >
-          Home
+          {t("h.t1")}
         </Link>
       </Typography>
       <Typography
@@ -91,7 +98,7 @@ export function Header() {
           }`}
           onClick={() => setOpenNav(false)}
         >
-          Faculties
+          {t("h.t2")}
         </Link>
       </Typography>
       <Typography
@@ -111,7 +118,7 @@ export function Header() {
           }`}
           onClick={() => setOpenNav(false)}
         >
-          Departments
+          {t("h.t3")}
         </Link>
       </Typography>
       <Typography
@@ -131,7 +138,7 @@ export function Header() {
           }`}
           onClick={() => setOpenNav(false)}
         >
-          Teachers
+          {t("h.t4")}
         </Link>
       </Typography>
     </ul>
@@ -154,18 +161,21 @@ export function Header() {
           <div className="block_for_select_language sm:hidden lg:block">
             <Select
               size="md"
-              label="Select Language"
+              label={t("h.t5")}
+              className="dark:text-white"
+              value={i18n.language}
+              onChange={(value: string | undefined) => {
+                if (value) {
+                  changeLanguage(value);
+                }
+              }}
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
-              className=""
-              onChange={(event: string) => {
-                changeLanguage(event);
-              }}
             >
-              <Option value="en">En</Option>
-              <Option value="ru">Ru</Option>
-              <Option value="tj">Tj</Option>
+              <Option value="en">{t("h.t6")}</Option>
+              <Option value="ru">{t("h.t7")} </Option>
+              <Option value="tj"> {t("h.t8")}</Option>
             </Select>
           </div>
           <Switcher />
@@ -178,7 +188,7 @@ export function Header() {
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            <span>Admin</span>
+            <span>{t("h.t9")}</span>
           </Button>
           <IconButton
             variant="text"
@@ -203,17 +213,21 @@ export function Header() {
           <div className="space-y-3">
             <Select
               size="md"
-              label="Select Language"
+              label={t("h.t5")}
+              className="dark:text-white"
+              value={i18n.language}
+              onChange={(value: string | undefined) => {
+                if (value) {
+                  changeLanguage(value);
+                }
+              }}
               placeholder={undefined}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
-              onChange={(event: string) => {
-                changeLanguage(event);
-              }}
             >
-              <Option value="en">En</Option>
-              <Option value="ru">Ru</Option>
-              <Option value="tj">Tj</Option>
+              <Option value="en">{t("h.t6")}</Option>
+              <Option value="ru">{t("h.t7")}</Option>
+              <Option value="tj">{t("h.t8")}</Option>
             </Select>
             <Button
               fullWidth
@@ -224,7 +238,7 @@ export function Header() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <span>Admin</span>
+              <span>{t("h.t9")}</span>
             </Button>
           </div>
         </div>

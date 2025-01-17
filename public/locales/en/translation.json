@@ -1,5 +1,35 @@
 {
-  "h": {},
+  "h": {
+    "t1": "Home",
+    "t2": "Faculties",
+    "t3": "Departments",
+    "t4": "Teachers",
+    "t5": "Select Language",
+    "t6": "En",
+    "t7": "Ru",
+    "t8": "Tj",
+    "t9": "Admin"
+  },
 
-  "f": {}
+  "home": {
+    "s1": {
+      "t1": "Faculties",
+      "t2": "See all of faculties"
+    },
+    "s2": {
+      "t1": "Departments",
+      "t2": "See all of departments",
+      "t3": ""
+    },
+    "s3": {
+      "t1": "Teachers",
+      "t2": "See all of teachers"
+    }
+  },
+  "f": {
+    "t1": "About Us",
+    "t2": "Tajik National University (TNU) is the leading public institution in Tajikistan, Dushanbe. It was found in 1948.",
+    "t3": "Pages",
+    "t4": ""
+  }
 }
