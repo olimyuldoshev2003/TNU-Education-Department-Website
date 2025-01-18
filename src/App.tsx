@@ -88,7 +88,7 @@ const App = () => {
       path: "auth",
       element: (
         <Suspense fallback={<div className="loader"></div>}>
-          <Auth />,
+          <Auth />
         </Suspense>
       ),
     },
@@ -102,7 +102,11 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <Admin />,
+          element: (
+            <Suspense fallback={<div className="loader"></div>}>
+              <Admin />
+            </Suspense>
+          ),
         },
       ],
     },
