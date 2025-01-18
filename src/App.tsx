@@ -12,6 +12,9 @@ import {
   Teachers,
 } from "./routes/lazy";
 import Layout from "./layout/Layout";
+import Auth from "./pages/auth/Auth";
+import Dashboard from "./dashboard/Dashboard";
+import Admin from "./pages/admin/Admin";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -78,6 +81,28 @@ const App = () => {
               <Department />
             </Suspense>
           ),
+        },
+      ],
+    },
+    {
+      path: "auth",
+      element: (
+        <Suspense fallback={<div className="loader"></div>}>
+          <Auth />,
+        </Suspense>
+      ),
+    },
+    {
+      path: "admin",
+      element: (
+        <Suspense fallback={<div className="loader"></div>}>
+          <Dashboard />
+        </Suspense>
+      ),
+      children: [
+        {
+          index: true,
+          element: <Admin />,
         },
       ],
     },
