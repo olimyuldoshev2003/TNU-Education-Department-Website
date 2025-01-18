@@ -179,17 +179,19 @@ export function Header() {
             </Select>
           </div>
           <Switcher />
-          <Button
-            variant="filled"
-            color="blue"
-            size="sm"
-            className="hidden lg:inline-block"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            <span>{t("h.t9")}</span>
-          </Button>
+          <Link to={`/auth`}>
+            <Button
+              variant="filled"
+              color="blue"
+              size="sm"
+              className="hidden lg:inline-block"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              <span>{t("h.t9")}</span>
+            </Button>
+          </Link>
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden outline-none"
@@ -229,17 +231,19 @@ export function Header() {
               <Option value="ru">{t("h.t7")}</Option>
               <Option value="tj">{t("h.t8")}</Option>
             </Select>
-            <Button
-              fullWidth
-              variant="gradient"
-              color="blue"
-              size="sm"
-              placeholder={undefined}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              <span>{t("h.t9")}</span>
-            </Button>
+            <Link to={`/auth`}>
+              <Button
+                fullWidth
+                variant="gradient"
+                color="blue"
+                size="sm"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
+                <span>{t("h.t9")}</span>
+              </Button>
+            </Link>
           </div>
         </div>
       </MobileNav>
