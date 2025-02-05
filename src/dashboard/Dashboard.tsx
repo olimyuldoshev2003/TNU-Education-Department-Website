@@ -17,8 +17,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import logoHeader from "../assets/logo_tnu.png";
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@mui/material";
+import { Option, Select } from "@material-tailwind/react";
+import { useTranslation } from "react-i18next";
 
-const drawerWidth = 200;
+const drawerWidth = 210;
 
 interface Props {
   /**
@@ -32,6 +34,13 @@ const Dashboard = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+
+  //for translation
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
 
   const pages = [
     {
@@ -111,6 +120,26 @@ const Dashboard = (props: Props) => {
         ))}
       </List>
       <Divider />
+      <div className="for_translation mt-6 ">
+        <Select
+          size="md"
+          label={t("h.t5")}
+          className="dark:text-white"
+          value={i18n.language}
+          onChange={(value: string | undefined) => {
+            if (value) {
+              changeLanguage(value);
+            }
+          }}
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
+          <Option value="en">{t("h.t6")}</Option>
+          <Option value="ru">{t("h.t7")} </Option>
+          <Option value="tj"> {t("h.t8")}</Option>
+        </Select>
+      </div>
     </div>
   );
 
