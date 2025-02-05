@@ -10,7 +10,6 @@
     "t8": "Tj",
     "t9": "Admin"
   },
-
   "home": {
     "s1": {
       "t1": "Faculties",
@@ -25,6 +24,18 @@
       "t1": "Teachers",
       "t2": "See all of teachers"
     }
+  },
+  "faculties": {
+    "t1": "Founded",
+    "t2": "faculties"
+  },
+  "departments": {
+    "t1": "Founded",
+    "t2": "Departments"
+  },
+  "teachers": {
+    "t1": "Founded",
+    "t2": "Teachers"
   },
   "f": {
     "t1": "About Us",
