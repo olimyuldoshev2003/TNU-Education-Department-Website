@@ -212,7 +212,7 @@ export function Header() {
       <MobileNav open={openNav}>
         <div className="max-w-6xl mx-auto">
           {navList}
-          <div className="space-y-3">
+          <div className="">
             <Select
               size="md"
               label={t("h.t5")}
@@ -231,7 +231,7 @@ export function Header() {
               <Option value="ru">{t("h.t7")}</Option>
               <Option value="tj">{t("h.t8")}</Option>
             </Select>
-            <Link to={`/auth`}>
+            <Link to={`/auth`} className="mt-2 block">
               <Button
                 fullWidth
                 variant="gradient"
