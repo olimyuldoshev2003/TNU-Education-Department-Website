@@ -1,7 +1,7 @@
 const Admin = () => {
   return (
     <>
-      <div className="admin_component"></div>
+      <div className="admin_component">qwdqwdwqd</div>
     </>
   );
 };
