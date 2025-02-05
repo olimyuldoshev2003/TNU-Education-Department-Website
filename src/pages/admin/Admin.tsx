@@ -131,14 +131,23 @@ function getGaussianSeriesData(mean: number[], stdev = [0.3, 0.4], N = 50) {
   });
 }
 
-const legendPlacement = {
+const legendPlacement: {
+  slotProps: {
+    legend: {
+      position: { vertical: string; horizontal: string };
+      direction: "row" | "column";
+      itemGap: number;
+    };
+  };
+  margin: { top: number; right: number; left: number };
+} = {
   slotProps: {
     legend: {
       position: {
         vertical: "middle",
         horizontal: "right",
       },
-      direction: "column",
+      direction: "column", // This will now be properly typed
       itemGap: 2,
     },
   },
@@ -428,7 +437,7 @@ const Admin = () => {
             height={400}
             series={series11}
             yAxis={[{ min: -1.5, max: 1.5 }]}
-            colors={categories[colorScheme]}
+            colors={categories[colorScheme as keyof typeof categories]}
             {...legendPlacement}
           />
           <TextField
