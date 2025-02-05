@@ -31,11 +31,11 @@
   },
   "departments": {
     "t1": "Founded",
-    "t2": "Departments"
+    "t2": "departments"
   },
   "teachers": {
     "t1": "Founded",
-    "t2": "Teachers"
+    "t2": "teachers"
   },
   "f": {
     "t1": "About Us",
