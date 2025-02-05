@@ -15,6 +15,9 @@ import Layout from "./layout/Layout";
 import Auth from "./pages/auth/Auth";
 import Dashboard from "./dashboard/Dashboard";
 import Admin from "./pages/admin/Admin";
+import FacultiesAdmin from "./pages/facultiesAdmin/FacultiesAdmin";
+import DepartmentsAdmin from "./pages/departmentsAdmin/DepartmentsAdmin";
+import TeachersAdmin from "./pages/teachersAdmin/TeachersAdmin";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -59,18 +62,18 @@ const App = () => {
           ),
         },
         {
-          path: "teacher",
-          element: (
-            <Suspense fallback={<div className="loader"></div>}>
-              <Teacher />
-            </Suspense>
-          ),
-        },
-        {
           path: "faculty",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
               <Faculty />
+            </Suspense>
+          ),
+        },
+        {
+          path: "teacher",
+          element: (
+            <Suspense fallback={<div className="loader"></div>}>
+              <Teacher />
             </Suspense>
           ),
         },
@@ -107,6 +110,18 @@ const App = () => {
               <Admin />
             </Suspense>
           ),
+        },
+        {
+          path: "faculties_admin",
+          element: <FacultiesAdmin />,
+        },
+        {
+          path: "departments_admin",
+          element: <DepartmentsAdmin />,
+        },
+        {
+          path: "teachers_admin",
+          element: <TeachersAdmin />,
         },
       ],
     },
