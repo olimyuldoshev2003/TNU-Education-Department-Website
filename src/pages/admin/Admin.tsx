@@ -1,10 +1,12 @@
 import React from "react";
-import AppsOutageIcon from "@mui/icons-material/AppsOutage";
-import TextsmsIcon from "@mui/icons-material/Textsms";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-import WebhookIcon from "@mui/icons-material/Webhook";
+
+// Mui Icons
+// import AppsOutageIcon from "@mui/icons-material/AppsOutage";
+// import TextsmsIcon from "@mui/icons-material/Textsms";
+// import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+// import BookmarksIcon from "@mui/icons-material/Bookmarks";
+// import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+// import WebhookIcon from "@mui/icons-material/Webhook";
 
 // chart
 import Box from "@mui/material/Box";
@@ -323,231 +325,233 @@ const Admin = () => {
   const [colorScheme, setColorScheme] = React.useState("Category10");
 
   return (
-    <div className="dark:text-[white] dark:bg-[#112039] ">
-      {/*row1  */}
-      <div className="md:flex justify-evenly items-start">
-        {/* box1 */}
-        <div className="dark:bg-[#216fbd] bg-[white] rounded-2xl shadow-md md:w-[50%] p-[2%]">
-          <div className="md:flex justify-evenly items-center">
-            <div>
-              <GraphicEqIcon></GraphicEqIcon>
-              <h3 className="font-mono text-[30px]">
-                Welcome Back{" "}
-                <span className="text-[#190404] font-semibold text-[38px]">
-                  David👋
-                </span>
-              </h3>
-              <div className="flex">
-                <div className="mx-5">
-                  <p className="text-[#b9b8b8] font-sans text-[18px]">Budget</p>
-                  <p className="text-[22px] font-bold">$88,557</p>
-                </div>
-                <div>
-                  <p className="text-[#b9b8b8] font-sans text-[18px]">
-                    Expense
-                  </p>
-                  <p className="text-[22px] font-bold">$148,789</p>
-                </div>
-              </div>
-            </div>
-            <img src="/public/welcome-bg.png" alt="" />
-          </div>
-          {/* <marquee
-            direction="right"
-            className="bg-[black] text-[45px] rounded-xl"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
-              Hello Back David
-            </span>
-          </marquee> */}
-
-          <div>
-            {/* Row1 */}
-            <div className="flex my-4 justify-evenly">
-              {/* Row1_threeBox1 */}
-              <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
-                <AppsOutageIcon sx={{ fontSize: "40px", margin: "2%" }} />
-                <div>
-                  <p>Total</p>
-                  <p className="text-[yellow]">$93,48</p>
-                </div>
-              </div>
-
-              {/* Row1_threeBox2 */}
-              <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
-                <TextsmsIcon sx={{ fontSize: "40px", margin: "2%" }} />
-                <div>
-                  <p>SMS</p>
-                  <p className="text-[yellow]">$93,48</p>
-                </div>
-              </div>
-
-              {/* Row1_threeBox3 */}
-              <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
-                <AdminPanelSettingsIcon
-                  sx={{ fontSize: "40px", margin: "2%" }}
-                />
-                <div>
-                  <p>Admin</p>
-                  <p className="text-[yellow]">$93,48</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Row2 */}
-            <div className="flex justify-evenly my-8">
-              {/* Row1_threeBox1 */}
-              <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
-                <BookmarksIcon sx={{ fontSize: "40px", margin: "2%" }} />
-                <div>
-                  <p>Main Save</p>
-                  <p className="text-[yellow]">$93,48</p>
-                </div>
-              </div>
-
-              {/* Row1_threeBox2 */}
-              <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
-                <ConnectWithoutContactIcon
-                  sx={{ fontSize: "40px", margin: "2%" }}
-                />
-                <div>
-                  <p>Social</p>
-                  <p className="text-[yellow]">$93,48</p>
-                </div>
-              </div>
-
-              {/* Row1_threeBox3 */}
-              <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
-                <WebhookIcon sx={{ fontSize: "40px", margin: "2%" }} />
-                <div>
-                  <p>Webcite</p>
-                  <p className="text-[yellow]">$93,48</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* chart2 */}
-        <Stack
-          direction="column"
-          spacing={2}
-          sx={{ width: "100%", maxWidth: 600 }}
-          className="shadow-xl rounded-md p-[1%]"
-        >
-          <ScatterChart
-            height={400}
-            series={series11}
-            yAxis={[{ min: -1.5, max: 1.5 }]}
-            colors={categories[colorScheme as keyof typeof categories]}
-            {...legendPlacement}
-          />
-          <TextField
-            select
-            defaultValue="Category10"
-            onChange={(event) => setColorScheme(event.target.value)}
-          >
-            {Object.entries(categories).map(([name, colors]) => (
-              <MenuItem key={name} value={name}>
-                <Stack direction="row" alignItems="center">
-                  <Typography sx={{ mr: 2 }}>{name}</Typography>
-                  <div style={{ width: 200, height: 20 }}>
-                    {colors.map((c) => (
-                      <div
-                        key={c}
-                        style={{
-                          width: 20,
-                          height: 20,
-                          backgroundColor: c,
-                          display: "inline-block",
-                        }}
-                      />
-                    ))}
+    <>
+      <div className="admin_component dark:text-[white] dark:bg-[#112039] ">
+        {/*row1  */}
+        <div className="flex justify-evenly flex-wrap items-start">
+          {/* box1 */}
+          <div className="dark:bg-[#216fbd] bg-[white] rounded-2xl sm:w-[100%] lg:w-[50%] p-[2%]">
+            <div className="md:flex justify-evenly items-center">
+              <div>
+                <GraphicEqIcon></GraphicEqIcon>
+                <h3 className="font-mono text-[30px]">
+                  Welcome{" "}
+                  <span className="text-[#190404] font-semibold text-[38px]">
+                    Admin
+                  </span>
+                </h3>
+                {/* <div className="flex">
+                  <div className="mx-5">
+                    <p className="text-[#b9b8b8] font-sans text-[18px]">
+                      Budget
+                    </p>
+                    <p className="text-[22px] font-bold">$88,557</p>
                   </div>
-                </Stack>
-              </MenuItem>
-            ))}
-          </TextField>
-        </Stack>
-      </div>
-
-      {/* #Row2 */}
-      <div className="my-8 md:flex justify-evenly">
-        {/* chart3 */}
-        <div className="shadow-xl rounded-md md:w-[50%] dark:bg-[#101037]">
-          <ResponsiveContainer width="100%" height={500}>
-            <LineChart
-              width={500}
-              height={300}
-              data={data}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
+                  <div>
+                    <p className="text-[#b9b8b8] font-sans text-[18px]">
+                      Expense
+                    </p>
+                    <p className="text-[22px] font-bold">$148,789</p>
+                  </div>
+                </div> */}
+              </div>
+              <img src="/public/welcome-bg.png" alt="" />
+            </div>
+            {/* <marquee
+              direction="right"
+              className="bg-[black] text-[45px] rounded-xl"
             >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-              <Customized
-                component={(props: any) => <CustomizedRectangle {...props} />}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                Hello Back David
+              </span>
+            </marquee> */}
+            <div>
+              {/* Row1 */}
+              <div className="flex my-4 justify-evenly">
+                {/* Row1_threeBox1 */}
+                {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
+                  <AppsOutageIcon sx={{ fontSize: "40px", margin: "2%" }} />
+                  <div>
+                    <p>Total</p>
+                    <p className="text-[yellow]">$93,48</p>
+                  </div>
+                </div> */}
+
+                {/* Row1_threeBox2 */}
+                {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
+                  <TextsmsIcon sx={{ fontSize: "40px", margin: "2%" }} />
+                  <div>
+                    <p>SMS</p>
+                    <p className="text-[yellow]">$93,48</p>
+                  </div>
+                </div> */}
+
+                {/* Row1_threeBox3 */}
+                {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
+                  <AdminPanelSettingsIcon
+                    sx={{ fontSize: "40px", margin: "2%" }}
+                  />
+                  <div>
+                    <p>Admin</p>
+                    <p className="text-[yellow]">$93,48</p>
+                  </div>
+                </div> */}
+              </div>
+              {/* Row2 */}
+              <div className="flex justify-evenly my-8">
+                {/* Row1_threeBox1 */}
+                {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
+                  <BookmarksIcon sx={{ fontSize: "40px", margin: "2%" }} />
+                  <div>
+                    <p>Main Save</p>
+                    <p className="text-[yellow]">$93,48</p>
+                  </div>
+                </div> */}
+
+                {/* Row1_threeBox2 */}
+                {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
+                  <ConnectWithoutContactIcon
+                    sx={{ fontSize: "40px", margin: "2%" }}
+                  />
+                  <div>
+                    <p>Social</p>
+                    <p className="text-[yellow]">$93,48</p>
+                  </div>
+                </div> */}
+
+                {/* Row1_threeBox3 */}
+                {/* <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 flex w-[30%] items-center shadow-md rounded-lg md:text-[20px] font-semibold">
+                  <WebhookIcon sx={{ fontSize: "40px", margin: "2%" }} />
+                  <div>
+                    <p>Webcite</p>
+                    <p className="text-[yellow]">$93,48</p>
+                  </div>
+                </div> */}
+              </div>
+            </div>
+          </div>
+          {/* chart2 */}
+          <Stack
+            direction="column"
+            spacing={2}
+            sx={{ width: "100%", maxWidth: 600 }}
+            className="shadow-xl rounded-md p-[1%]"
+          >
+            <ScatterChart
+              height={400}
+              series={series11}
+              yAxis={[{ min: -1.5, max: 1.5 }]}
+              colors={categories[colorScheme as keyof typeof categories]}
+              {...legendPlacement}
+            />
+            <TextField
+              select
+              defaultValue="Category10"
+              onChange={(event) => setColorScheme(event.target.value)}
+            >
+              {Object.entries(categories).map(([name, colors]) => (
+                <MenuItem key={name} value={name}>
+                  <Stack direction="row" alignItems="center">
+                    <Typography sx={{ mr: 2 }}>{name}</Typography>
+                    <div style={{ width: 200, height: 20 }}>
+                      {colors.map((c) => (
+                        <div
+                          key={c}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            backgroundColor: c,
+                            display: "inline-block",
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </Stack>
+                </MenuItem>
+              ))}
+            </TextField>
+          </Stack>
+        </div>
+
+        {/* #Row2 */}
+        <div className="my-8 md:flex justify-evenly">
+          {/* chart3 */}
+          <div className="shadow-xl rounded-md md:w-[50%] dark:bg-[#101037]">
+            <ResponsiveContainer width="100%" height={500}>
+              <LineChart
+                width={500}
+                height={300}
+                data={data}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                <Customized
+                  component={(props: any) => <CustomizedRectangle {...props} />}
+                />
+                ;
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="shadow-lg md:w-[45%] dark:bg-[#101037] rounded-lg p-2">
+            {/* chart1 */}
+            <Box sx={{ width: "100%" }}>
+              <BarChart
+                height={300}
+                series={series
+                  .slice(0, seriesNb)
+                  .map((s) => ({ ...s, data: s.data.slice(0, itemNb) }))}
+                skipAnimation={skipAnimation}
               />
               ;
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="shadow-lg md:w-[45%] dark:bg-[#101037] rounded-lg p-2">
-          {/* chart1 */}
-          <Box sx={{ width: "100%" }}>
-            <BarChart
-              height={300}
-              series={series
-                .slice(0, seriesNb)
-                .map((s) => ({ ...s, data: s.data.slice(0, itemNb) }))}
-              skipAnimation={skipAnimation}
-            />
-            ;
-            <FormControlLabel
-              checked={skipAnimation}
-              control={
-                <Checkbox
-                  onChange={(event) => setSkipAnimation(event.target.checked)}
-                />
-              }
-              label="skipAnimation"
-              labelPlacement="end"
-            />
-            <Typography id="input-item-number" gutterBottom>
-              Number of items
-            </Typography>
-            <Slider
-              value={itemNb}
-              onChange={handleItemNbChange}
-              valueLabelDisplay="auto"
-              min={1}
-              max={20}
-              aria-labelledby="input-item-number"
-            />
-            <Typography id="input-series-number" gutterBottom>
-              Number of series
-            </Typography>
-            <Slider
-              value={seriesNb}
-              onChange={handleSeriesNbChange}
-              valueLabelDisplay="auto"
-              min={1}
-              max={10}
-              aria-labelledby="input-series-number"
-            />
-          </Box>
+              <FormControlLabel
+                checked={skipAnimation}
+                control={
+                  <Checkbox
+                    onChange={(event) => setSkipAnimation(event.target.checked)}
+                  />
+                }
+                label="skipAnimation"
+                labelPlacement="end"
+              />
+              <Typography id="input-item-number" gutterBottom>
+                Number of items
+              </Typography>
+              <Slider
+                value={itemNb}
+                onChange={handleItemNbChange}
+                valueLabelDisplay="auto"
+                min={1}
+                max={20}
+                aria-labelledby="input-item-number"
+              />
+              <Typography id="input-series-number" gutterBottom>
+                Number of series
+              </Typography>
+              <Slider
+                value={seriesNb}
+                onChange={handleSeriesNbChange}
+                valueLabelDisplay="auto"
+                min={1}
+                max={10}
+                aria-labelledby="input-series-number"
+              />
+            </Box>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
