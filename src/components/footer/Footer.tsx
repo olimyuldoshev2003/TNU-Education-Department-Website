@@ -46,6 +46,14 @@ const Footer = () => {
                   {t("h.t4")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  to={`/publications`}
+                  className="text-white hover:underline"
+                >
+                  {t("h.t5")}
+                </Link>
+              </li>
             </ul>
           </div>
           {/* <div className="footer_block_2">

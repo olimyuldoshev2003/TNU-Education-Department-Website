@@ -141,6 +141,26 @@ export function Header() {
           {t("h.t4")}
         </Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="flex items-center gap-x-2 p-1 font-medium"
+        placeholder={undefined}
+        onPointerEnterCapture={undefined}
+        onPointerLeaveCapture={undefined}
+      >
+        <Link
+          to={`/publications`}
+          className={`fle items-center hover:underline hover:text-red-600 dark:text-white duration-300 ${
+            location.pathname === "/publications" &&
+            `underline text-red-600 dark:text-red-600`
+          }`}
+          onClick={() => setOpenNav(false)}
+        >
+          {t("h.t5")}
+        </Link>
+      </Typography>
     </ul>
   );
 
@@ -161,7 +181,7 @@ export function Header() {
           <div className="block_for_select_language sm:hidden lg:block">
             <Select
               size="md"
-              label={t("h.t5")}
+              label={t("h.t6")}
               className="dark:text-white"
               value={i18n.language}
               onChange={(value: string | undefined) => {
@@ -173,9 +193,9 @@ export function Header() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <Option value="en">{t("h.t6")}</Option>
-              <Option value="ru">{t("h.t7")} </Option>
-              <Option value="tj"> {t("h.t8")}</Option>
+              <Option value="en">{t("h.t7")}</Option>
+              <Option value="ru">{t("h.t8")} </Option>
+              <Option value="tj"> {t("h.t9")}</Option>
             </Select>
           </div>
           <Switcher />
@@ -189,7 +209,7 @@ export function Header() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <span>{t("h.t9")}</span>
+              <span>{t("h.t10")}</span>
             </Button>
           </Link>
           <IconButton
@@ -215,7 +235,7 @@ export function Header() {
           <div className="">
             <Select
               size="md"
-              label={t("h.t5")}
+              label={t("h.t6")}
               className="dark:text-white"
               value={i18n.language}
               onChange={(value: string | undefined) => {
@@ -227,9 +247,9 @@ export function Header() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              <Option value="en">{t("h.t6")}</Option>
-              <Option value="ru">{t("h.t7")}</Option>
-              <Option value="tj">{t("h.t8")}</Option>
+              <Option value="en">{t("h.t7")}</Option>
+              <Option value="ru">{t("h.t8")}</Option>
+              <Option value="tj">{t("h.t9")}</Option>
             </Select>
             <Link to={`/auth`} className="mt-2 block">
               <Button
@@ -241,7 +261,7 @@ export function Header() {
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
               >
-                <span>{t("h.t9")}</span>
+                <span>{t("h.t10")}</span>
               </Button>
             </Link>
           </div>

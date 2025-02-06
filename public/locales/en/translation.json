@@ -4,11 +4,12 @@
     "t2": "Faculties",
     "t3": "Departments",
     "t4": "Teachers",
-    "t5": "Select Language",
-    "t6": "En",
-    "t7": "Ru",
-    "t8": "Tj",
-    "t9": "Admin"
+    "t5": "Publications",
+    "t6": "Select Language",
+    "t7": "En",
+    "t8": "Ru",
+    "t9": "Tj",
+    "t10": "Admin"
   },
   "home": {
     "s1": {
@@ -23,6 +24,10 @@
     "s3": {
       "t1": "Teachers",
       "t2": "See all of teachers"
+    },
+    "s4": {
+      "t1": "Publications",
+      "t2": "See all of publications"
     }
   },
   "faculties": {
@@ -36,6 +41,10 @@
   "teachers": {
     "t1": "Founded",
     "t2": "teachers"
+  },
+  "publications": {
+    "t1": "Founded",
+    "t2": "publications"
   },
   "f": {
     "t1": "About Us",

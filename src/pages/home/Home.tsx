@@ -10,6 +10,7 @@ import EachTeacher from "../../components/eachTeacher/EachTeacher";
 import facultyImage from "../../assets/bg-image.jpg";
 import teacherImage from "../../assets/bg-image.jpg";
 import { useTranslation } from "react-i18next";
+import EachPublication from "../../components/eachPublication/EachPublication";
 
 const Home = () => {
   //for translation
@@ -120,6 +121,42 @@ const Home = () => {
               onPointerLeaveCapture={undefined}
             >
               {t("home.s3.t2")}
+            </Button>
+          </Link>
+        </section>
+        <section className="publications mt-8">
+          <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
+            {t("home.s4.t1")}
+          </h1>
+          <div className="block_of_publications flex flex-wrap justify-center gap-3 mt-5">
+            <EachPublication
+              publicationImg={teacherImage}
+              publicationName={"Rich Dad, Poor Dad"}
+              publicationAuthor={"Robert T. Kiyosaki"}
+            />
+            <EachPublication
+              publicationImg={teacherImage}
+              publicationName={"Rich Dad, Poor Dad"}
+              publicationAuthor={"Robert T. Kiyosaki"}
+            />
+            <EachPublication
+              publicationImg={teacherImage}
+              publicationName={"Rich Dad, Poor Dad"}
+              publicationAuthor={"Robert T. Kiyosaki"}
+            />
+          </div>
+          <Link
+            to={`/publications`}
+            className="flex justify-center mt-7 max-w-max mx-auto"
+          >
+            <Button
+              color="green"
+              variant="gradient"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              {t("home.s4.t2")}
             </Button>
           </Link>
         </section>

@@ -18,6 +18,8 @@ import Admin from "./pages/admin/Admin";
 import FacultiesAdmin from "./pages/facultiesAdmin/FacultiesAdmin";
 import DepartmentsAdmin from "./pages/departmentsAdmin/DepartmentsAdmin";
 import TeachersAdmin from "./pages/teachersAdmin/TeachersAdmin";
+import Publications from "./pages/publications/Publications";
+import Publication from "./pages/publication/Publication";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -62,6 +64,14 @@ const App = () => {
           ),
         },
         {
+          path: "publications",
+          element: (
+            <Suspense fallback={<div className="loader"></div>}>
+              <Publications />
+            </Suspense>
+          ),
+        },
+        {
           path: "faculty",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
@@ -82,6 +92,14 @@ const App = () => {
           element: (
             <Suspense fallback={<div className="loader"></div>}>
               <Department />
+            </Suspense>
+          ),
+        },
+        {
+          path: "publication",
+          element: (
+            <Suspense fallback={<div className="loader"></div>}>
+              <Publication />
             </Suspense>
           ),
         },

@@ -1,14 +1,14 @@
 import EachTeacher from "../../components/eachTeacher/EachTeacher";
 
 //Images
-import facultyImg from "../../assets/bg-image.jpg";
 import teacherImg from "../../assets/bg-image.jpg";
+import facultyImg from "../../assets/bg-image.jpg";
 import EachDepartment from "../../components/eachDepartment/EachDepartment";
 
 const Faculty = () => {
   return (
     <>
-      <div className="faculty_component dark:bg-[#091220]  duration-300">
+      <div className="faculty_component dark:bg-[#091220] duration-300">
         <div className="block_faculty_component py-5 px-5 max-w-6xl mx-auto duration-300">
           <div className="main_block_of_faculty flex md:justify-between sm:justify-center sm:flex-wrap md:flex-nowrap gap-2">
             <div className="faculty_block_1_img">
