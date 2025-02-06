@@ -128,7 +128,7 @@ const Dashboard = (props: Props) => {
       <div className="for_translation mt-6 ">
         <Select
           size="md"
-          label={t("h.t5")}
+          label={t("h.t6")}
           className="dark:text-white"
           value={i18n.language}
           onChange={(value: string | undefined) => {
@@ -140,9 +140,9 @@ const Dashboard = (props: Props) => {
           onPointerEnterCapture={undefined}
           onPointerLeaveCapture={undefined}
         >
-          <Option value="en">{t("h.t6")}</Option>
-          <Option value="ru">{t("h.t7")} </Option>
-          <Option value="tj"> {t("h.t8")}</Option>
+          <Option value="en">{t("h.t7")}</Option>
+          <Option value="ru">{t("h.t8")} </Option>
+          <Option value="tj"> {t("h.t9")}</Option>
         </Select>
       </div>
     </div>
