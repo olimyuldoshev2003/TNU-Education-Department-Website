@@ -16,7 +16,7 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 
 // chart2
-import { ScatterChart } from "@mui/x-charts/ScatterChart";
+import { ScatterChart, ScatterChartProps } from "@mui/x-charts/ScatterChart";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -81,36 +81,46 @@ const data = [
     amt: 2100,
   },
 ];
-// using Customized gives you access to all relevant chart props
-const CustomizedRectangle = (props: { formattedGraphicalItems: any }) => {
+
+interface CustomizedRectangleProps {
+  formattedGraphicalItems: Array<{
+    props: { points: { x: number; y: number; payload: { name: React.Key } }[] };
+  }>;
+}
+
+interface CustomizedRectangleProps {
+  formattedGraphicalItems: Array<{
+    props: { points: { x: number; y: number; payload: { name: React.Key } }[] };
+  }>;
+}
+
+const CustomizedRectangle: React.FC<CustomizedRectangleProps> = (props) => {
   const { formattedGraphicalItems } = props;
-  // get first and second series in chart
+
+  if (!formattedGraphicalItems || formattedGraphicalItems.length < 2)
+    return null;
+
   const firstSeries = formattedGraphicalItems[0];
   const secondSeries = formattedGraphicalItems[1];
 
-  // render custom content using points from the graph
-  return firstSeries?.props?.points.map(
-    (
-      firstSeriesPoint: {
-        y: number;
-        payload: { name: React.Key | null | undefined };
-      },
-      index: number
-    ) => {
-      const secondSeriesPoint = secondSeries?.props?.points[index];
-      const yDifference = firstSeriesPoint.y - secondSeriesPoint.y;
+  return (
+    <>
+      {firstSeries.props.points.map((firstSeriesPoint, index) => {
+        const secondSeriesPoint = secondSeries.props.points[index];
+        const yDifference = firstSeriesPoint.y - secondSeriesPoint.y;
 
-      return (
-        <Rectangle
-          key={firstSeriesPoint.payload.name}
-          width={10}
-          height={yDifference}
-          x={secondSeriesPoint.x - 5}
-          y={secondSeriesPoint.y}
-          fill={yDifference > 0 ? "red" : yDifference < 0 ? "green" : "none"}
-        />
-      );
-    }
+        return (
+          <Rectangle
+            key={firstSeriesPoint.payload.name}
+            width={10}
+            height={Math.abs(yDifference)} // Ensure height is positive
+            x={secondSeriesPoint.x - 5}
+            y={Math.min(firstSeriesPoint.y, secondSeriesPoint.y)} // Proper y positioning
+            fill={yDifference > 0 ? "red" : yDifference < 0 ? "green" : "none"}
+          />
+        );
+      })}
+    </>
   );
 };
 
@@ -131,30 +141,25 @@ function getGaussianSeriesData(mean: number[], stdev = [0.3, 0.4], N = 50) {
   });
 }
 
-const legendPlacement: {
-  slotProps: {
-    legend: {
-      position: { vertical: string; horizontal: string };
-      direction: "row" | "column";
-      itemGap: number;
-    };
-  };
-  margin: { top: number; right: number; left: number };
-} = {
-  slotProps: {
-    legend: {
-      position: {
-        vertical: "middle",
-        horizontal: "right",
-      },
-      direction: "column", // This will now be properly typed
-      itemGap: 2,
+// type LegendPosition = {
+//   vertical: "top" | "middle" | "bottom";
+//   horizontal: "left" | "middle" | "right";
+// };
+
+// type LegendSlotProps = {
+//   position: LegendPosition;
+//   direction: "row" | "column";
+//   itemGap: number;
+// };
+
+const legendPlacement: ScatterChartProps["slotProps"] = {
+  legend: {
+    position: {
+      vertical: "top",
+      horizontal: "right",
     },
-  },
-  margin: {
-    top: 20,
-    right: 150,
-    left: 20,
+    direction: "row",
+    itemGap: 16,
   },
 };
 const series11 = [
@@ -300,24 +305,20 @@ const Admin = () => {
   const [itemNb, setItemNb] = React.useState(5);
   const [skipAnimation, setSkipAnimation] = React.useState(false);
 
-  const handleItemNbChange = (
-    _: any,
-    newValue: React.SetStateAction<number>
-  ) => {
-    if (typeof newValue !== "number") {
+  const handleItemNbChange = (_: Event, newValue: number | number[]) => {
+    // Ensure newValue is a single number, not an array
+    if (Array.isArray(newValue)) {
       return;
     }
     setItemNb(newValue);
   };
-  const handleSeriesNbChange = (
-    _: any,
-    newValue: React.SetStateAction<number>
-  ) => {
-    if (typeof newValue !== "number") {
-      return;
+  const handleSeriesNbChange = (_: Event, newValue: number | number[]) => {
+    if (Array.isArray(newValue)) {
+      return; // Ignore arrays, since this is a single-value slider
     }
-    setSeriesNb(newValue);
+    setSeriesNb(newValue); // Set the state with the new number value
   };
+
   // chart2
   const [colorScheme, setColorScheme] = React.useState("Category10");
 
@@ -492,7 +493,10 @@ const Admin = () => {
               <Legend />
               <Line type="monotone" dataKey="pv" stroke="#8884d8" />
               <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-              <Customized component={CustomizedRectangle} />
+              <Customized
+                component={(props: any) => <CustomizedRectangle {...props} />}
+              />
+              ;
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -507,6 +511,7 @@ const Admin = () => {
                 .map((s) => ({ ...s, data: s.data.slice(0, itemNb) }))}
               skipAnimation={skipAnimation}
             />
+            ;
             <FormControlLabel
               checked={skipAnimation}
               control={
@@ -546,10 +551,14 @@ const Admin = () => {
   );
 };
 
-// chart
 const highlightScope = {
-  highlighted: "series",
-  faded: "global",
+  highlighted: "series", // Ensure this is a valid HighlightOptions value
+  faded: "global", // Ensure this is a valid HighlightOptions value
+};
+
+type HighlightOptions = {
+  highlighted: "series" | "item" | "none"; // Adjust based on docs
+  faded: "global" | "none";
 };
 
 const series = [
@@ -623,7 +632,10 @@ const series = [
       1421, 785, 1752, 800, 990, 1809, 1985, 665,
     ],
   },
-].map((s) => ({ ...s, highlightScope }));
+].map((s) => ({
+  ...s,
+  highlightScope: highlightScope as HighlightOptions, // Ensure the correct type
+}));
 
 // // chart3
 // Example.demoUrl =
