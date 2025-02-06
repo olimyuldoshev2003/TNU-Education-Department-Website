@@ -58,6 +58,11 @@ const Dashboard = (props: Props) => {
       path: "/admin/teachers_admin",
       name: "Teachers",
     },
+    {
+      id: 4,
+      path: "/admin/publications_admin",
+      name: "Publications",
+    },
   ];
 
   const handleDrawerClose = () => {

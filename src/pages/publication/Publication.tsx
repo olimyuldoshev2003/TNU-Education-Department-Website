@@ -34,9 +34,8 @@ const Publication = () => {
               <h2 className="mt-3 font-bold dark:text-white duration-300">
                 Year of publication: <span className="font-normal">2020</span>
               </h2>
-              <h2 className="mt-3 font-bold dark:text-white duration-300">
-                Number of pages
-                <span className="font-normal">202 pages</span>
+              <h2 className="mt-3 font-bold dark:text-white duration-300 mr-1">
+                Number of pages: <span className="font-normal">202 pages</span>
               </h2>
               <h2 className="mt-3 font-bold dark:text-white duration-300">
                 You can find this book here:{" "}

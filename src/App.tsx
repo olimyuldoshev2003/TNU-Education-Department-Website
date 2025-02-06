@@ -20,6 +20,7 @@ import DepartmentsAdmin from "./pages/departmentsAdmin/DepartmentsAdmin";
 import TeachersAdmin from "./pages/teachersAdmin/TeachersAdmin";
 import Publications from "./pages/publications/Publications";
 import Publication from "./pages/publication/Publication";
+import PublicationsAdmin from "./pages/publicationsAdmin/PublicationsAdmin";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -140,6 +141,10 @@ const App = () => {
         {
           path: "teachers_admin",
           element: <TeachersAdmin />,
+        },
+        {
+          path: "publications_admin",
+          element: <PublicationsAdmin />,
         },
       ],
     },
