@@ -1,0 +1,108 @@
+{
+  "faculties": [
+    {
+      "id": "1",
+      "facultyImg": "../src/assets/faculties/mechanic_and_math.jpg",
+      "facultyName": "Mechanic and Math",
+      "about": "Leading faculty in mechanical engineering and pure mathematics research",
+      "yearOfOpening": 1975,
+      "dean": "Prof. Alexander Kovalevsky",
+      "students": 1200
+    },
+    {
+      "id": "2",
+      "facultyImg": "../src/assets/faculties/philosophy.jpg",
+      "facultyName": "Philosophy",
+      "about": "Center for philosophical studies and ethical research",
+      "yearOfOpening": 1982,
+      "dean": "Dr. Sophia Petrovna",
+      "students": 1300
+    },
+    {
+      "id": "3",
+      "facultyImg": "../src/assets/faculties/physics.jpg",
+      "facultyName": "Physics",
+      "about": "Premier institution for theoretical and applied physics",
+      "yearOfOpening": 1968,
+      "dean": "Prof. Igor Sokolov",
+      "students": 1500
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "facultyId": "1",
+      "departmentImg": "/images/informatics.jpg",
+      "departmentName": "Informatics",
+      "about": "Computer science and information technology department offering cutting-edge programs in software engineering and AI",
+      "yearOfOpening": "1995",
+      "headOfDepartment": "Dr. John Smith"
+    },
+    {
+      "id": "2",
+      "facultyId": "1",
+      "departmentImg": "/images/math-models.jpg",
+      "departmentName": "Моделҳои математикӣ ва компютерӣ",
+      "about": "Advanced studies in mathematical modeling and computational methods",
+      "yearOfOpening": "2002",
+      "headOfDepartment": "Prof. Alisher Navoi"
+    },
+    {
+      "id": "3",
+      "facultyId": "3",
+      "departmentImg": "/images/astronomy.jpg",
+      "departmentName": "Astronomy",
+      "about": "Research center for astrophysics and space exploration",
+      "yearOfOpening": "1988",
+      "headOfDepartment": "Dr. Maria Curie"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "1",
+      "facultyId": "1",
+      "departmentId": "1",
+      "teacherImg": "../src/assets/teachers/shamsullo_taghoev.jpg",
+      "teacherName": "Taghoev Shamsullo",
+      "teacherJobLevel": "Senior Lecturer",
+      "dateOfBirth": "1975-03-15",
+      "joinedToThisFaculty": 1999
+    },
+    {
+      "id": "2",
+      "facultyId": "1",
+      "departmentId": "1",
+      "teacherImg": "../src/assets/teachers/saidzoda_isroil.jpg",
+      "teacherName": "Saidzoda Isroil",
+      "teacherJobLevel": "Associate Professor",
+      "dateOfBirth": "1962-11-30",
+      "joinedToThisFaculty": 1985
+    }
+  ],
+  "publications": [
+    {
+      "id": "1",
+      "facultyId": "1",
+      "departmentId": "1",
+      "teacherId": "1",
+      "publicationImg": "../src/assets/publications/C#.jpg",
+      "publicationName": "C# programming language",
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum earum optio sit rerum, reprehenderit obcaecati soluta est minus et ab ipsa voluptate accusamus. Modi inventore sequi provident ullam molestias soluta?",
+      "publicatedYear": 2020,
+      "amountOfPages": 200,
+      "thisPublicationPlaced": "www.qqq.com"
+    },
+    {
+      "id": "2",
+      "facultyId": "1",
+      "departmentId": "1",
+      "teacherId": "2",
+      "publicationImg": "../src/assets/publications/mathematical-model.jpg",
+      "publicationName": "Mathematical Model",
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum earum optio sit rerum, reprehenderit obcaecati soluta est minus et ab ipsa voluptate accusamus. Modi inventore sequi provident ullam molestias soluta?",
+      "publicatedYear": 2020,
+      "amountOfPages": 200,
+      "thisPublicationPlaced": "www.eee.com"
+    }
+  ]
+}

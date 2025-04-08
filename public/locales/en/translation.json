@@ -1,0 +1,67 @@
+{
+  "h": {
+    "t1": "Home",
+    "t2": "Faculties",
+    "t3": "Departments",
+    "t4": "Teachers",
+    "t5": "Publications",
+    "t6": "Select Language",
+    "t7": "En",
+    "t8": "Ru",
+    "t9": "Tj",
+    "t10": "Admin"
+  },
+  "home": {
+    "s1": {
+      "t1": "Faculties",
+      "t2": "See all of faculties"
+    },
+    "s2": {
+      "t1": "Departments",
+      "t2": "See all of departments",
+      "t3": ""
+    },
+    "s3": {
+      "t1": "Teachers",
+      "t2": "See all of teachers"
+    },
+    "s4": {
+      "t1": "Publications",
+      "t2": "See all of publications"
+    }
+  },
+  "faculties": {
+    "t1": "Founded",
+    "t2": "faculties"
+  },
+  "departments": {
+    "t1": "Founded",
+    "t2": "departments"
+  },
+  "teachers": {
+    "t1": "Founded",
+    "t2": "teachers"
+  },
+  "publications": {
+    "t1": "Founded",
+    "t2": "publications"
+  },
+  "faculty": {
+    "t1": "Founded"
+  },
+  "department": {
+    "t1": "Founded"
+  },
+  "teacher": {
+    "t1": "Founded"
+  },
+  "publication": {
+    "t1": "Founded"
+  },
+  "f": {
+    "t1": "About Us",
+    "t2": "Tajik National University (TNU) is the leading public institution in Tajikistan, Dushanbe. It was found in 1948.",
+    "t3": "Pages",
+    "t4": ""
+  }
+}
