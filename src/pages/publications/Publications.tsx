@@ -7,18 +7,6 @@ import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getAndSearchPublications } from "../../api/api";
 
-// Define interfaces
-interface Publication {
-  id: string;
-  publicationImg: string;
-  publicationName: string;
-}
-
-interface PublicationsResponse {
-  items: number;
-  data: Publication[];
-}
-
 const Publications = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -26,9 +14,7 @@ const Publications = () => {
   const loadingPublications = useAppSelector(
     (state) => state.states.loadingPublications
   );
-  const publications = useAppSelector(
-    (state) => state.states.publications as PublicationsResponse | null
-  );
+  const publications = useAppSelector((state) => state.states.publications);
 
   // Pagination state
   const [page, setPage] = React.useState(0);
@@ -88,12 +74,12 @@ const Publications = () => {
             <h1 className="dark:text-white">...Loading</h1>
           ) : publications?.data?.length ? (
             publications.data
-              .filter((item) =>
+              .filter((item: any) =>
                 item.publicationName
                   .toLowerCase()
                   .includes(searchValue.trim().toLowerCase())
               )
-              .map((item) => (
+              .map((item: any) => (
                 <EachPublication
                   key={item.id}
                   id={item.id}
