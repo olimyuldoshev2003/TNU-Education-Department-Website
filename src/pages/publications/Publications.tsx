@@ -1,4 +1,3 @@
-// Images
 import { useTranslation } from "react-i18next";
 import EachPublication from "../../components/eachPublication/EachPublication";
 import { TablePagination } from "@mui/material";
@@ -8,27 +7,28 @@ import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getAndSearchPublications } from "../../api/api";
 
+// Define interface for publication items
+interface Publication {
+  id: string;
+  publicationImg: string;
+  publicationName: string;
+}
+
 const Publications = () => {
-  //for translation
   const { t } = useTranslation();
-
-  // Redux Toolkit
-
-  //Dispatch
   const dispatch = useAppDispatch();
 
   const loadingPublications = useAppSelector(
     (state) => state.states.loadingPublications
   );
-  const publications: any = useAppSelector(
+  const publications = useAppSelector(
     (state) => state.states.publications
   );
 
-  //Pagination
+  // Pagination state
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const [value, setValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   const handleChangePage = (
     _: React.MouseEvent<HTMLButtonElement> | null,
@@ -44,118 +44,73 @@ const Publications = () => {
     setPage(0);
   };
 
-  // Run the database
   useEffect(() => {
     dispatch(
       getAndSearchPublications({
-        departmentName: value,
+        departmentName: searchValue,
         page: page + 1,
         rowsPerPage: rowsPerPage,
       })
     );
-  }, [dispatch, value, page, rowsPerPage]);
+  }, [dispatch, searchValue, page, rowsPerPage]);
+
   return (
-    <>
-      <div className="publications_component dark:bg-[#091220] duration-300 py-6">
-        <section className="publications mt-8 max-w-6xl mx-auto">
-          <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
-            {t("publications.t1")} {publications ? publications?.items : 0}{" "}
-            {t("publications.t2")}
-          </h1>
-          <div className="for_search_and_filter">
-            <div className="for_input w-1/2 mx-auto mt-2">
-              <Input
-                type="search"
-                label="Search the publications"
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-                crossOrigin={undefined}
-                value={value}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setValue(event.target.value);
-                }}
-              />
-            </div>
+    <div className="publications_component dark:bg-[#091220] duration-300 py-6">
+      <section className="publications mt-8 max-w-6xl mx-auto">
+        <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
+          {t("publications.t1")} {publications?.items || 0}{" "}
+          {t("publications.t2")}
+        </h1>
+        
+        <div className="for_search_and_filter">
+          <div className="for_input w-1/2 mx-auto mt-2">
+            <Input
+              type="search"
+              label="Search the publications"
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+              crossOrigin={undefined}
+              value={searchValue}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setSearchValue(e.target.value);
+              }}
+            />
           </div>
-          <div className="block_of_publications flex flex-wrap justify-center gap-3 mt-5">
-            {loadingPublications === false &&
-            publications?.data?.length !== 0 ? (
-              publications?.data
-                ?.filter((item: any) => {
-                  return item.publicationName
-                    .toLowerCase()
-                    .includes(value.trim().toLowerCase());
-                })
-                .map((item: any) => {
-                  return (
-                    <EachPublication
-                      id={item.id}
-                      key={item.id}
-                      publicationImg={item.publicationImg}
-                      publicationName={item.publicationName}
-                      publicationAuthor={item.publicationAuthor}
-                    />
-                  );
-                })
-            ) : loadingPublications === true &&
-              publications?.data?.length === 0 ? (
-              <h1 className="dark:text-white">...Loading</h1>
-            ) : (
-              (loadingPublications === false &&
-                publications?.data?.length === 0) ||
-              (loadingPublications === false && publications === undefined && (
-                <h1 className="dark:text-white">publications not found</h1>
+        </div>
+
+        <div className="block_of_publications flex flex-wrap justify-center gap-3 mt-5">
+          {loadingPublications ? (
+            <h1 className="dark:text-white">...Loading</h1>
+          ) : publications?.data?.length ? (
+            publications.data
+              .filter((item: Publication) =>
+                item.publicationName.toLowerCase().includes(searchValue.trim().toLowerCase())
+              )
+              .map((item: Publication) => (
+                <EachPublication
+                  key={item.id}
+                  id={item.id}
+                  publicationImg={item.publicationImg}
+                  publicationName={item.publicationName}
+                />
               ))
-            )}
-            {/* <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            />
-            <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            />
-            <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            />
-            <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            />
-            <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            />
-            <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            />
-            <EachPublication
-              publicationImg={teacherImage}
-              publicationName={"Rich Dad, Poor Dad"}
-              publicationAuthor={"Robert T. Kiyosaki"}
-            /> */}
-          </div>
-          <div className="for_pagionation_of_publications flex justify-center dark:bg-white mt-6">
-            <TablePagination
-              component="div"
-              count={publications ? publications?.items : 0}
-              page={page}
-              onPageChange={handleChangePage}
-              rowsPerPage={rowsPerPage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </div>
-        </section>
-      </div>
-    </>
+          ) : (
+            <h1 className="dark:text-white">Publications not found</h1>
+          )}
+        </div>
+
+        <div className="for_pagionation_of_publications flex justify-center dark:bg-white mt-6">
+          <TablePagination
+            component="div"
+            count={publications?.items || 0}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>
+      </section>
+    </div>
   );
 };
 

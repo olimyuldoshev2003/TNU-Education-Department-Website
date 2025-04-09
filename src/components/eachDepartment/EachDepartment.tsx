@@ -4,7 +4,7 @@ const EachDepartment = ({
   id,
   department,
 }: {
-  id: number;
+  id: string;
   department: string;
 }) => {
   return (

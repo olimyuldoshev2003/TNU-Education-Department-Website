@@ -5,7 +5,7 @@ const EachFaculty = ({
   facultyImg,
   facultyName,
 }: {
-  id: number;
+  id: string;
   facultyImg: string;
   facultyName: string;
 }) => {

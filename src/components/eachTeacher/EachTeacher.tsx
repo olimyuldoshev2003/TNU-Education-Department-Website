@@ -6,7 +6,7 @@ const EachTeacher = ({
   teacherName,
   teacherJobLevel,
 }: {
-  id: number;
+  id: string;
   teacherImg: string;
   teacherName: string;
   teacherJobLevel: string;
