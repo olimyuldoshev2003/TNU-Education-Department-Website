@@ -62,7 +62,7 @@ const Teacher = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoadingPublicationsOfTeacher(true);
+      setLoadingPublicationsOfTeacher(false);
     }
   }
 
@@ -171,7 +171,6 @@ const Teacher = () => {
                         key={item.id}
                         publicationImg={item.publicationImg}
                         publicationName={item.publicationName}
-                        publicationAuthor={item.publicationAuthor}
                       />
                     );
                   })

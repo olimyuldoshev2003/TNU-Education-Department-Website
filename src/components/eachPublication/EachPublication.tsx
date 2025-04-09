@@ -1,16 +1,35 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const EachPublication = ({
   id,
   publicationImg,
   publicationName,
-  publicationAuthor,
 }: {
-  id: number;
+  id: string;
   publicationImg: string;
   publicationName: string;
-  publicationAuthor: string;
 }) => {
+  const [teacherForThisPublication, setTeacherForThisPublication] =
+    useState<any>([]);
+  console.log(teacherForThisPublication);
+
+  async function getTeacherForThisPublication() {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/teachers?publicationId=${id}`
+      );
+      setTeacherForThisPublication(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getTeacherForThisPublication();
+  }, []);
+
   return (
     <>
       <Link
@@ -31,9 +50,9 @@ const EachPublication = ({
           <h1 className="text-[18px] font-[500] text-center dark:text-white duration-300">
             {publicationName}
           </h1>
-          <h1 className="text-[16px] font-[500] text-center dark:text-white duration-300">
-            {publicationAuthor}
-          </h1>
+          {/* <h1 className="text-[16px] font-[500] text-center dark:text-white duration-300">
+            {teacherForThisPublication.teacherName}
+          </h1> */}
         </div>
       </Link>
     </>

@@ -102,7 +102,7 @@ const Department = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoadingPublicationsOfDepartment(true);
+      setLoadingPublicationsOfDepartment(false);
     }
   }
 
@@ -296,7 +296,6 @@ const Department = () => {
                         key={item.id}
                         publicationImg={item.publicationImg}
                         publicationName={item.publicationName}
-                        publicationAuthor={item.publicationAuthor}
                       />
                     );
                   })

@@ -135,7 +135,7 @@ const Faculty = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoadingPublicationsOfFaculty(true);
+      setLoadingPublicationsOfFaculty(false);
     }
   }
 
@@ -413,9 +413,10 @@ const Faculty = () => {
                   .map((item: any) => {
                     return (
                       <EachPublication
+                        id={item.id}
+                        key={item.id}
                         publicationImg={item.publicationImg}
                         publicationName={item.publicationName}
-                        publicationAuthor={item.publicationAuthor}
                       />
                     );
                   })

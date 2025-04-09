@@ -112,3 +112,59 @@ export const getAndSearchPublications = createAsyncThunk(
     }
   }
 );
+
+export const getAndPaginateFacultiesAdmin = createAsyncThunk(
+  "api/getAndSearchPublications",
+  async function (obj: any) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/faculties?_page=${obj.page}&_per_page=${obj.rowsPerPage}`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const getAndPaginateDepartmentsAdmin = createAsyncThunk(
+  "api/getAndSearchPublications",
+  async function (obj: any) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/departments?_page=${obj.page}&_per_page=${obj.rowsPerPage}`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const getAndPaginateTeachersAdmin = createAsyncThunk(
+  "api/getAndSearchPublications",
+  async function (obj: any) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/teachers?_page=${obj.page}&_per_page=${obj.rowsPerPage}`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const getAndPaginatePublicationsAdmin = createAsyncThunk(
+  "api/getAndSearchPublications",
+  async function (obj: any) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/publications?_page=${obj.page}&_per_page=${obj.rowsPerPage}`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
