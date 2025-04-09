@@ -11,15 +11,17 @@ const Publications = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const loadingPublications = useAppSelector(
+  const loadingPublications = useAppSelector<any>(
     (state) => state.states.loadingPublications
   );
-  const publications = useAppSelector((state) => state.states.publications);
+  const publications = useAppSelector<any>(
+    (state: any) => state.states.publications
+  );
 
   // Pagination state
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [searchValue, setSearchValue] = useState("");
+  const [page, setPage] = React.useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const handleChangePage = (
     _: React.MouseEvent<HTMLButtonElement> | null,
