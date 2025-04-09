@@ -7,11 +7,16 @@ import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getAndSearchPublications } from "../../api/api";
 
-// Define interface for publication items
+// Define interfaces
 interface Publication {
   id: string;
   publicationImg: string;
   publicationName: string;
+}
+
+interface PublicationsResponse {
+  items: number;
+  data: Publication[];
 }
 
 const Publications = () => {
@@ -22,7 +27,7 @@ const Publications = () => {
     (state) => state.states.loadingPublications
   );
   const publications = useAppSelector(
-    (state) => state.states.publications
+    (state) => state.states.publications as PublicationsResponse | null
   );
 
   // Pagination state
@@ -61,7 +66,7 @@ const Publications = () => {
           {t("publications.t1")} {publications?.items || 0}{" "}
           {t("publications.t2")}
         </h1>
-        
+
         <div className="for_search_and_filter">
           <div className="for_input w-1/2 mx-auto mt-2">
             <Input
@@ -83,10 +88,12 @@ const Publications = () => {
             <h1 className="dark:text-white">...Loading</h1>
           ) : publications?.data?.length ? (
             publications.data
-              .filter((item: Publication) =>
-                item.publicationName.toLowerCase().includes(searchValue.trim().toLowerCase())
+              .filter((item) =>
+                item.publicationName
+                  .toLowerCase()
+                  .includes(searchValue.trim().toLowerCase())
               )
-              .map((item: Publication) => (
+              .map((item) => (
                 <EachPublication
                   key={item.id}
                   id={item.id}
