@@ -174,7 +174,9 @@ const Department = () => {
           <div className="block_of_teachers_of_this_faculty mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
               Founded{" "}
-              <span className="font-bold">{teachersOfDepartment.items}</span>{" "}
+              <span className="font-bold">
+                {teachersOfDepartment.items || 0}
+              </span>{" "}
               teachers in the department of{" "}
               <span className="font-bold">{department.departmentName}</span>
             </h1>
@@ -195,35 +197,26 @@ const Department = () => {
               </div>
             </div>
             <div className="teacher_of_this_faculty flex flex-wrap justify-center gap-3 mt-5">
-              {loadingTeachersOfDepartment === false &&
-              teachersOfDepartment?.data?.length !== 0 ? (
-                teachersOfDepartment?.data
-                  ?.filter((item: any) => {
-                    return item.teacherName
-                      .toLowerCase()
-                      .includes(valueTeachers.trim().toLowerCase());
-                  })
-                  .map((item: any) => {
-                    return (
-                      <EachTeacher
-                        id={item.id}
-                        key={item.id}
-                        teacherImg={item.teacherImg}
-                        teacherName={item.teacherName}
-                        teacherJobLevel={item.teacherJobLevel}
-                      />
-                    );
-                  })
-              ) : loadingTeachersOfDepartment === true &&
-                teachersOfDepartment?.data?.length === 0 ? (
+              {loadingTeachersOfDepartment ? (
                 <h1 className="dark:text-white">...Loading</h1>
-              ) : (
-                (loadingTeachersOfDepartment === false &&
-                  teachersOfDepartment?.data?.length === 0) ||
-                (loadingTeachersOfDepartment === false &&
-                  teachersOfDepartment === undefined && (
-                    <h1 className="dark:text-white">Departments not found</h1>
+              ) : teachersOfDepartment?.data?.length ? (
+                teachersOfDepartment.data
+                  .filter((item: any) =>
+                    item.teacherName
+                      .toLowerCase()
+                      .includes(valueTeachers.trim().toLowerCase())
+                  )
+                  .map((item: any) => (
+                    <EachTeacher
+                      id={item.id}
+                      key={item.id}
+                      teacherImg={item.teacherImg}
+                      teacherName={item.teacherName}
+                      teacherJobLevel={item.teacherJobLevel}
+                    />
                   ))
+              ) : (
+                <h1 className="dark:text-white">Teachers not found</h1>
               )}
               {/* <EachTeacher
                 teacherImg={teacherImg}
@@ -249,7 +242,7 @@ const Department = () => {
             <div className="for_pagionation_of_teachers flex justify-center dark:bg-white mt-6">
               <TablePagination
                 component="div"
-                count={teachersOfDepartment.items}
+                count={teachersOfDepartment.items || 0}
                 page={pageTeachers}
                 onPageChange={handleChangePageTeachers}
                 rowsPerPage={rowsPerPageTeachers}
@@ -261,7 +254,7 @@ const Department = () => {
             <h1 className="text-center text-3xl dark:text-white duration-300">
               Founded{" "}
               <span className="font-bold">
-                {publicationsOfDepartment.items}
+                {publicationsOfDepartment.items || 0}
               </span>{" "}
               publications in the department of{" "}
               <span className="font-bold">{department.departmentName}</span>
@@ -283,34 +276,25 @@ const Department = () => {
               </div>
             </div>
             <div className="publications_of_this_faculty flex flex-wrap justify-center gap-3 mt-5">
-              {loadingPublicationsOfDepartment === false &&
-              publicationsOfDepartment?.data?.length !== 0 ? (
-                publicationsOfDepartment?.data
-                  ?.filter((item: any) => {
-                    return item.publicationName
-                      .toLowerCase()
-                      .includes(valuePublications.trim().toLowerCase());
-                  })
-                  .map((item: any) => {
-                    return (
-                      <EachPublication
-                        id={item.id}
-                        key={item.id}
-                        publicationImg={item.publicationImg}
-                        publicationName={item.publicationName}
-                      />
-                    );
-                  })
-              ) : loadingPublicationsOfDepartment === true &&
-                publicationsOfDepartment?.data?.length === 0 ? (
+              {loadingPublicationsOfDepartment ? (
                 <h1 className="dark:text-white">...Loading</h1>
-              ) : (
-                (loadingPublicationsOfDepartment === false &&
-                  publicationsOfDepartment?.data?.length === 0) ||
-                (loadingPublicationsOfDepartment === false &&
-                  publicationsOfDepartment === undefined && (
-                    <h1 className="dark:text-white">publications not found</h1>
+              ) : publicationsOfDepartment?.data?.length ? (
+                publicationsOfDepartment.data
+                  .filter((item: any) =>
+                    item.publicationName
+                      .toLowerCase()
+                      .includes(valuePublications.trim().toLowerCase())
+                  )
+                  .map((item: any) => (
+                    <EachPublication
+                      id={item.id}
+                      key={item.id}
+                      publicationImg={item.publicationImg}
+                      publicationName={item.publicationName}
+                    />
                   ))
+              ) : (
+                <h1 className="dark:text-white">Publications not found</h1>
               )}
               {/* <EachPublication
                 publicationImg={teacherImg}
@@ -326,7 +310,7 @@ const Department = () => {
             <div className="for_pagination_of_publications flex justify-center dark:bg-white mt-6">
               <TablePagination
                 component="div"
-                count={publicationsOfDepartment.items}
+                count={publicationsOfDepartment.items || 0}
                 page={pagePublications}
                 onPageChange={handleChangePagePublications}
                 rowsPerPage={rowsPerPagePublications}

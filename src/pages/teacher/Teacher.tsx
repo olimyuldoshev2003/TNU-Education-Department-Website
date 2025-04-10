@@ -137,7 +137,9 @@ const Teacher = () => {
           <div className="block_of_publications_of_this_department mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
               <span className="font-bold">{teacher.teacherName}</span> wrote{" "}
-              <span className="font-bold">{publicationsOfTeacher.items}</span>{" "}
+              <span className="font-bold">
+                {publicationsOfTeacher.items || 0}
+              </span>{" "}
               publications
             </h1>
             <div className="for_search_and_filter">
@@ -157,34 +159,25 @@ const Teacher = () => {
               </div>
             </div>
             <div className="publications_of_this_faculty flex flex-wrap justify-center gap-3 mt-5">
-              {loadingPublicationsOfTeacher === false &&
-              publicationsOfTeacher?.data?.length !== 0 ? (
-                publicationsOfTeacher?.data
-                  ?.filter((item: any) => {
-                    return item.publicationName
-                      .toLowerCase()
-                      .includes(valuePublications.trim().toLowerCase());
-                  })
-                  .map((item: any) => {
-                    return (
-                      <EachPublication
-                        id={item.id}
-                        key={item.id}
-                        publicationImg={item.publicationImg}
-                        publicationName={item.publicationName}
-                      />
-                    );
-                  })
-              ) : loadingPublicationsOfTeacher === true &&
-                publicationsOfTeacher?.data?.length === 0 ? (
+              {loadingPublicationsOfTeacher ? (
                 <h1 className="dark:text-white">...Loading</h1>
-              ) : (
-                (loadingPublicationsOfTeacher === false &&
-                  publicationsOfTeacher?.data?.length === 0) ||
-                (loadingPublicationsOfTeacher === false &&
-                  publicationsOfTeacher === undefined && (
-                    <h1 className="dark:text-white">publications not found</h1>
+              ) : publicationsOfTeacher?.data?.length ? (
+                publicationsOfTeacher.data
+                  .filter((item: any) =>
+                    item.publicationName
+                      .toLowerCase()
+                      .includes(valuePublications.trim().toLowerCase())
+                  )
+                  .map((item: any) => (
+                    <EachPublication
+                      id={item.id}
+                      key={item.id}
+                      publicationImg={item.publicationImg}
+                      publicationName={item.publicationName}
+                    />
                   ))
+              ) : (
+                <h1 className="dark:text-white">Publications not found</h1>
               )}
               {/* <EachPublication
                 publicationImg={teacherImg}
@@ -200,7 +193,7 @@ const Teacher = () => {
             <div className="for_pagionation_of_publications flex justify-center dark:bg-white mt-6">
               <TablePagination
                 component="div"
-                count={publicationsOfTeacher.items}
+                count={publicationsOfTeacher.items || 0}
                 page={pagePublications}
                 onPageChange={handleChangePagePublications}
                 rowsPerPage={rowsPerPagePublications}
