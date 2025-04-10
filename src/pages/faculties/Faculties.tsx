@@ -59,8 +59,7 @@ const Faculties = () => {
       <div className="faculties_component dark:bg-[#091220] duration-300 py-6">
         <section className="block_faculties_component mt-8 max-w-6xl mx-auto">
           <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
-            {t("faculties.t1")} {faculties ? faculties?.items : 0}{" "}
-            {t("faculties.t2")}
+            {t("faculties.t1")} {faculties?.items || 0} {t("faculties.t2")}
           </h1>
           <div className="for_search_and_filter">
             <div className="for_input w-1/2 mx-auto mt-2">
@@ -109,7 +108,7 @@ const Faculties = () => {
             ) : faculties?.data?.length ? (
               faculties.data
                 .filter((item: any) =>
-                  item.publicationName
+                  item.facultyName
                     .toLowerCase()
                     .includes(value.trim().toLowerCase())
                 )
