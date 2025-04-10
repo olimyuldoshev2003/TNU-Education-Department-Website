@@ -190,6 +190,7 @@ const Department = () => {
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                   crossOrigin={undefined}
+                  className="dark:text-white"
                 />
               </div>
             </div>
@@ -277,6 +278,7 @@ const Department = () => {
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                   crossOrigin={undefined}
+                  className="dark:text-white"
                 />
               </div>
             </div>

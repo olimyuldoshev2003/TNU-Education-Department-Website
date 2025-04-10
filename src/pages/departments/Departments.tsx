@@ -72,6 +72,7 @@ const Departments = () => {
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 crossOrigin={undefined}
+                className="dark:text-white"
               />
             </div>
           </div>

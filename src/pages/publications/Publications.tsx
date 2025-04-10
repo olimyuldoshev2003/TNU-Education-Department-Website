@@ -65,6 +65,7 @@ const Publications = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setSearchValue(e.target.value);
               }}
+              className="dark:text-white"
             />
           </div>
         </div>

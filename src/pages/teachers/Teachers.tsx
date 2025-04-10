@@ -73,6 +73,7 @@ const Teachers = () => {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setValue(event.target.value);
                 }}
+                className="dark:text-white"
               />
             </div>
           </div>
