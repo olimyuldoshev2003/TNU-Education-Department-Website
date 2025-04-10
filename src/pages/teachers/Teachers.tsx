@@ -78,7 +78,7 @@ const Teachers = () => {
             </div>
           </div>
           <div className="block_of_teachers flex flex-wrap justify-center gap-3 mt-5">
-            {loadingTeachers === false && teachers?.data?.length !== 0 ? (
+            {/* {loadingTeachers === false && teachers?.data?.length !== 0 ? (
               teachers?.data
                 ?.filter((item: any) => {
                   return item.teacherName
@@ -103,6 +103,28 @@ const Teachers = () => {
               (loadingTeachers === false && teachers === undefined && (
                 <h1 className="dark:text-white">teachers not found</h1>
               ))
+            )} */}
+
+            {loadingTeachers ? (
+              <h1 className="dark:text-white">...Loading</h1>
+            ) : teachers?.data?.length ? (
+              teachers.data
+                .filter((item: any) =>
+                  item.publicationName
+                    .toLowerCase()
+                    .includes(value.trim().toLowerCase())
+                )
+                .map((item: any) => (
+                  <EachTeacher
+                    id={item.id}
+                    key={item.id}
+                    teacherImg={item.teacherImg}
+                    teacherName={item.teacherName}
+                    teacherJobLevel={item.teacherJobLevel}
+                  />
+                ))
+            ) : (
+              <h1 className="dark:text-white">Teachers not found</h1>
             )}
 
             {/* <EachTeacher
@@ -155,7 +177,7 @@ const Teachers = () => {
           <div className="for_pagionation_of_teachers flex justify-center dark:bg-white mt-6">
             <TablePagination
               component="div"
-              count={teachers ? teachers?.items : 0}
+              count={teachers?.items || 0}
               page={page}
               onPageChange={handleChangePage}
               rowsPerPage={rowsPerPage}

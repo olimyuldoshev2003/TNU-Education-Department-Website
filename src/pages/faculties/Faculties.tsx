@@ -79,7 +79,7 @@ const Faculties = () => {
           </div>
           <div className="block_of_faculties flex flex-wrap justify-center gap-3 mt-5">
             {/* <EachFaculty facultyImg={facultyImage} facultyName={`Biology`} /> */}
-            {loadingFaculties === false && faculties?.data?.length !== 0 ? (
+            {/* {loadingFaculties === false && faculties?.data?.length !== 0 ? (
               faculties?.data
                 ?.filter((item: any) => {
                   return item.facultyName
@@ -103,13 +103,33 @@ const Faculties = () => {
               (loadingFaculties === false && faculties === undefined && (
                 <h1 className="dark:text-white">Faculties not found</h1>
               ))
+            )} */}
+            {loadingFaculties ? (
+              <h1 className="dark:text-white">...Loading</h1>
+            ) : faculties?.data?.length ? (
+              faculties.data
+                .filter((item: any) =>
+                  item.publicationName
+                    .toLowerCase()
+                    .includes(value.trim().toLowerCase())
+                )
+                .map((item: any) => (
+                  <EachFaculty
+                    key={item.id}
+                    id={item.id}
+                    facultyImg={item.facultyImg}
+                    facultyName={item.facultyName}
+                  />
+                ))
+            ) : (
+              <h1 className="dark:text-white">Faculties not found</h1>
             )}
           </div>
 
           <div className="for_pagionation_of_faculties flex justify-center dark:bg-white mt-6">
             <TablePagination
               component="div"
-              count={faculties ? faculties?.items : 0}
+              count={faculties?.items || 0}
               page={page}
               onPageChange={handleChangePage}
               rowsPerPage={rowsPerPage}

@@ -76,7 +76,7 @@ const Departments = () => {
             </div>
           </div>
           <div className="block_of_departments mt-5 flex flex-col gap-3 px-4">
-            {loadingDepartments === false && departments?.data?.length !== 0 ? (
+            {/* {loadingDepartments === false && departments?.data?.length !== 0 ? (
               departments?.data
                 ?.filter((item: any) => {
                   return item.departmentName
@@ -101,6 +101,27 @@ const Departments = () => {
               (loadingDepartments === false && departments === undefined && (
                 <h1 className="dark:text-white">Departments not found</h1>
               ))
+            )} */}
+            {loadingDepartments ? (
+              <h1 className="dark:text-white text-center">...Loading</h1>
+            ) : departments?.data?.length ? (
+              departments.data
+                .filter((item: any) =>
+                  item.publicationName
+                    .toLowerCase()
+                    .includes(value.trim().toLowerCase())
+                )
+                .map((item: any) => (
+                  <EachDepartment
+                    id={item.id}
+                    key={item.id}
+                    department={item.departmentName}
+                  />
+                ))
+            ) : (
+              <h1 className="dark:text-white text-center">
+                Departments not found
+              </h1>
             )}
             {/* <EachDepartment department={`Informatics`} />
             <EachDepartment department={`Informatics`} />
@@ -116,7 +137,7 @@ const Departments = () => {
           <div className="for_pagionation_of_departments flex justify-center dark:bg-white mt-6">
             <TablePagination
               component="div"
-              count={departments ? departments?.items : 0}
+              count={departments?.items || 0}
               page={page}
               onPageChange={handleChangePage}
               rowsPerPage={rowsPerPage}
