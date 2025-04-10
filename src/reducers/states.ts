@@ -11,9 +11,27 @@ import {
   getTeachersHomePage,
 } from "../api/api";
 
-// export const
+export interface IStates {
+  loadingFacultiesHome: boolean;
+  facultiesHome: any;
+  loadingDepartmentsHome: boolean;
+  departmentsHome: any;
+  loadingTeachersHome: boolean;
+  teachersHome: any;
+  loadingPublicationsHome: boolean;
+  publicationsHome: any;
 
-const initialState = {
+  loadingFaculties: boolean;
+  faculties: any;
+  loadingDepartments: boolean;
+  departments: any;
+  loadingTeachers: boolean;
+  teachers: any;
+  loadingPublications: boolean;
+  publications: any;
+}
+
+const initialState: IStates = {
   // Home Page
   loadingFacultiesHome: false,
   facultiesHome: [],

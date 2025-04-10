@@ -11,12 +11,10 @@ const Publications = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const loadingPublications = useAppSelector<any>(
+  const loadingPublications = useAppSelector(
     (state) => state.states.loadingPublications
   );
-  const publications = useAppSelector<any>(
-    (state: any) => state.states.publications
-  );
+  const publications = useAppSelector((state) => state.states.publications);
 
   // Pagination state
   const [page, setPage] = React.useState<number>(0);
