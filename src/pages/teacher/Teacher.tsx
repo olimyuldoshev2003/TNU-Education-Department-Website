@@ -52,7 +52,7 @@ const Teacher = () => {
     }
   }
 
-  async function getAndSearchPublicationsOfTeapublicationsOfTeacher() {
+  async function getAndSearchPublicationsOfTeacher() {
     setLoadingPublicationsOfTeacher(true);
     try {
       const { data } = await axios.get(
@@ -71,7 +71,7 @@ const Teacher = () => {
   }, []);
 
   useEffect(() => {
-    getAndSearchPublicationsOfTeapublicationsOfTeacher();
+    getAndSearchPublicationsOfTeacher();
   }, [valuePublications, pagePublications, rowsPerPagePublications]);
 
   return (

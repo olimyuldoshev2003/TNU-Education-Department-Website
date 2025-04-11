@@ -156,14 +156,14 @@ const Department = () => {
                 <h2 className="mt-3 dark:text-white duration-300">
                   Amount of the teachers in this department:{" "}
                   <span className="font-bold">
-                    {teachersOfDepartment.items}
+                    {teachersOfDepartment.items || 0}
                   </span>{" "}
                   teachers
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
                   Amount of the publications in this department:{" "}
                   <span className="font-bold">
-                    {publicationsOfDepartment.items}
+                    {publicationsOfDepartment.items || 0}
                   </span>{" "}
                   publications
                 </h2>
