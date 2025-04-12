@@ -12,6 +12,8 @@ const Publication = () => {
   // Data
   const [publication, setPublication] = useState<any>([]);
 
+  const [facultyOfPublication, setFacultyOfPublication] = useState<any>([]);
+
   async function getPublicationById() {
     setLoadingPublication(true);
     try {
@@ -26,8 +28,23 @@ const Publication = () => {
     }
   }
 
+  async function getFacultyByFacultyIdOfPublication() {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/faculties/${publication.facultyId}`
+      );
+      setFacultyOfPublication(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     getPublicationById();
+  }, []);
+
+  useEffect(() => {
+    getFacultyByFacultyIdOfPublication();
   }, []);
 
   return (
@@ -71,7 +88,12 @@ const Publication = () => {
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300 mr-1">
                   Wrote in faculty:{" "}
-                  <span className="font-bold">Mechanic and Math</span>
+                  <Link
+                    to={`/faculty/${facultyOfPublication.id}`}
+                    className="font-bold"
+                  >
+                    {facultyOfPublication.facultyName}
+                  </Link>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
                   You can find this book here:{" "}

@@ -13,7 +13,6 @@ const EachPublication = ({
 }) => {
   const [teacherForThisPublication, setTeacherForThisPublication] =
     useState<any>([]);
-  console.log(teacherForThisPublication);
 
   async function getTeacherForThisPublication() {
     try {

@@ -16,6 +16,9 @@ const Teacher = () => {
 
   // Data
   const [teacher, setTeacher] = useState<any>([]);
+
+  const [facultyOfTeacher, setFacultyOfTeacher] = useState<any>([]);
+  const [facultyOfDepartment, setFacultyOfDepartment] = useState<any>([]);
   const [publicationsOfTeacher, setPublicationsOfTeacher] = useState<any>([]);
 
   // Search
@@ -66,6 +69,27 @@ const Teacher = () => {
     }
   }
 
+  async function getFacultyByFacultyIdOfTeacher() {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/faculties/${teacher.facultyId}`
+      );
+      setFacultyOfTeacher(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function getDepartmentByDepartmentIdOfTeacher() {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/departments/${teacher.departmentId}`
+      );
+      setFacultyOfDepartment(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     getTeacherById();
   }, []);
@@ -73,6 +97,11 @@ const Teacher = () => {
   useEffect(() => {
     getAndSearchPublicationsOfTeacher();
   }, [valuePublications, pagePublications, rowsPerPagePublications]);
+
+  useEffect(() => {
+    getFacultyByFacultyIdOfTeacher();
+    getDepartmentByDepartmentIdOfTeacher();
+  });
 
   return (
     <>
@@ -106,19 +135,19 @@ const Teacher = () => {
                 <h2 className="mt-3 dark:text-white duration-300">
                   Works in faculty:{" "}
                   <Link
-                    to={`/faculty`}
+                    to={`/faculty/${facultyOfTeacher.id}`}
                     className="font-bold hover:underline hover:text-red-500"
                   >
-                    Mechanic and Math
+                    {facultyOfTeacher.facultyName}
                   </Link>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
                   Works in department:{" "}
                   <Link
-                    to={`/department`}
+                    to={`/department/${facultyOfDepartment.id}`}
                     className="font-bold hover:underline hover:text-red-500"
                   >
-                    Informatics
+                    {facultyOfDepartment.departmentName}
                   </Link>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">

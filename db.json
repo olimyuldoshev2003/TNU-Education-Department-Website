@@ -62,6 +62,7 @@
       "id": "1",
       "facultyId": "1",
       "departmentId": "1",
+      "publicationId": "1",
       "teacherImg": "../src/assets/teachers/shamsullo_taghoev.jpg",
       "teacherName": "Taghoev Shamsullo",
       "teacherJobLevel": "Senior Lecturer",
@@ -72,10 +73,33 @@
       "id": "2",
       "facultyId": "1",
       "departmentId": "1",
+      "publicationId": "2",
       "teacherImg": "../src/assets/teachers/saidzoda_isroil.jpg",
       "teacherName": "Saidzoda Isroil",
+      "teacherJobLevel": "Docent",
+      "dateOfBirth": "1962-11-30",
+      "joinedToThisFaculty": 1985
+    },
+    {
+      "id": "3",
+      "facultyId": "1",
+      "departmentId": "2",
+      "publicationId": "2",
+      "teacherImg": "../src/assets/teachers/odinaev-rahim.jpg",
+      "teacherName": "Odinaev Rahim",
       "teacherJobLevel": "Associate Professor",
       "dateOfBirth": "1962-11-30",
+      "joinedToThisFaculty": 1985
+    },
+    {
+      "id": "4",
+      "facultyId": "3",
+      "departmentId": "3",
+      "publicationId": "2",
+      "teacherImg": "../src/assets/teachers/jafarov.jpg",
+      "teacherName": "Jafarov",
+      "teacherJobLevel": "Associate Professor",
+      "dateOfBirth": "1991-12-31",
       "joinedToThisFaculty": 1985
     }
   ],
@@ -95,7 +119,7 @@
     {
       "id": "2",
       "facultyId": "1",
-      "departmentId": "1",
+      "departmentId": "2",
       "teacherId": "2",
       "publicationImg": "../src/assets/publications/mathematical-model.jpg",
       "publicationName": "Mathematical Model",
