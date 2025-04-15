@@ -3,28 +3,28 @@
     {
       "id": "1",
       "facultyImg": "../src/assets/faculties/mechanic_and_math.jpg",
-      "facultyName": "Mechanic and Math",
-      "about": "Leading faculty in mechanical engineering and pure mathematics research",
+      "facultyName": "Механика ва математика",
+      "about": "Факултети пешсафи муҳандисии механикӣ ва таҳқиқоти математикаи холис",
       "yearOfOpening": 1975,
-      "dean": "Prof. Alexander Kovalevsky",
+      "dean": "Проф. Александр Ковалевский",
       "students": 1200
     },
     {
       "id": "2",
       "facultyImg": "../src/assets/faculties/philosophy.jpg",
-      "facultyName": "Philosophy",
-      "about": "Center for philosophical studies and ethical research",
+      "facultyName": "Фалсафа",
+      "about": "Маркази омӯзиши фалсафа ва таҳқиқоти ахлоқӣ",
       "yearOfOpening": 1982,
-      "dean": "Dr. Sophia Petrovna",
+      "dean": "Доктор София Петровна",
       "students": 1300
     },
     {
       "id": "3",
       "facultyImg": "../src/assets/faculties/physics.jpg",
-      "facultyName": "Physics",
-      "about": "Premier institution for theoretical and applied physics",
+      "facultyName": "Физика",
+      "about": "Муассисаи пешрафта дар соҳаи физикаи назариявӣ ва амалӣ",
       "yearOfOpening": 1968,
-      "dean": "Prof. Igor Sokolov",
+      "dean": "Проф. Игор Соколов",
       "students": 1500
     }
   ],
@@ -33,28 +33,28 @@
       "id": "1",
       "facultyId": "1",
       "departmentImg": "/images/informatics.jpg",
-      "departmentName": "Informatics",
-      "about": "Computer science and information technology department offering cutting-edge programs in software engineering and AI",
+      "departmentName": "Информатика",
+      "about": "Кафедраи илмҳои компютерӣ ва технологияҳои иттилоотӣ бо барномаҳои пешрафта дар муҳандисии нармафзор ва зеҳни сунъӣ",
       "yearOfOpening": "1995",
-      "headOfDepartment": "Dr. John Smith"
+      "headOfDepartment": "Доктор Ҷон Смит"
     },
     {
       "id": "2",
       "facultyId": "1",
       "departmentImg": "/images/math-models.jpg",
       "departmentName": "Моделҳои математикӣ ва компютерӣ",
-      "about": "Advanced studies in mathematical modeling and computational methods",
+      "about": "Омӯзиши мутахассисонаи моделсозии математикӣ ва усулҳои ҳисоббарор",
       "yearOfOpening": "2002",
-      "headOfDepartment": "Prof. Alisher Navoi"
+      "headOfDepartment": "Проф. Алишер Навоӣ"
     },
     {
       "id": "3",
       "facultyId": "3",
       "departmentImg": "/images/astronomy.jpg",
-      "departmentName": "Astronomy",
-      "about": "Research center for astrophysics and space exploration",
+      "departmentName": "Астрономия",
+      "about": "Маркази таҳқиқоти астрофизика ва кашфиёти кайҳонӣ",
       "yearOfOpening": "1988",
-      "headOfDepartment": "Dr. Maria Curie"
+      "headOfDepartment": "Доктор Мария Кюри"
     }
   ],
   "teachers": [
@@ -64,8 +64,8 @@
       "departmentId": "1",
       "publicationId": "1",
       "teacherImg": "../src/assets/teachers/shamsullo_taghoev.jpg",
-      "teacherName": "Taghoev Shamsullo",
-      "teacherJobLevel": "Senior Lecturer",
+      "teacherName": "Тағоев Шамсулло",
+      "teacherJobLevel": "Муаллими калон",
       "dateOfBirth": "1975-03-15",
       "joinedToThisFaculty": 1999
     },
@@ -75,8 +75,8 @@
       "departmentId": "1",
       "publicationId": "2",
       "teacherImg": "../src/assets/teachers/saidzoda_isroil.jpg",
-      "teacherName": "Saidzoda Isroil",
-      "teacherJobLevel": "Docent",
+      "teacherName": "Саидзода Исроил",
+      "teacherJobLevel": "Доцент",
       "dateOfBirth": "1962-11-30",
       "joinedToThisFaculty": 1985
     },
@@ -86,8 +86,8 @@
       "departmentId": "2",
       "publicationId": "2",
       "teacherImg": "../src/assets/teachers/odinaev-rahim.jpg",
-      "teacherName": "Odinaev Rahim",
-      "teacherJobLevel": "Associate Professor",
+      "teacherName": "Одинаев Раҳим",
+      "teacherJobLevel": "Профессори ёрдамчӣ",
       "dateOfBirth": "1962-11-30",
       "joinedToThisFaculty": 1985
     },
@@ -97,10 +97,10 @@
       "departmentId": "3",
       "publicationId": "2",
       "teacherImg": "../src/assets/teachers/jafarov.jpg",
-      "teacherName": "Jafarov",
-      "teacherJobLevel": "Associate Professor",
+      "teacherName": "Ҷаъфаров",
+      "teacherJobLevel": "Профессори ёрдамчӣ",
       "dateOfBirth": "1991-12-31",
-      "joinedToThisFaculty": 1985
+      "joinedToThisFaculty": 2015
     }
   ],
   "publications": [
@@ -110,8 +110,8 @@
       "departmentId": "1",
       "teacherId": "1",
       "publicationImg": "../src/assets/publications/C#.jpg",
-      "publicationName": "C# programming language",
-      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum earum optio sit rerum, reprehenderit obcaecati soluta est minus et ab ipsa voluptate accusamus. Modi inventore sequi provident ullam molestias soluta?",
+      "publicationName": "Забони барномасозии C#",
+      "about": "Маълумот дар бораи забони барноманависӣ C# бо намунаҳои амалӣ ва тавсияҳои иҷроӣ",
       "publicatedYear": 2020,
       "amountOfPages": 200,
       "thisPublicationPlaced": "www.qqq.com"
@@ -122,10 +122,10 @@
       "departmentId": "2",
       "teacherId": "2",
       "publicationImg": "../src/assets/publications/mathematical-model.jpg",
-      "publicationName": "Mathematical Model",
-      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum earum optio sit rerum, reprehenderit obcaecati soluta est minus et ab ipsa voluptate accusamus. Modi inventore sequi provident ullam molestias soluta?",
-      "publicatedYear": 2020,
-      "amountOfPages": 200,
+      "publicationName": "Моделҳои математикӣ",
+      "about": "Таҳқиқот дар бораи системаҳои ғайрихаттӣ ва алгоритмҳои ҳисоббарории муосир",
+      "publicatedYear": 2021,
+      "amountOfPages": 180,
       "thisPublicationPlaced": "www.eee.com"
     }
   ]
