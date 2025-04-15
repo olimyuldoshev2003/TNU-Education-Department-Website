@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const EachPublication = ({
@@ -11,23 +11,23 @@ const EachPublication = ({
   publicationImg: string;
   publicationName: string;
 }) => {
-  const [teacherForThisPublication, setTeacherForThisPublication] =
-    useState<any>([]);
+  // const [teacherForThisPublication, setTeacherForThisPublication] =
+  //   useState<any>([]);
 
-  async function getTeacherForThisPublication() {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:3000/teachers?publicationId=${id}`
-      );
-      setTeacherForThisPublication(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async function getTeacherForThisPublication() {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `http://localhost:3000/teachers?publicationId=${id}`
+  //     );
+  //     setTeacherForThisPublication(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
-  useEffect(() => {
-    getTeacherForThisPublication();
-  }, []);
+  // useEffect(() => {
+  //   getTeacherForThisPublication();
+  // }, []);
 
   return (
     <>
