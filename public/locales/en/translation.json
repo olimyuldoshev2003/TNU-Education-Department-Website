@@ -47,7 +47,21 @@
     "t2": "publications"
   },
   "faculty": {
-    "t1": "Founded"
+    "t1": "Year of opening",
+    "t2": "years",
+    "t3": "Dean",
+    "t4": "Amount of students",
+    "t5": "students",
+    "t6": "Amount of departments",
+    "t7": "departments",
+    "t8": "Amount of teachers",
+    "t9": "teachers",
+    "t10": "Amount of publications",
+    "t11": "publications",
+    "t12": "Founded",
+    "t13": "departments in the faculty of",
+    "t14": "teachers in the faculty of",
+    "t15": "publications in the faculty of"
   },
   "department": {
     "t1": "Founded"

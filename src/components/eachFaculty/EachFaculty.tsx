@@ -18,7 +18,7 @@ const EachFaculty = ({
         >
           <img
             src={facultyImg}
-            className="w-[230px] h-[290px] rounded-[10px]"
+            className="w-[230px] h-[290px] rounded-[10px] object-cover object-center"
             alt=""
           />
           <h1 className="absolute bottom-[10px] text-[#fff] left-[17px] text-[29px] font-[500]">

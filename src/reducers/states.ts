@@ -41,6 +41,7 @@ const initialState: IStates = {
   teachersHome: [],
   loadingPublicationsHome: false,
   publicationsHome: [],
+
   // Out of Home Page
   loadingFaculties: false,
   faculties: [],

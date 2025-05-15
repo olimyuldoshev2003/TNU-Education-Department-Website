@@ -41,7 +41,7 @@ const EachPublication = ({
         >
           <img
             src={publicationImg}
-            className="w-[230px] h-[290px] rounded-[10px]"
+            className="w-[230px] h-[290px] rounded-[10px] object-cover object-center"
             alt=""
           />
         </div>

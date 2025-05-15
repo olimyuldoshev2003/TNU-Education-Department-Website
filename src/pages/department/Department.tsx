@@ -132,7 +132,7 @@ const Department = () => {
                 <img
                   src={department.departmentImg}
                   alt=""
-                  className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px]"
+                  className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px] object-cover object-center"
                 />
               </div>
               <div className="faculty_block_2">

@@ -27,9 +27,10 @@ const Publication = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Data
-  const [publication, setPublication] = useState<Publication | null>(null);
+  const [publication, setPublication] = useState<any>(null);
   const [facultyOfPublication, setFacultyOfPublication] =
     useState<Faculty | null>(null);
+  const [authorOfPublication, setAuthorOfPublication] = useState<any>(null);
 
   async function getPublicationById() {
     setLoadingPublication(true);
@@ -52,7 +53,21 @@ const Publication = () => {
       const { data } = await axios.get<Faculty>(
         `http://localhost:3000/faculties/${facultyId}`
       );
+
       setFacultyOfPublication(data);
+    } catch (error) {
+      console.error(error);
+      setError("Failed to load faculty data");
+    }
+  }
+
+  async function getAuthorByTeacherIdOfPublication(teacherId: string) {
+    try {
+      const { data } = await axios.get<Faculty>(
+        `http://localhost:3000/teachers/${teacherId}`
+      );
+
+      setAuthorOfPublication(data);
     } catch (error) {
       console.error(error);
       setError("Failed to load faculty data");
@@ -65,9 +80,15 @@ const Publication = () => {
 
   useEffect(() => {
     if (publication?.facultyId) {
-      getFacultyByFacultyIdOfPublication(publication.facultyId);
+      getFacultyByFacultyIdOfPublication(publication?.facultyId);
     }
   }, [publication?.facultyId]);
+
+  useEffect(() => {
+    if (publication?.teacherId) {
+      getAuthorByTeacherIdOfPublication(publication?.teacherId);
+    }
+  }, [publication?.teacherId]);
 
   if (error) {
     return <div className="p-5 text-red-500 dark:text-red-400">{error}</div>;
@@ -89,7 +110,7 @@ const Publication = () => {
             <img
               src={publication.publicationImg}
               alt={publication.publicationName}
-              className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px]"
+              className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px] object-cover object-center"
             />
           </div>
           <div className="faculty_block_2">
@@ -102,7 +123,7 @@ const Publication = () => {
             <h2 className="mt-3 dark:text-white duration-300">
               Author:{" "}
               <span className="font-bold">
-                {publication.author || "Unknown"}
+                {authorOfPublication?.teacherName || "Unknown"}
               </span>
             </h2>
             <h2 className="mt-3 dark:text-white duration-300">
@@ -130,14 +151,22 @@ const Publication = () => {
             </h2>
             <h2 className="mt-3 dark:text-white duration-300">
               You can find this book here:{" "}
-              <a
-                href={publication.thisPublicationPlaced}
-                className="font-bold hover:text-[red] hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {publication.thisPublicationPlaced}
-              </a>
+              {publication.thisPublicationPlaced ? (
+                <a
+                  href={
+                    publication.thisPublicationPlaced.startsWith("http")
+                      ? publication.thisPublicationPlaced
+                      : `https://${publication.thisPublicationPlaced}`
+                  }
+                  className="font-bold hover:text-[red] hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {publication.thisPublicationPlaced}
+                </a>
+              ) : (
+                <span className="font-bold">Not available online</span>
+              )}
             </h2>
           </div>
         </div>

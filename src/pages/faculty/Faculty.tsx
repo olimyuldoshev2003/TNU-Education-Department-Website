@@ -7,9 +7,12 @@ import { TablePagination } from "@mui/material";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import EachTeacher from "../../components/eachTeacher/EachTeacher";
+import { useTranslation } from "react-i18next";
 
 const Faculty = () => {
   const { id } = useParams();
+
+  const { t } = useTranslation();
 
   // Loading
   const [loadingFaculty, setLoadingFaculty] = useState(false);
@@ -169,7 +172,7 @@ const Faculty = () => {
                 <img
                   src={faculty.facultyImg}
                   alt=""
-                  className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px]"
+                  className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px] object-cover object-center"
                 />
               </div>
               <div className="faculty_block_2">
@@ -180,46 +183,48 @@ const Faculty = () => {
                   {faculty.about}
                 </p>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Year of opening:{" "}
+                  {t("faculty.t1")}:{" "}
                   <span className="font-bold">{faculty.yearOfOpening}</span>{" "}
-                  years
+                  {t("faculty.t2")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Dean: <span className="font-bold">{faculty.dean}</span>
+                  {t("faculty.t3")}:{" "}
+                  <span className="font-bold">{faculty.dean}</span>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Amount of students:{" "}
-                  <span className="font-bold">{faculty.students}</span> students
+                  {t("faculty.t4")}:{" "}
+                  <span className="font-bold">{faculty.students}</span>{" "}
+                  {t("faculty.t5")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Amount of departments:{" "}
+                  {t("faculty.t6")}:{" "}
                   <span className="font-bold">
                     {departmentsOfFaculty.items}
                   </span>{" "}
-                  departments
+                  {t("faculty.t7")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Amount of teachers:{" "}
+                  {t("faculty.t8")}:{" "}
                   <span className="font-bold">{teachersOfFaculty.items}</span>{" "}
-                  teachers
+                  {t("faculty.t9")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Amount of publications:{" "}
+                  {t("faculty.t10")}:{" "}
                   <span className="font-bold">
                     {publicationsOfFaculty.items}
                   </span>{" "}
-                  publications
+                  {t("faculty.t11")}
                 </h2>
               </div>
             </div>
           )}
           <div className="block_of_departments_of_this_faculty mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
-              Founded{" "}
+              {t("faculty.t12")}{" "}
               <span className="font-bold">
                 {departmentsOfFaculty.items || 0}
               </span>{" "}
-              departments in the faculty of{" "}
+              {t("faculty.t13")}{" "}
               <span className="font-bold">{faculty.facultyName}</span>
             </h1>
             <div className="for_search_and_filter">
@@ -282,9 +287,9 @@ const Faculty = () => {
           </div>
           <div className="block_of_teachers_of_this_faculty mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
-              Founded{" "}
+              {t("faculty.t12")}{" "}
               <span className="font-bold">{teachersOfFaculty.items || 0}</span>{" "}
-              teachers in the faculty of{" "}
+              {t("faculty.t14")}{" "}
               <span className="font-bold">{faculty.facultyName}</span>
             </h1>
             <div className="for_search_and_filter">
@@ -364,11 +369,11 @@ const Faculty = () => {
           </div>
           <div className="block_of_publications_of_this_faculty mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
-              Founded{" "}
+              {t("faculty.t12")}{" "}
               <span className="font-bold">
                 {publicationsOfFaculty.items || 0}
               </span>{" "}
-              publications in the faculty of{" "}
+              {t("faculty.t15")}{" "}
               <span className="font-bold">{faculty.facultyName}</span>
             </h1>
             <div className="for_search_and_filter">

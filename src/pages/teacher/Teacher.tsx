@@ -117,7 +117,7 @@ const Teacher = () => {
                 <img
                   src={teacher.teacherImg}
                   alt=""
-                  className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px]"
+                  className="md:w-[330px] h-[390px] sm:w-[100%] rounded-[10px] object-cover object-center"
                 />
               </div>
               <div className="teacher_block_2">
