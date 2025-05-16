@@ -5,9 +5,12 @@ import { TablePagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Input } from "@material-tailwind/react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Teacher = () => {
   const { id } = useParams();
+
+  const { t } = useTranslation();
 
   // Loading
   const [loadingTeacher, setLoadingTeacher] = useState(false);
@@ -128,12 +131,12 @@ const Teacher = () => {
                   {teacher.about}
                 </p>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Date of birth:{" "}
+                  {t("teacher.t1")}:{" "}
                   <span className="font-bold">{teacher.dateOfBirth} </span>{" "}
-                  years
+                  {t("teacher.t2")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Works in faculty:{" "}
+                  {t("teacher.t3")}:{" "}
                   <Link
                     to={`/faculty/${facultyOfTeacher.id}`}
                     className="font-bold hover:underline hover:text-red-500"
@@ -142,7 +145,7 @@ const Teacher = () => {
                   </Link>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Works in department:{" "}
+                  {t("teacher.t4")}:{" "}
                   <Link
                     to={`/department/${facultyOfDepartment.id}`}
                     className="font-bold hover:underline hover:text-red-500"
@@ -151,13 +154,13 @@ const Teacher = () => {
                   </Link>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  The year{" "}
+                  {t("teacher.t5")}{" "}
                   <span className="font-bold">{teacher.teacherName}</span>{" "}
-                  joined to this faculty:{" "}
+                  {t("teacher.t6")}:{" "}
                   <span className="font-bold">
                     {teacher.joinedToThisFaculty}{" "}
                   </span>{" "}
-                  years
+                  {t("teacher.t7")}
                 </h2>
               </div>
             </div>
@@ -165,11 +168,12 @@ const Teacher = () => {
 
           <div className="block_of_publications_of_this_department mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
-              <span className="font-bold">{teacher.teacherName}</span> wrote{" "}
+              <span className="font-bold">{teacher.teacherName}</span>{" "}
+              {t("teacher.t8")}{" "}
               <span className="font-bold">
                 {publicationsOfTeacher.items || 0}
               </span>{" "}
-              publications
+              {t("teacher.t9")}
             </h1>
             <div className="for_search_and_filter">
               <div className="for_input w-1/2 mx-auto mt-2">

@@ -20,8 +20,13 @@ import {
 } from "../../api/api";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import {
+  SkeletonFaculty,
+  SkeletonDepartment,
+  SkeletonTeacher,
+  SkeletonPublication,
+} from "../../components/skeletonLoader/SkeletonLoader";
 
-// Types
 interface Faculty {
   id: string;
   facultyImg: string;
@@ -51,33 +56,26 @@ const Home = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  // States from Redux
+  // Redux selectors
   const loadingFacultiesHome = useAppSelector(
-    (state: any) => state.states.loadingFacultiesHome
+    (state) => state.states.loadingFacultiesHome
   );
-  const facultiesHome = useAppSelector(
-    (state: any) => state.states.facultiesHome
-  );
-
+  const facultiesHome = useAppSelector((state) => state.states.facultiesHome);
   const loadingDepartmentsHome = useAppSelector(
-    (state: any) => state.states.loadingDepartmentsHome
+    (state) => state.states.loadingDepartmentsHome
   );
   const departmentsHome = useAppSelector(
-    (state: any) => state.states.departmentsHome
+    (state) => state.states.departmentsHome
   );
-
   const loadingTeachersHome = useAppSelector(
-    (state: any) => state.states.loadingTeachersHome
+    (state) => state.states.loadingTeachersHome
   );
-  const teachersHome = useAppSelector(
-    (state: any) => state.states.teachersHome
-  );
-
+  const teachersHome = useAppSelector((state) => state.states.teachersHome);
   const loadingPublicationsHome = useAppSelector(
-    (state: any) => state.states.loadingPublicationsHome
+    (state) => state.states.loadingPublicationsHome
   );
   const publicationsHome = useAppSelector(
-    (state: any) => state.states.publicationsHome
+    (state) => state.states.publicationsHome
   );
 
   useEffect(() => {
@@ -96,7 +94,11 @@ const Home = () => {
         </h1>
         <div className="block_of_faculties flex flex-wrap justify-center gap-3 mt-5">
           {loadingFacultiesHome ? (
-            <h1 className="dark:text-white">...Loading</h1>
+            <>
+              <SkeletonFaculty />
+              <SkeletonFaculty />
+              <SkeletonFaculty />
+            </>
           ) : facultiesHome?.length ? (
             facultiesHome.map((item: Faculty) => (
               <EachFaculty
@@ -133,7 +135,13 @@ const Home = () => {
         </h1>
         <div className="block_of_departments text-center mt-5 flex flex-col gap-3 px-4">
           {loadingDepartmentsHome ? (
-            <h1 className="dark:text-white">...Loading</h1>
+            <>
+              <SkeletonDepartment />
+              <SkeletonDepartment />
+              <SkeletonDepartment />
+              <SkeletonDepartment />
+              <SkeletonDepartment />
+            </>
           ) : departmentsHome?.length ? (
             departmentsHome.map((item: Department) => (
               <EachDepartment
@@ -169,7 +177,11 @@ const Home = () => {
         </h1>
         <div className="block_of_teachers flex flex-wrap justify-center gap-3 mt-5">
           {loadingTeachersHome ? (
-            <h1 className="dark:text-white">...Loading</h1>
+            <>
+              <SkeletonTeacher />
+              <SkeletonTeacher />
+              <SkeletonTeacher />
+            </>
           ) : teachersHome?.length ? (
             teachersHome.map((item: Teacher) => (
               <EachTeacher
@@ -207,7 +219,11 @@ const Home = () => {
         </h1>
         <div className="block_of_publications flex flex-wrap justify-center gap-3 mt-5">
           {loadingPublicationsHome ? (
-            <h1 className="dark:text-white">...Loading</h1>
+            <>
+              <SkeletonPublication />
+              <SkeletonPublication />
+              <SkeletonPublication />
+            </>
           ) : publicationsHome?.length ? (
             publicationsHome.map((item: Publication) => (
               <EachPublication

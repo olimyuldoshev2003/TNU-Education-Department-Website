@@ -64,13 +64,36 @@
     "t15": "publications in the faculty of"
   },
   "department": {
-    "t1": "Founded"
+    "t1": "Year of opening",
+    "t2": "years",
+    "t3": "Head of the department",
+    "t4": "Amount of the teachers in this department",
+    "t5": "teachers",
+    "t6": "Amount of the publications in this department",
+    "t7": "publications",
+    "t8": "Founded",
+    "t9": "teachers in the department of",
+    "t10": "publications in the department of"
   },
   "teacher": {
-    "t1": "Founded"
+    "t1": "Date of birth",
+    "t2": "years",
+    "t3": "Works in faculty",
+    "t4": "Works in department",
+    "t5": "The year",
+    "t6": "joined to this faculty",
+    "t7": "years",
+    "t8": "wrote",
+    "t9": "publications"
   },
   "publication": {
-    "t1": "Founded"
+    "t1": "Author",
+    "t2": "Year of publication",
+    "t3": "years",
+    "t4": "Amount of pages",
+    "t5": "pages",
+    "t6": "Wrote in faculty",
+    "t7": "You can find this book here"
   },
   "f": {
     "t1": "About Us",

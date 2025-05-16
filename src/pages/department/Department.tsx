@@ -6,9 +6,12 @@ import React, { useEffect, useState } from "react";
 import EachPublication from "../../components/eachPublication/EachPublication";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Department = () => {
   const { id } = useParams();
+
+  const { t } = useTranslation();
 
   // Loading
   const [loadingDepartment, setLoadingDepartment] = useState(false);
@@ -121,7 +124,7 @@ const Department = () => {
   return (
     <>
       <div className="department_component dark:bg-[#091220] duration-300">
-        <div className="block_department_component py-5 px-5 max-w-6xl mx-auto">
+        <div className="block_department_component py-5 px-5 max-w-6xl mx-auto duration-300">
           {loadingDepartment ? (
             <div>
               <h1 className="dark:text-white">Loading...</h1>
@@ -143,29 +146,29 @@ const Department = () => {
                   {department.about}
                 </p>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Year of opening:{" "}
+                  {t("department.t1")}:{" "}
                   <span className="font-bold">{department.yearOfOpening}</span>{" "}
-                  years
+                  {t("department.t2")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Head of the department:{" "}
+                  {t("department.t3")}:{" "}
                   <span className="font-bold">
                     {department.headOfDepartment}
                   </span>
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Amount of the teachers in this department:{" "}
+                  {t("department.t4")}:{" "}
                   <span className="font-bold">
                     {teachersOfDepartment.items || 0}
                   </span>{" "}
-                  teachers
+                  {t("department.t5")}
                 </h2>
                 <h2 className="mt-3 dark:text-white duration-300">
-                  Amount of the publications in this department:{" "}
+                  {t("department.t6")}:{" "}
                   <span className="font-bold">
                     {publicationsOfDepartment.items || 0}
                   </span>{" "}
-                  publications
+                  {t("department.t7")}
                 </h2>
               </div>
             </div>
@@ -173,11 +176,11 @@ const Department = () => {
 
           <div className="block_of_teachers_of_this_faculty mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
-              Founded{" "}
+              {t("department.t8")}{" "}
               <span className="font-bold">
                 {teachersOfDepartment.items || 0}
               </span>{" "}
-              teachers in the department of{" "}
+              {t("department.t9")}{" "}
               <span className="font-bold">{department.departmentName}</span>
             </h1>
             <div className="for_search_and_filter">
@@ -252,11 +255,11 @@ const Department = () => {
           </div>
           <div className="block_of_publications_of_this_department mt-12">
             <h1 className="text-center text-3xl dark:text-white duration-300">
-              Founded{" "}
+              {t("department.t8")}Founded{" "}
               <span className="font-bold">
                 {publicationsOfDepartment.items || 0}
               </span>{" "}
-              publications in the department of{" "}
+              {t("department.t10")}{" "}
               <span className="font-bold">{department.departmentName}</span>
             </h1>
             <div className="for_search_and_filter">

@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 interface Publication {
   id: string;
@@ -21,6 +22,8 @@ interface Faculty {
 
 const Publication = () => {
   const { id } = useParams();
+
+  const { t } = useTranslation();
 
   // Loading and error states
   const [loadingPublication, setLoadingPublication] = useState(false);
@@ -121,23 +124,23 @@ const Publication = () => {
               {publication.about}
             </p>
             <h2 className="mt-3 dark:text-white duration-300">
-              Author:{" "}
+              {t("publication.t1")}:{" "}
               <span className="font-bold">
                 {authorOfPublication?.teacherName || "Unknown"}
               </span>
             </h2>
             <h2 className="mt-3 dark:text-white duration-300">
-              Year of publication:{" "}
+              {t("publication.t2")}:{" "}
               <span className="font-bold">{publication.publicatedYear}</span>{" "}
-              years
+              {t("publication.t3")}
             </h2>
             <h2 className="mt-3 dark:text-white duration-300 mr-1">
-              Amount of pages:{" "}
+              {t("publication.t4")}:{" "}
               <span className="font-bold">{publication.amountOfPages}</span>{" "}
-              pages
+              {t("publication.t5")}
             </h2>
             <h2 className="mt-3 dark:text-white duration-300 mr-1">
-              Wrote in faculty:{" "}
+              {t("publication.t6")}:{" "}
               {facultyOfPublication ? (
                 <Link
                   to={`/faculty/${facultyOfPublication.id}`}
@@ -150,7 +153,7 @@ const Publication = () => {
               )}
             </h2>
             <h2 className="mt-3 dark:text-white duration-300">
-              You can find this book here:{" "}
+              {t("publication.t7")}:{" "}
               {publication.thisPublicationPlaced ? (
                 <a
                   href={
