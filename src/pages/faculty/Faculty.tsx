@@ -244,9 +244,9 @@ const Faculty = () => {
               </div>
             </div>
 
-            <div className="block_of_departments mt-5 flex flex-col items-center gap-3 px-4">
+            <div className="block_of_departments mt-5 flex flex-col gap-3 px-4">
               {loadingDepartmentsOfFaculty ? (
-                <h1 className="dark:text-white">...Loading</h1>
+                <h1 className="dark:text-white text-center">...Loading</h1>
               ) : departmentsOfFaculty?.data?.length ? (
                 departmentsOfFaculty.data
                   .filter((item: any) =>
@@ -262,7 +262,9 @@ const Faculty = () => {
                     />
                   ))
               ) : (
-                <h1 className="dark:text-white">Departments not found</h1>
+                <h1 className="dark:text-white text-center">
+                  Departments not found
+                </h1>
               )}
               {/* <EachDepartment department={`Informatics`} />
               <EachDepartment department={`Informatics`} />
