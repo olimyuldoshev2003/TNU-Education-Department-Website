@@ -33,7 +33,7 @@ const EachPublication = ({
     <>
       <Link
         to={`/publication/${id}`}
-        className="each_teacher_component hover:scale-105 duration-200"
+        className="each_teacher_component hover:scale-105 duration-200 flex flex-col justify-center items-center"
       >
         <div
           className="relative w-[max-content] cursor-pointer"
@@ -46,7 +46,7 @@ const EachPublication = ({
           />
         </div>
         <div className="text_block mt-3">
-          <h1 className="text-[18px] font-[500] text-center dark:text-white duration-300">
+          <h1 className="text-[18px] font-[500] text-center dark:text-white duration-300 max-w-80">
             {publicationName}
           </h1>
           {/* <h1 className="text-[16px] font-[500] text-center dark:text-white duration-300">

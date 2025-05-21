@@ -70,7 +70,7 @@ const Publications = () => {
           </div>
         </div>
 
-        <div className="block_of_publications flex flex-wrap justify-center gap-3 mt-5">
+        <div className="block_of_publications flex flex-wrap justify-center items-start gap-3 mt-5">
           {loadingPublications ? (
             <h1 className="dark:text-white">...Loading</h1>
           ) : publications?.data?.length ? (

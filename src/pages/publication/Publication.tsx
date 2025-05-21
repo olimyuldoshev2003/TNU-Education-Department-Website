@@ -117,9 +117,11 @@ const Publication = () => {
             />
           </div>
           <div className="faculty_block_2">
-            <h1 className="font-bold text-2xl text-center dark:text-white duration-300">
-              {publication.publicationName}
-            </h1>
+            <div className="block_center_title flex justify-center">
+              <h1 className="font-bold text-2xl text-center dark:text-white duration-300 max-w-96">
+                {publication.publicationName}
+              </h1>
+            </div>
             <p className="max-w-md text-justify dark:text-white duration-300">
               {publication.about}
             </p>
@@ -144,7 +146,7 @@ const Publication = () => {
               {facultyOfPublication ? (
                 <Link
                   to={`/faculty/${facultyOfPublication.id}`}
-                  className="font-bold"
+                  className="font-bold hover:hover:text-[red] hover:underline"
                 >
                   {facultyOfPublication.facultyName}
                 </Link>
@@ -165,7 +167,7 @@ const Publication = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {publication.thisPublicationPlaced}
+                  Click here
                 </a>
               ) : (
                 <span className="font-bold">Not available online</span>

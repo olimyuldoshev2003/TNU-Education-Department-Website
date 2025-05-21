@@ -31,7 +31,7 @@ const EachTeacher = ({
           <h1 className="text-[18px] font-[500] text-center dark:text-white duration-300">
             {teacherName}
           </h1>
-          <h1 className="text-[16px] font-[500] text-center dark:text-white duration-300">
+          <h1 className="text-[16px] font-[500] text-center dark:text-white duration-300 max-w-50">
             {teacherJobLevel}
           </h1>
         </div>
