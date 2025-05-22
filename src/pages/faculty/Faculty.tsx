@@ -297,7 +297,7 @@ const Faculty = () => {
                 value={valueDepartments}
                 onChange={(e) => setValueDepartments(e.target.value)}
                 type="search"
-                label={t("search.departments") || "Search departments"}
+                label={"Search the departments"}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 crossOrigin={undefined}
@@ -351,7 +351,7 @@ const Faculty = () => {
                 value={valueTeachers}
                 onChange={(e) => setValueTeachers(e.target.value)}
                 type="search"
-                label={t("search.teachers") || "Search teachers"}
+                label={"Search the teachers"}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 crossOrigin={undefined}
@@ -409,7 +409,7 @@ const Faculty = () => {
                 value={valuePublications}
                 onChange={(e) => setValuePublications(e.target.value)}
                 type="search"
-                label={t("search.publications") || "Search publications"}
+                label={"Search the publications"}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 crossOrigin={undefined}

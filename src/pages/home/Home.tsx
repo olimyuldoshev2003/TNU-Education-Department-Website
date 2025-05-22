@@ -217,7 +217,7 @@ const Home = () => {
         <h1 className="text-center text-3xl font-bold dark:text-white duration-300">
           {t("home.s4.t1")}
         </h1>
-        <div className="block_of_publications flex flex-wrap justify-center gap-3 mt-5">
+        <div className="block_of_publications flex flex-wrap justify-center items-start gap-3 mt-5">
           {loadingPublicationsHome ? (
             <>
               <SkeletonPublication />

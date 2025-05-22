@@ -224,7 +224,7 @@ const Department = () => {
                   setValueTeachers(e.target.value)
                 }
                 type="search"
-                label={t("search.teachers") || "Search the teachers"}
+                label={"Search the teachers"}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 crossOrigin={undefined}
@@ -280,7 +280,7 @@ const Department = () => {
                   setValuePublications(e.target.value)
                 }
                 type="search"
-                label={t("search.publications") || "Search the publications"}
+                label={"Search the publications"}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
                 crossOrigin={undefined}
