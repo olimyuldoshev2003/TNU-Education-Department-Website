@@ -4,7 +4,6 @@ import {
   // Button,
   Dialog,
   DialogActions,
-  DialogContent,
   DialogTitle,
   Slide,
 } from "@mui/material";
@@ -39,7 +38,7 @@ const ModalAddFaculty = ({
           aria-describedby="alert-dialog-slide-description"
         >
           <DialogTitle>{"Add Faculty"}</DialogTitle>
-          <DialogContent></DialogContent>
+
           <DialogActions
             sx={{
               display: "flex",

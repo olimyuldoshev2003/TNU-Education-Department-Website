@@ -9,6 +9,10 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getAndPaginateFacultiesAdmin } from "../../api/api";
 import EachFacultyAdmin from "../../components/eachFacultyAdmin/eachFacultyAdmin";
 
+// React Icons
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
 const FacultiesAdmin = () => {
   const { t } = useTranslation();
 
@@ -75,12 +79,22 @@ const FacultiesAdmin = () => {
             <h1 className="dark:text-white">...Loading</h1>
           ) : facultiesAdmin?.data?.length ? (
             facultiesAdmin.data.map((item: any) => (
-              <EachFacultyAdmin
-                key={item.id}
-                id={item.id}
-                facultyImg={item.facultyImg}
-                facultyName={item.facultyName}
-              />
+              <div className="each_faculties_admin_block" key={item.id}>
+                <EachFacultyAdmin
+                  key={item.id}
+                  id={item.id}
+                  facultyImg={item.facultyImg}
+                  facultyName={item.facultyName}
+                />
+                <div className="block_functionalities flex justify-between mt-1 px-1">
+                  <button className="cursor-pointer bg-none text-[green] px-5 py-2 rounded-[10px] hover:text-[brown] text-[30px] outline-none">
+                    <MdEdit />
+                  </button>
+                  <button className="cursor-pointer bg-none text-[red] px-5 py-2 rounded-[10px] hover:text-[#00abfa] text-[30px] outline-none">
+                    <MdDelete />
+                  </button>
+                </div>
+              </div>
             ))
           ) : (
             <h1 className="dark:text-white">Faculties not found</h1>
