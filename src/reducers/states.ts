@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store/store";
 import {
+  getAndPaginateDepartmentsAdmin,
+  getAndPaginateFacultiesAdmin,
+  getAndPaginatePublicationsAdmin,
+  getAndPaginateTeachersAdmin,
   getAndSearchDepartments,
   getAndSearchFaculties,
   getAndSearchPublications,
@@ -29,6 +33,15 @@ export interface IStates {
   teachers: any;
   loadingPublications: boolean;
   publications: any;
+
+  loadingFacultiesAdmin: boolean;
+  facultiesAdmin: any;
+  loadingDepartmentsAdmin: boolean;
+  departmentsAdmin: any;
+  loadingTeachersAdmin: boolean;
+  teachersAdmin: any;
+  loadingPublicationsAdmin: boolean;
+  publicationsAdmin: any;
 }
 
 const initialState: IStates = {
@@ -51,6 +64,16 @@ const initialState: IStates = {
   teachers: [],
   loadingPublications: false,
   publications: [],
+
+  // Admin side
+  loadingFacultiesAdmin: false,
+  facultiesAdmin: [],
+  loadingDepartmentsAdmin: false,
+  departmentsAdmin: [],
+  loadingTeachersAdmin: false,
+  teachersAdmin: [],
+  loadingPublicationsAdmin: false,
+  publicationsAdmin: [],
 };
 
 export const statesSlice = createSlice({
@@ -176,6 +199,74 @@ export const statesSlice = createSlice({
     );
     builder.addCase(getAndSearchPublications.rejected, (state: any) => {
       state.loadingPublications = false;
+    });
+
+    // Faculties Admin
+    builder.addCase(getAndPaginateFacultiesAdmin.pending, (state: any) => {
+      state.loadingFacultiesAdmin = true;
+    });
+
+    builder.addCase(
+      getAndPaginateFacultiesAdmin.fulfilled,
+      (state: any, action: any) => {
+        state.loadingFacultiesAdmin = false;
+        state.facultiesAdmin = action.payload;
+      }
+    );
+
+    builder.addCase(getAndPaginateFacultiesAdmin.rejected, (state: any) => {
+      state.loadingFacultiesAdmin = false;
+    });
+
+    // Departments Admin
+    builder.addCase(getAndPaginateDepartmentsAdmin.pending, (state: any) => {
+      state.loadingDepartmentsAdmin = true;
+    });
+
+    builder.addCase(
+      getAndPaginateDepartmentsAdmin.fulfilled,
+      (state: any, action: any) => {
+        state.loadingDepartmentsAdmin = false;
+        state.departmentsAdmin = action.payload;
+      }
+    );
+
+    builder.addCase(getAndPaginateDepartmentsAdmin.rejected, (state: any) => {
+      state.loadingDepartmentsAdmin = false;
+    });
+
+    // Teachers Admin
+    builder.addCase(getAndPaginateTeachersAdmin.pending, (state: any) => {
+      state.loadingTeachersAdmin = true;
+    });
+
+    builder.addCase(
+      getAndPaginateTeachersAdmin.fulfilled,
+      (state: any, action: any) => {
+        state.loadingTeachersAdmin = false;
+        state.teachersAdmin = action.payload;
+      }
+    );
+
+    builder.addCase(getAndPaginateTeachersAdmin.rejected, (state: any) => {
+      state.loadingTeachersAdmin = false;
+    });
+
+    // Publications Admin
+    builder.addCase(getAndPaginatePublicationsAdmin.pending, (state: any) => {
+      state.loadingPublicationsAdmin = true;
+    });
+
+    builder.addCase(
+      getAndPaginatePublicationsAdmin.fulfilled,
+      (state: any, action: any) => {
+        state.loadingPublicationsAdmin = false;
+        state.publicationsAdmin = action.payload;
+      }
+    );
+
+    builder.addCase(getAndPaginatePublicationsAdmin.rejected, (state: any) => {
+      state.loadingPublicationsAdmin = false;
     });
   },
 });

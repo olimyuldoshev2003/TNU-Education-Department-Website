@@ -114,7 +114,7 @@ export const getAndSearchPublications = createAsyncThunk(
 );
 
 export const getAndPaginateFacultiesAdmin = createAsyncThunk(
-  "api/getAndSearchPublications",
+  "api/getAndPaginateFacultiesAdmin",
   async function (obj: any) {
     try {
       const { data } = await axios.get(
@@ -128,7 +128,7 @@ export const getAndPaginateFacultiesAdmin = createAsyncThunk(
 );
 
 export const getAndPaginateDepartmentsAdmin = createAsyncThunk(
-  "api/getAndSearchPublications",
+  "api/getAndPaginateDepartmentsAdmin",
   async function (obj: any) {
     try {
       const { data } = await axios.get(
@@ -142,7 +142,7 @@ export const getAndPaginateDepartmentsAdmin = createAsyncThunk(
 );
 
 export const getAndPaginateTeachersAdmin = createAsyncThunk(
-  "api/getAndSearchPublications",
+  "api/getAndPaginateTeachersAdmin",
   async function (obj: any) {
     try {
       const { data } = await axios.get(
@@ -156,7 +156,7 @@ export const getAndPaginateTeachersAdmin = createAsyncThunk(
 );
 
 export const getAndPaginatePublicationsAdmin = createAsyncThunk(
-  "api/getAndSearchPublications",
+  "api/getAndPaginatePublicationsAdmin",
   async function (obj: any) {
     try {
       const { data } = await axios.get(

@@ -3,11 +3,13 @@ import EachTeacher from "../../components/eachTeacher/EachTeacher";
 import { TablePagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EachPublication from "../../components/eachPublication/EachPublication";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 interface DepartmentData {
+  id: number | string;
+  facultyId: number | string;
   departmentImg: string;
   departmentName: string;
   about: string;
@@ -53,6 +55,8 @@ const Department = () => {
     PaginatedResponse<Publication>
   >({ data: [], items: 0 });
 
+  const [facultyOfDepartment, setFacultyOfDepartment] = useState<any>([]);
+
   // Search states
   const [valueTeachers, setValueTeachers] = useState("");
   const [valuePublications, setValuePublications] = useState("");
@@ -91,6 +95,16 @@ const Department = () => {
     setPagePublications(0);
   };
 
+  const filteredTeachers = teachersOfDepartment.data.filter((item) =>
+    item.teacherName.toLowerCase().includes(valueTeachers.trim().toLowerCase())
+  );
+
+  const filteredPublications = publicationsOfDepartment.data.filter((item) =>
+    item.publicationName
+      .toLowerCase()
+      .includes(valuePublications.trim().toLowerCase())
+  );
+
   const getDepartmentById = async () => {
     setLoadingDepartment(true);
     try {
@@ -102,6 +116,17 @@ const Department = () => {
       console.error("Error fetching department:", error);
     } finally {
       setLoadingDepartment(false);
+    }
+  };
+
+  const getFaculyOfDepartment = async (facultyId: any) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/faculties/${facultyId}`
+      );
+      setFacultyOfDepartment(data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -145,15 +170,9 @@ const Department = () => {
     getPublicationsOfDepartment();
   }, [id, valuePublications, pagePublications, rowsPerPagePublications]);
 
-  const filteredTeachers = teachersOfDepartment.data.filter((item) =>
-    item.teacherName.toLowerCase().includes(valueTeachers.trim().toLowerCase())
-  );
-
-  const filteredPublications = publicationsOfDepartment.data.filter((item) =>
-    item.publicationName
-      .toLowerCase()
-      .includes(valuePublications.trim().toLowerCase())
-  );
+  useEffect(() => {
+    getFaculyOfDepartment(department?.facultyId);
+  }, [department?.facultyId]);
 
   if (!department) {
     return <div className="dark:text-white">Loading department data...</div>;
@@ -186,6 +205,23 @@ const Department = () => {
                 {t("department.t1")}:{" "}
                 <span className="font-bold">{department.yearOfOpening}</span>{" "}
                 {t("department.t2")}
+              </h2>
+              <h2 className="mt-3 dark:text-white duration-300">
+                {/* {t("department.t3")}:{" "} */}
+                It's situated in the faculty:{" "}
+                {/* <span className="font-bold">
+                  {facultyOfDepartment?.facultyName || "unknown"}
+                </span> */}
+                {facultyOfDepartment ? (
+                  <Link
+                    to={`/faculty/${facultyOfDepartment.id}`}
+                    className="font-bold hover:hover:text-[red] hover:underline"
+                  >
+                    {facultyOfDepartment?.facultyName}
+                  </Link>
+                ) : (
+                  <span className="font-bold">Loading faculty...</span>
+                )}
               </h2>
               <h2 className="mt-3 dark:text-white duration-300">
                 {t("department.t3")}:{" "}

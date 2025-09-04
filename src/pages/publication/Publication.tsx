@@ -128,7 +128,17 @@ const Publication = () => {
             <h2 className="mt-3 dark:text-white duration-300">
               {t("publication.t1")}:{" "}
               <span className="font-bold">
-                {authorOfPublication?.teacherName || "Unknown"}
+                {/* {authorOfPublication?.teacherName || "Unknown"} */}
+                {authorOfPublication ? (
+                  <Link
+                    to={`/teacher/${authorOfPublication.id}`}
+                    className="font-bold hover:hover:text-[red] hover:underline"
+                  >
+                    {authorOfPublication.teacherName}
+                  </Link>
+                ) : (
+                  <span className="font-bold">Loading faculty...</span>
+                )}
               </span>
             </h2>
             <h2 className="mt-3 dark:text-white duration-300">

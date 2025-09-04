@@ -9,6 +9,7 @@ import {
   IconButton,
   Select,
   Option,
+  Button,
 } from "@material-tailwind/react";
 
 //Material UI
@@ -199,7 +200,7 @@ export function Header() {
             </Select>
           </div>
           <Switcher />
-          {/* <Link to={`/admin`}>
+          <Link to={`/admin`}>
             <Button
               variant="filled"
               color="blue"
@@ -211,7 +212,7 @@ export function Header() {
             >
               <span>{t("h.t10")}</span>
             </Button>
-          </Link> */}
+          </Link>
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden outline-none"
@@ -251,7 +252,7 @@ export function Header() {
               <Option value="ru">{t("h.t8")}</Option>
               <Option value="tj">{t("h.t9")}</Option>
             </Select>
-            {/* <Link to={`/admin`} className="mt-2 block">
+            <Link to={`/admin`} className="mt-2 block">
               <Button
                 fullWidth
                 variant="gradient"
@@ -263,7 +264,7 @@ export function Header() {
               >
                 <span>{t("h.t10")}</span>
               </Button>
-            </Link> */}
+            </Link>
           </div>
         </div>
       </MobileNav>
