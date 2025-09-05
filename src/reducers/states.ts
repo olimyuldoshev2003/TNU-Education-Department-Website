@@ -13,6 +13,7 @@ import {
   getFacultiesHomePage,
   getPublicationsHomePage,
   getTeachersHomePage,
+  getUser,
 } from "../api/api";
 
 export interface IStates {
@@ -33,6 +34,9 @@ export interface IStates {
   teachers: any;
   loadingPublications: boolean;
   publications: any;
+
+  loadingUser: boolean;
+  user: any;
 
   loadingFacultiesAdmin: boolean;
   facultiesAdmin: any;
@@ -64,6 +68,10 @@ const initialState: IStates = {
   teachers: [],
   loadingPublications: false,
   publications: [],
+
+  // User
+  loadingUser: false,
+  user: {},
 
   // Admin side
   loadingFacultiesAdmin: false,
@@ -199,6 +207,21 @@ export const statesSlice = createSlice({
     );
     builder.addCase(getAndSearchPublications.rejected, (state: any) => {
       state.loadingPublications = false;
+    });
+
+    // User
+    builder.addCase(getUser.pending, (state: any) => {
+      state.loadingUser = true;
+    });
+
+    builder.addCase(getUser.fulfilled, (state: any, action: any) => {
+      state.loadingUser = false;
+      state.user = action.payload;
+      console.log(state.user);
+    });
+
+    builder.addCase(getUser.rejected, (state: any) => {
+      state.loadingUser = false;
     });
 
     // Faculties Admin

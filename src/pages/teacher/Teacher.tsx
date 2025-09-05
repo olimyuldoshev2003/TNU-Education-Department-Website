@@ -125,7 +125,7 @@ const Teacher = () => {
               </div>
               <div className="teacher_block_2">
                 <h1 className="font-bold text-2xl text-center dark:text-white duration-300">
-                  {teacher.teachername}
+                  {teacher.teacherName}
                 </h1>
                 <p className="max-w-md text-justify dark:text-white duration-300">
                   {teacher.about}

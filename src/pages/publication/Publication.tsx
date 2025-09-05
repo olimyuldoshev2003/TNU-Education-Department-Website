@@ -33,6 +33,8 @@ const Publication = () => {
   const [publication, setPublication] = useState<any>(null);
   const [facultyOfPublication, setFacultyOfPublication] =
     useState<Faculty | null>(null);
+  const [departmentOfPublication, setDepartmentOfPublication] =
+    useState<any>(null);
   const [authorOfPublication, setAuthorOfPublication] = useState<any>(null);
 
   async function getPublicationById() {
@@ -64,6 +66,19 @@ const Publication = () => {
     }
   }
 
+  async function getDepartmentByDepartmentIdOfPublication(
+    departmentId: number | string
+  ) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/departments/${departmentId}`
+      );
+      setDepartmentOfPublication(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function getAuthorByTeacherIdOfPublication(teacherId: string) {
     try {
       const { data } = await axios.get<Faculty>(
@@ -86,6 +101,12 @@ const Publication = () => {
       getFacultyByFacultyIdOfPublication(publication?.facultyId);
     }
   }, [publication?.facultyId]);
+
+  useEffect(() => {
+    if (publication?.departmentId) {
+      getDepartmentByDepartmentIdOfPublication(publication?.departmentId);
+    }
+  }, [publication?.departmentId]);
 
   useEffect(() => {
     if (publication?.teacherId) {
@@ -159,6 +180,19 @@ const Publication = () => {
                   className="font-bold hover:hover:text-[red] hover:underline"
                 >
                   {facultyOfPublication.facultyName}
+                </Link>
+              ) : (
+                <span className="font-bold">Loading faculty...</span>
+              )}
+            </h2>
+            <h2 className="mt-3 dark:text-white duration-300 mr-1">
+              {t("publication.t6")}:{" "}
+              {departmentOfPublication ? (
+                <Link
+                  to={`/department/${departmentOfPublication.id}`}
+                  className="font-bold hover:hover:text-[red] hover:underline"
+                >
+                  {departmentOfPublication.departmentName}
                 </Link>
               ) : (
                 <span className="font-bold">Loading faculty...</span>

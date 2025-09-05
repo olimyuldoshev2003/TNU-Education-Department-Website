@@ -1,5 +1,18 @@
 {
-  "user": {},
+  "user": {
+    "id": "4dsds",
+    "username": "olim_yuldoshev_ooo3",
+    "email": "oyuldoshev39@gmail.com",
+    "password": "olimyuldoshev2003"
+  },
+  "signedInUser": [
+    {
+      "id": "4dsds",
+      "username": "olim_yuldoshev_ooo3",
+      "email": "oyuldoshev39@gmail.com",
+      "password": "olimyuldoshev2003"
+    }
+  ],
   "faculties": [
     {
       "id": "1",
@@ -66,6 +79,7 @@
       "publicationId": "1",
       "teacherImg": "https://vot.tj/tj/wp-content/uploads/2022/07/st.jpg",
       "teacherName": "Тағоев Шамсулло",
+      "about": "wefewfewfewfewfaaaaaa",
       "teacherJobLevel": "Муаллими калон",
       "dateOfBirth": "",
       "joinedToThisFaculty": ""
@@ -77,6 +91,7 @@
       "publicationId": "2",
       "teacherImg": "https://mmf.tnu.tj/wp-content/uploads/2025/04/saidzoda-isroil-mahmad.jpg",
       "teacherName": "Саидзода Исроил",
+      "about": "wefwefewfewfewfewf",
       "teacherJobLevel": "Декан",
       "dateOfBirth": "1984-02-22",
       "joinedToThisFaculty": "2008"
@@ -88,6 +103,7 @@
       "publicationId": "2",
       "teacherImg": "https://mmf.tnu.tj/wp-content/uploads/2024/02/odinaev-raim-nazarovich.jpg",
       "teacherName": "Одинаев Раҳим",
+      "about": "wefwefewfewfwe",
       "teacherJobLevel": "Мудири кафедраи моделсозии математикӣ ва компютерӣ",
       "dateOfBirth": "",
       "joinedToThisFaculty": ""
@@ -99,6 +115,7 @@
       "publicationId": "2",
       "teacherImg": "https://physical.tnu.tj/wp-content/uploads/2023/01/safarov-1.jpg",
       "teacherName": "Сафаров Абдулҷалол",
+      "about": "wefwefewfewfwewefefewfewf",
       "teacherJobLevel": "Мудири кафедраи астрономия",
       "dateOfBirth": "18-05-1981",
       "joinedToThisFaculty": "2000"

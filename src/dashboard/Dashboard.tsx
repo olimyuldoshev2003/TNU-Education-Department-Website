@@ -15,10 +15,12 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 //Images
 import logoHeader from "../assets/logo_tnu.png";
-import { Link, Outlet } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import { Option, Select } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
+import { destroyToken } from "../utils/token";
+import axios from "axios";
 
 const drawerWidth = 210;
 
@@ -32,8 +34,12 @@ interface Props {
 
 const Dashboard = (props: Props) => {
   const { window } = props;
+  const navigate = useNavigate();
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [modalLogout, setModalLogout] = React.useState<boolean>(false);
+  const [signedInUser, setSignedInUser] = React.useState<any>([]);
 
   //for translation
   const { t, i18n } = useTranslation();
@@ -41,6 +47,8 @@ const Dashboard = (props: Props) => {
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
   };
+
+  // States redux toolkit
 
   const pages = [
     {
@@ -79,6 +87,40 @@ const Dashboard = (props: Props) => {
       setMobileOpen(!mobileOpen);
     }
   };
+
+  function handleCloseModalLogout() {
+    setModalLogout(false);
+  }
+
+  function handleLogout() {
+    destroyToken();
+    removeSignedInUser();
+    navigate("/");
+  }
+
+  async function getSignedInUser() {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/signedInUser`);
+      setSignedInUser(data[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function removeSignedInUser() {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:3000/signedInUser/${signedInUser.id}`
+      );
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  React.useEffect(() => {
+    getSignedInUser();
+  }, []);
 
   const drawer = (
     <div>
@@ -125,7 +167,7 @@ const Dashboard = (props: Props) => {
         ))}
       </List>
       <Divider />
-      <div className="for_translation mt-6 ">
+      <div className="for_translation mt-6 px-2">
         <Select
           size="md"
           label={t("h.t6")}
@@ -144,6 +186,17 @@ const Dashboard = (props: Props) => {
           <Option value="ru">{t("h.t8")} </Option>
           <Option value="tj"> {t("h.t9")}</Option>
         </Select>
+        <div className="block_btn_logout flex justify-center mt-3">
+          <button
+            className="bg-[green] w-full py-1 text-white outline-none rounded-[10px] hover:bg-[#024100]"
+            onClick={() => {
+              setMobileOpen(false);
+              setModalLogout(true);
+            }}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -228,6 +281,42 @@ const Dashboard = (props: Props) => {
         <Toolbar />
         <Outlet />
       </Box>
+      <Dialog
+        open={modalLogout}
+        onClose={handleCloseModalLogout}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <div className="block_modal_logout py-2">
+          <DialogTitle
+            id="alert-dialog-title"
+            sx={{
+              maxWidth: `300px`,
+            }}
+          >
+            {"Do you really want to logout from your account?"}
+          </DialogTitle>
+
+          <DialogActions
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              gap: `20px`,
+            }}
+          >
+            <Button
+              variant="contained"
+              color="success"
+              onClick={handleCloseModalLogout}
+            >
+              No
+            </Button>
+            <Button variant="contained" color="error" onClick={handleLogout}>
+              Yes
+            </Button>
+          </DialogActions>
+        </div>
+      </Dialog>
     </Box>
   );
 };

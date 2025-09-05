@@ -22,6 +22,7 @@ import Switcher from "../switch-ui/Switcher";
 //Images
 import logoHeader from "../../assets/logo_tnu.png";
 import { useTranslation } from "react-i18next";
+import { getToken } from "../../utils/token";
 
 export function Header() {
   //MUI Functions
@@ -30,6 +31,9 @@ export function Header() {
   const navRef = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
+
+  const token = getToken();
+  console.log(token);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -200,7 +204,7 @@ export function Header() {
             </Select>
           </div>
           <Switcher />
-          <Link to={`/admin`}>
+          <Link to={token ? `/admin` : `/auth`}>
             <Button
               variant="filled"
               color="blue"
@@ -252,7 +256,7 @@ export function Header() {
               <Option value="ru">{t("h.t8")}</Option>
               <Option value="tj">{t("h.t9")}</Option>
             </Select>
-            <Link to={`/admin`} className="mt-2 block">
+            <Link to={token ? `/admin` : `/auth`} className="mt-2 block">
               <Button
                 fullWidth
                 variant="gradient"

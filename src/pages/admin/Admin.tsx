@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Mui Icons
 // import AppsOutageIcon from "@mui/icons-material/AppsOutage";
@@ -37,6 +37,7 @@ import {
   Customized,
   Rectangle,
 } from "recharts";
+import axios from "axios";
 
 // chart3
 const data = [
@@ -306,9 +307,13 @@ const Admin = () => {
   const [seriesNb, setSeriesNb] = React.useState(2);
   const [itemNb, setItemNb] = React.useState(5);
   const [skipAnimation, setSkipAnimation] = React.useState(false);
+  const [signedInUser, setSignedInUser] = useState<any>([]);
 
+  // chart2
+  const [colorScheme, setColorScheme] = React.useState("Category10");
+
+  // Ensure newValue is a single number, not an array
   const handleItemNbChange = (_: Event, newValue: number | number[]) => {
-    // Ensure newValue is a single number, not an array
     if (Array.isArray(newValue)) {
       return;
     }
@@ -321,8 +326,18 @@ const Admin = () => {
     setSeriesNb(newValue); // Set the state with the new number value
   };
 
-  // chart2
-  const [colorScheme, setColorScheme] = React.useState("Category10");
+  async function getSignedInUser() {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/signedInUser`);
+      setSignedInUser(data[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getSignedInUser();
+  }, []);
 
   return (
     <>
@@ -336,8 +351,8 @@ const Admin = () => {
                 <GraphicEqIcon></GraphicEqIcon>
                 <h3 className="font-mono text-[30px]">
                   Welcome{" "}
-                  <span className="text-[#190404] font-semibold text-[38px]">
-                    Admin
+                  <span className="text-[#190404] font-semibold text-[20px]">
+                    {signedInUser.username}
                   </span>
                 </h3>
                 {/* <div className="flex">
@@ -434,7 +449,7 @@ const Admin = () => {
           <Stack
             direction="column"
             spacing={2}
-            sx={{ width: "100%", maxWidth: 600 }}
+            sx={{ width: "100%", maxWidth: 400 }}
             className="shadow-xl rounded-md p-[1%]"
           >
             <ScatterChart
@@ -477,7 +492,7 @@ const Admin = () => {
         <div className="my-8 md:flex justify-evenly">
           {/* chart3 */}
           <div className="shadow-xl rounded-md md:w-[50%]">
-            <ResponsiveContainer width="100%" height={500}>
+            <ResponsiveContainer width="100%" height={200}>
               <LineChart
                 width={500}
                 height={300}

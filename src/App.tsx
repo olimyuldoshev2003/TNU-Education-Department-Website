@@ -21,6 +21,8 @@ import {
   Teachers,
   TeachersAdmin,
 } from "./routes/lazy";
+import AuthCheck from "./routes/authCheck/AuthCheck";
+import ProtectedRoute from "./routes/protectedRoute/ProtectedRoute";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -28,7 +30,9 @@ const App = () => {
       path: "/",
       element: (
         <Suspense fallback={<div className="loader"></div>}>
+          {/* <AuthCheck> */}
           <Layout />
+          {/* </AuthCheck> */}
         </Suspense>
       ),
       children: [
@@ -36,7 +40,9 @@ const App = () => {
           index: true,
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Home />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -44,7 +50,9 @@ const App = () => {
           path: "faculties",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Faculties />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -52,7 +60,9 @@ const App = () => {
           path: "departments",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Departments />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -60,7 +70,9 @@ const App = () => {
           path: "teachers",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Teachers />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -68,7 +80,9 @@ const App = () => {
           path: "publications",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Publications />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -76,7 +90,9 @@ const App = () => {
           path: "faculty/:id",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Faculty />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -84,7 +100,9 @@ const App = () => {
           path: "teacher/:id",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Teacher />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -92,7 +110,9 @@ const App = () => {
           path: "department/:id",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Department />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -100,7 +120,9 @@ const App = () => {
           path: "publication/:id",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
+              {/* <AuthCheck> */}
               <Publication />
+              {/* </AuthCheck> */}
             </Suspense>
           ),
         },
@@ -110,7 +132,9 @@ const App = () => {
       path: "auth",
       element: (
         <Suspense fallback={<div className="loader"></div>}>
-          <Auth />
+          <AuthCheck>
+            <Auth />
+          </AuthCheck>
         </Suspense>
       ),
     },
@@ -118,7 +142,9 @@ const App = () => {
       path: "admin",
       element: (
         <Suspense fallback={<div className="loader"></div>}>
+          {/* <ProtectedRoute> */}
           <Dashboard />
+          {/* </ProtectedRoute> */}
         </Suspense>
       ),
       children: [
@@ -126,7 +152,9 @@ const App = () => {
           index: true,
           element: (
             <Suspense fallback={<div className="loader"></div>}>
-              <Admin />
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
             </Suspense>
           ),
         },
@@ -134,7 +162,9 @@ const App = () => {
           path: "faculties_admin",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
-              <FacultiesAdmin />
+              <ProtectedRoute>
+                <FacultiesAdmin />
+              </ProtectedRoute>
             </Suspense>
           ),
         },
@@ -142,7 +172,9 @@ const App = () => {
           path: "departments_admin",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
-              <DepartmentsAdmin />
+              <ProtectedRoute>
+                <DepartmentsAdmin />
+              </ProtectedRoute>
             </Suspense>
           ),
         },
@@ -150,7 +182,9 @@ const App = () => {
           path: "teachers_admin",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
-              <TeachersAdmin />,
+              <ProtectedRoute>
+                <TeachersAdmin />
+              </ProtectedRoute>
             </Suspense>
           ),
         },
@@ -158,7 +192,9 @@ const App = () => {
           path: "publications_admin",
           element: (
             <Suspense fallback={<div className="loader"></div>}>
-              <PublicationsAdmin />,
+              <ProtectedRoute>
+                <PublicationsAdmin />
+              </ProtectedRoute>
             </Suspense>
           ),
         },

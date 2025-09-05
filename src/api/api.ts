@@ -113,6 +113,15 @@ export const getAndSearchPublications = createAsyncThunk(
   }
 );
 
+export const getUser = createAsyncThunk("api/getUser", async function () {
+  try {
+    const { data } = await axios.get(`http://localhost:3000/user`);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const getAndPaginateFacultiesAdmin = createAsyncThunk(
   "api/getAndPaginateFacultiesAdmin",
   async function (obj: any) {
