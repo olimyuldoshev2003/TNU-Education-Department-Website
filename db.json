@@ -40,6 +40,141 @@
       "dean": "Қодирзода З. А.",
       "students": 1500,
       "id": "3"
+    },
+    {
+      "id": "4",
+      "facultyImg": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Химия",
+      "about": "Факултети таҳқиқоти химиявӣ ва технологияҳои нав",
+      "yearOfOpening": 1970,
+      "dean": "Алиев М.К.",
+      "students": 1100
+    },
+    {
+      "id": "5",
+      "facultyImg": "https://images.unsplash.com/photo-1536922246289-88c42f957773?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1209&q=80",
+      "facultyName": "Биология",
+      "about": "Маркази омӯзиши ҳаёт ва равандҳои биологӣ",
+      "yearOfOpening": 1972,
+      "dean": "Каримова С.Ф.",
+      "students": 950
+    },
+    {
+      "id": "6",
+      "facultyImg": "https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80",
+      "facultyName": "Технологияҳои иттилоотӣ",
+      "about": "Факултети барномасозӣ, шабакаҳо ва технологияҳои иттилоотӣ",
+      "yearOfOpening": 2005,
+      "dean": "Раҳимов Н.А.",
+      "students": 1800
+    },
+    {
+      "id": "7",
+      "facultyImg": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Иқтисод",
+      "about": "Факултети иқтисодиёт, молия ва бозор",
+      "yearOfOpening": 1991,
+      "dean": "Юсупов А.Ш.",
+      "students": 1650
+    },
+    {
+      "id": "8",
+      "facultyImg": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Ҳуқуқшиносӣ",
+      "about": "Факултети ҳуқуқ, сиёсат ва муносибатҳои байналмилалӣ",
+      "yearOfOpening": 1993,
+      "dean": "Зоиров Р.Т.",
+      "students": 1400
+    },
+    {
+      "id": "9",
+      "facultyImg": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Тиб",
+      "about": "Факултети тиб, пизишкӣ ва саломатӣ",
+      "yearOfOpening": 1978,
+      "dean": "Ахмедова М.Р.",
+      "students": 2100
+    },
+    {
+      "id": "10",
+      "facultyImg": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Забоншиносӣ",
+      "about": "Факултети забонҳо, адабиёт ва фарҳанг",
+      "yearOfOpening": 1985,
+      "dean": "Ҷалилова С.М.",
+      "students": 1250
+    },
+    {
+      "id": "11",
+      "facultyImg": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Таърих",
+      "about": "Факултети таърих, бостоншиносӣ ва мероси фарҳангӣ",
+      "yearOfOpening": 1968,
+      "dean": "Солиев А.Н.",
+      "students": 900
+    },
+    {
+      "id": "12",
+      "facultyImg": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Ҷуғрофия",
+      "about": "Факултети ҷуғрофия, геология ва экология",
+      "yearOfOpening": 1975,
+      "dean": "Қодирова Ф.З.",
+      "students": 850
+    },
+    {
+      "id": "13",
+      "facultyImg": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Психология",
+      "about": "Факултети психология, педагогика ва рушди инсон",
+      "yearOfOpening": 1995,
+      "dean": "Нуров И.Т.",
+      "students": 1150
+    },
+    {
+      "id": "14",
+      "facultyImg": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Санъат",
+      "about": "Факултети санъат, дизайн ва эҷодиёт",
+      "yearOfOpening": 2008,
+      "dean": "Абдуллаева Г.М.",
+      "students": 750
+    },
+    {
+      "id": "15",
+      "facultyImg": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Мусиқӣ",
+      "about": "Факултети мусиқӣ, навозандагӣ ва оҳангсозӣ",
+      "yearOfOpening": 2010,
+      "dean": "Ҳакимов Р.Ф.",
+      "students": 600
+    },
+    {
+      "id": "16",
+      "facultyImg": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Варзиш",
+      "about": "Факултети варзиш, солимии ҷисмонӣ ва озмоиш",
+      "yearOfOpening": 1998,
+      "dean": "Тоҳиров Б.А.",
+      "students": 800
+    },
+    {
+      "id": "17",
+      "facultyImg": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Кишоварзӣ",
+      "about": "Факултети кишоварзӣ, заминшиносӣ ва иқлим",
+      "yearOfOpening": 1982,
+      "dean": "Искандарова М.Қ.",
+      "students": 950
+    },
+    {
+      "id": "18",
+      "facultyImg": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "facultyName": "Ҳайвонот",
+      "about": "Факултети ҳайвонот, ветеринария ва зоотехния",
+      "yearOfOpening": 1988,
+      "dean": "Саидова Н.Р.",
+      "students": 700
     }
   ],
   "departments": [
