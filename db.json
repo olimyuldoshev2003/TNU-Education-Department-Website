@@ -33,13 +33,13 @@
       "students": 1300
     },
     {
-      "id": "3",
       "facultyImg": "https://media.istockphoto.com/id/874157664/photo/classroom-desk-and-drawn-blackboard-of-chemistry-teaching-general-view.jpg?s=612x612&w=0&k=20&c=-aGthcskbfFUxS3Ta6nIpaEFWmgLkqeRvIZntnMMcIA=",
       "facultyName": "Физика",
       "about": "Муассисаи пешрафта дар соҳаи физикаи назариявӣ ва амалӣ",
       "yearOfOpening": 1964,
       "dean": "Қодирзода З. А.",
-      "students": 1500
+      "students": 1500,
+      "id": "3"
     }
   ],
   "departments": [

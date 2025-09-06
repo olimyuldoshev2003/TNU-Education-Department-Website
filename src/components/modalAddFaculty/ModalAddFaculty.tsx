@@ -1,13 +1,15 @@
+// ModalAddFaculty.tsx
 import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   Button,
-  // Button,
   Dialog,
   DialogActions,
   DialogTitle,
   Slide,
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { addFacultyAdmin } from "../../api/api";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -21,25 +23,171 @@ const Transition = React.forwardRef(function Transition(
 const ModalAddFaculty = ({
   modalAddFaculty,
   setModalAddFaculty,
+  // page,
+  // rowsPerPage,
 }: {
   modalAddFaculty: boolean;
   setModalAddFaculty: Dispatch<SetStateAction<boolean>>;
+  // page: number;
+  // rowsPerPage: number;
 }) => {
+  const dispatch = useAppDispatch();
+
   const [imgAddFaculty, setImgAddFaculty] = useState<any>(null);
+  const [inpFacultyNameValue, setInpFacultyNameValue] = useState<string>("");
+  const [inpFacultyAboutValue, setInpFacultyAboutValue] = useState<string>("");
+  const [inpOpenedYearValue, setInpOpenedYearValue] = useState<string>("");
+  const [inpFacultyDeanValue, setInpFacultyDeanValue] = useState<string>("");
+  const [inpFacultyAmountStudentsValue, setInpFacultyAmountStudentsValue] =
+    useState<string>("");
+  const [imgAddingFromType, setImgAddingFromType] =
+    useState<string>("internalImg");
+  const [imgValidationError, setImgValidationError] = useState<string>("");
+
+  // Function to validate image URL
+  const validateImageUrl = (url: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+
+      // Set a timeout to avoid hanging on invalid URLs
+      setTimeout(() => {
+        if (!img.complete) {
+          resolve(false);
+        }
+      }, 2000);
+    });
+  };
+
+  // Function to handle external image URL input
+  const handleExternalImageInput = async (url: string) => {
+    if (!url.trim()) {
+      setImgAddFaculty(null);
+      setImgValidationError("");
+      return;
+    }
+
+    // Basic URL validation
+    try {
+      new URL(url);
+    } catch (e) {
+      setImgValidationError("Please enter a valid URL");
+      setImgAddFaculty(null);
+      return;
+    }
+
+    // Check if the image exists and is accessible
+    const isValid = await validateImageUrl(url);
+
+    if (isValid) {
+      setImgAddFaculty(url);
+      setImgValidationError("");
+    } else {
+      setImgAddFaculty(null);
+      setImgValidationError("Image not found or inaccessible");
+    }
+  };
 
   function handChangeImgAddFaculty(event: any) {
-    const file = event.target.files[0];
+    if (imgAddingFromType === "internalImg") {
+      const file = event.target.files[0];
 
-    if (file) {
-      const reader = new FileReader();
+      if (file) {
+        const reader = new FileReader();
 
-      reader.onload = (event: any) => {
-        setImgAddFaculty(event.target.result);
-      };
+        reader.onload = (event: any) => {
+          setImgAddFaculty(event.target.result);
+          setImgValidationError("");
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      }
+    } else {
+      handleExternalImageInput(event.target.value);
     }
   }
+
+  function handleChangeFacultyNameValue(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setInpFacultyNameValue(event.target.value);
+  }
+  function handleChangeFacultyAboutValue(
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    setInpFacultyAboutValue(event.target.value);
+  }
+  function handleChangeOpenedYearValue(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setInpOpenedYearValue(event.target.value);
+  }
+  function handleChangeFacultyDeanValue(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setInpFacultyDeanValue(event.target.value);
+  }
+  function handleChangeFacultyAmountStudentsValue(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setInpFacultyAmountStudentsValue(event.target.value);
+  }
+
+  function handleAddFaculty(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    // Use fallback image if external URL is invalid
+    const finalImage =
+      imgAddFaculty ||
+      "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
+
+    if (
+      inpFacultyNameValue.trim().length === 0 ||
+      inpFacultyAboutValue.trim().length === 0 ||
+      inpOpenedYearValue.trim().length === 0 ||
+      inpFacultyDeanValue.trim().length === 0 ||
+      inpFacultyAmountStudentsValue.trim().length === 0
+    ) {
+      alert("Fill all required fields");
+    } else {
+      let newFaculty = {
+        id: Date.now().toString(),
+        facultyImg: finalImage,
+        facultyName: inpFacultyNameValue,
+        about: inpFacultyAboutValue,
+        yearOfOpening: Number(inpOpenedYearValue),
+        dean: inpFacultyDeanValue,
+        students: Number(inpFacultyAmountStudentsValue),
+      };
+
+      dispatch(
+        addFacultyAdmin({
+          newFaculty: newFaculty,
+        })
+      );
+
+      setModalAddFaculty(false);
+      setImgAddFaculty(null);
+      setInpFacultyNameValue("");
+      setInpFacultyAboutValue("");
+      setInpOpenedYearValue("");
+      setInpFacultyDeanValue("");
+      setInpFacultyAmountStudentsValue("");
+      setImgValidationError("");
+    }
+  }
+
+  // Get the image source for preview
+  const getImageSrc = () => {
+    if (imgAddingFromType === "internalImg" && imgAddFaculty) {
+      return imgAddFaculty;
+    } else if (imgAddingFromType === "externalImg" && imgAddFaculty) {
+      return imgAddFaculty;
+    }
+    return "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
+  };
 
   return (
     <>
@@ -54,59 +202,109 @@ const ModalAddFaculty = ({
           aria-describedby="alert-dialog-slide-description"
         >
           <div className="block_modal_add_faculty px-2">
-            <form action="" className="form_modal_add_faculty">
+            <form
+              action=""
+              className="form_modal_add_faculty"
+              onSubmit={handleAddFaculty}
+            >
               <DialogTitle>{"Add Faculty"}</DialogTitle>
               <div className="block_inputs_add_faculty">
-                <div className="block_1_img_and_img_input space-y-2">
+                <div className="block_1_img_and_img_input flex flex-col gap-3">
                   <img
-                    src={
-                      imgAddFaculty
-                        ? imgAddFaculty
-                        : `https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=`
-                    }
-                    alt=""
-                    className="w-[70px] h-[70px] rounded-full"
+                    src={getImageSrc()}
+                    alt="Faculty preview"
+                    className="w-[70px] h-[70px] rounded-full object-cover"
+                    onError={(e) => {
+                      // Fallback if image fails to load
+                      e.currentTarget.src =
+                        "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
+                    }}
                   />
-                  <input
-                    type="file"
-                    name=""
-                    id=""
-                    onChange={handChangeImgAddFaculty}
-                    className="w-[235px]"
-                  />
+
+                  <select
+                    name="imageSourceType"
+                    className="cursor-pointer outline-none px-1 py-1 border-[1px] border-gray-500 rounded-[5px]"
+                    value={imgAddingFromType}
+                    onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                      setImgAddingFromType(event.target.value);
+                      setImgAddFaculty(null);
+                      setImgValidationError("");
+                    }}
+                  >
+                    <option value="internalImg">Upload image</option>
+                    <option value="externalImg">External image URL</option>
+                  </select>
+
+                  {imgAddingFromType === "internalImg" ? (
+                    <div className="flex flex-col gap-1">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handChangeImgAddFaculty}
+                        className="w-full cursor-pointer"
+                      />
+                      <p className="text-xs text-gray-500">
+                        Supported formats: JPG, PNG, GIF
+                      </p>
+                    </div>
+                  ) : imgAddingFromType === "externalImg" ? (
+                    <div className="flex flex-col gap-1">
+                      <input
+                        type="text"
+                        placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
+                        onChange={handChangeImgAddFaculty}
+                        className="w-full outline-none px-2 py-1 border-[1px] border-gray-500 rounded-[5px]"
+                      />
+                      {imgValidationError && (
+                        <p className="text-red-500 text-xs">
+                          {imgValidationError}
+                        </p>
+                      )}
+                      {!imgValidationError && imgAddFaculty && (
+                        <p className="text-green-500 text-xs">
+                          Image URL is valid!
+                        </p>
+                      )}
+                    </div>
+                  ) : null}
                 </div>
+
                 <div className="block_input_faculty_name_modal_add mt-2 flex flex-col gap-1">
-                  <label htmlFor="facultyName">
+                  <label htmlFor="facultyName" className="cursor-pointer">
                     Name of faculty <span className="text-[red]">*</span>
                   </label>
                   <input
                     type="text"
-                    name=""
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
                     id="facultyName"
                     placeholder="Enter the name of faculty"
+                    value={inpFacultyNameValue}
+                    onChange={handleChangeFacultyNameValue}
+                    required
                   />
                 </div>
+
                 <div className="block_input_faculty_about_modal_add mt-2 flex flex-col gap-1">
-                  <label htmlFor="facultyAbout">
+                  <label htmlFor="facultyAbout" className="cursor-pointer">
                     About this faculty <span className="text-[red]">*</span>
                   </label>
                   <textarea
-                    name=""
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px] h-[200px]"
                     id="facultyAbout"
                     placeholder="Enter about this faculty"
+                    value={inpFacultyAboutValue}
+                    onChange={handleChangeFacultyAboutValue}
+                    required
                   />
                 </div>
+
                 <div className="block_input_faculty_opened_year_modal_add mt-2 flex flex-col gap-1">
-                  <label htmlFor="facultyOpenedYear">
+                  <label htmlFor="facultyOpenedYear" className="cursor-pointer">
                     Opened year of this faculty{" "}
                     <span className="text-[red]">*</span>
                   </label>
-
                   <input
                     type="number"
-                    name=""
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
                     id="facultyOpenedYear"
                     placeholder="Enter the opening year (YYYY)"
@@ -118,60 +316,70 @@ const ModalAddFaculty = ({
                       if (input.value.length > 4) {
                         input.value = input.value.slice(0, 4);
                       }
-
-                      // Set custom validation message
-                      if (input.value.length !== 4) {
-                        input.setCustomValidity(
-                          "Please enter exactly 4 digits"
-                        );
-                      } else {
-                        input.setCustomValidity("");
-                      }
                     }}
+                    value={inpOpenedYearValue}
+                    onChange={handleChangeOpenedYearValue}
                   />
                 </div>
+
                 <div className="block_input_faculty_dean_modal_add mt-2 flex flex-col gap-1">
-                  <label htmlFor="facultyDean">
+                  <label htmlFor="facultyDean" className="cursor-pointer">
                     Dean of faculty <span className="text-[red]">*</span>
                   </label>
                   <input
                     type="text"
-                    name=""
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
                     id="facultyDean"
                     placeholder="Enter the dean of faculty"
-                  />
-                </div>
-                <div className="block_input_faculty_opened_year_modal_add mt-2 flex flex-col gap-1">
-                  <label htmlFor="facultyValueStudents">
-                    The value of students <span className="text-[red]">*</span>
-                  </label>
-
-                  <input
-                    type="number"
-                    name=""
-                    className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
-                    id="facultyValueStudents"
-                    placeholder="Enter the value of students"
+                    value={inpFacultyDeanValue}
+                    onChange={handleChangeFacultyDeanValue}
                     required
                   />
                 </div>
+
+                <div className="block_input_faculty_amount_students_modal_add mt-2 flex flex-col gap-1">
+                  <label
+                    htmlFor="facultyAmountStudents"
+                    className="cursor-pointer"
+                  >
+                    The amount of students <span className="text-[red]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
+                    id="facultyAmountStudents"
+                    placeholder="Enter the amount of students"
+                    required
+                    min="0"
+                    value={inpFacultyAmountStudentsValue}
+                    onChange={handleChangeFacultyAmountStudentsValue}
+                  />
+                </div>
               </div>
+
               <DialogActions
                 sx={{
                   display: "flex",
+                  gap: 1,
+                  padding: 2,
                 }}
               >
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   fullWidth
                   onClick={() => {
                     setModalAddFaculty(false);
+                    setImgValidationError("");
                   }}
                 >
                   Close
                 </Button>
-                <Button variant="contained" fullWidth type="submit">
+                <Button
+                  variant="contained"
+                  fullWidth
+                  type="submit"
+                  disabled={!!imgValidationError}
+                >
                   Add
                 </Button>
               </DialogActions>

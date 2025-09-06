@@ -1,3 +1,4 @@
+// statesSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store/store";
 import {
@@ -14,6 +15,9 @@ import {
   getPublicationsHomePage,
   getTeachersHomePage,
   getUser,
+  addFacultyAdmin,
+  editFacultyAdmin,
+  deleteFacultyAdmin, // Make sure this is imported
 } from "../api/api";
 
 export interface IStates {
@@ -75,7 +79,7 @@ const initialState: IStates = {
 
   // Admin side
   loadingFacultiesAdmin: false,
-  facultiesAdmin: [],
+  facultiesAdmin: { data: [], items: 0 },
   loadingDepartmentsAdmin: false,
   departmentsAdmin: [],
   loadingTeachersAdmin: false,
@@ -87,7 +91,15 @@ const initialState: IStates = {
 export const statesSlice = createSlice({
   name: "states",
   initialState,
-  reducers: {},
+  reducers: {
+    // Add a reducer to manually add a faculty to the state
+    addFacultyToState: (state, action) => {
+      if (state.facultiesAdmin && state.facultiesAdmin.data) {
+        state.facultiesAdmin.data.push(action.payload);
+        state.facultiesAdmin.items += 1;
+      }
+    },
+  },
   extraReducers(builder: any) {
     // Faculties Home
     builder.addCase(getFacultiesHomePage.pending, (state: any) => {
@@ -217,7 +229,6 @@ export const statesSlice = createSlice({
     builder.addCase(getUser.fulfilled, (state: any, action: any) => {
       state.loadingUser = false;
       state.user = action.payload;
-      console.log(state.user);
     });
 
     builder.addCase(getUser.rejected, (state: any) => {
@@ -238,6 +249,62 @@ export const statesSlice = createSlice({
     );
 
     builder.addCase(getAndPaginateFacultiesAdmin.rejected, (state: any) => {
+      state.loadingFacultiesAdmin = false;
+    });
+
+    // Faculties Admin - Add
+    builder.addCase(addFacultyAdmin.pending, (state: any) => {
+      state.loadingFacultiesAdmin = true;
+    });
+
+    builder.addCase(addFacultyAdmin.fulfilled, (state: any, action: any) => {
+      state.loadingFacultiesAdmin = false;
+      // Add the new faculty to the current list
+      if (state.facultiesAdmin && state.facultiesAdmin.data) {
+        state.facultiesAdmin.data.push(action.payload);
+        state.facultiesAdmin.items += 1;
+      }
+    });
+
+    builder.addCase(addFacultyAdmin.rejected, (state: any) => {
+      state.loadingFacultiesAdmin = false;
+    });
+
+    // Faculties Admin - Edit
+    builder.addCase(editFacultyAdmin.pending, (state: any) => {
+      state.loadingFacultiesAdmin = true;
+    });
+    builder.addCase(editFacultyAdmin.fulfilled, (state: any, action: any) => {
+      state.loadingFacultiesAdmin = false;
+      // Edit the faculty in the current list
+      if (state.facultiesAdmin && state.facultiesAdmin.data) {
+        const index = state.facultiesAdmin.data.findIndex(
+          (faculty: any) => faculty.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.facultiesAdmin.data[index] = action.payload;
+        }
+      }
+    });
+    builder.addCase(editFacultyAdmin.rejected, (state: any) => {
+      state.loadingFacultiesAdmin = false;
+    });
+
+    // Faculties Admin - Delete
+    builder.addCase(deleteFacultyAdmin.pending, (state: any) => {
+      state.loadingFacultiesAdmin = true;
+    });
+    builder.addCase(deleteFacultyAdmin.fulfilled, (state: any, action: any) => {
+      state.loadingFacultiesAdmin = false;
+      // Remove the faculty from the current list
+      if (state.facultiesAdmin && state.facultiesAdmin.data) {
+        state.facultiesAdmin.data = state.facultiesAdmin.data.filter(
+          (faculty: any) => faculty.id !== action.payload
+        );
+        state.facultiesAdmin.items -= 1;
+      }
+    });
+    builder.addCase(deleteFacultyAdmin.rejected, (state: any) => {
       state.loadingFacultiesAdmin = false;
     });
 
@@ -293,6 +360,9 @@ export const statesSlice = createSlice({
     });
   },
 });
+
+// Export the new action
+export const { addFacultyToState } = statesSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.states;
