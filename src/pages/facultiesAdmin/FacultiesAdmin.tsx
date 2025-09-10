@@ -337,19 +337,15 @@ const FacultiesAdmin = () => {
             }}
           />
         </section>
-        <ModalAddFaculty
-          modalAddFaculty={modalAddFaculty}
-          setModalAddFaculty={setModalAddFaculty}
-        />
+
+        {/* Getting the faculties from database */}
         <section className="block_2_faculties_admin_component flex flex-wrap justify-center gap-3 mt-5">
           {loadingFacultiesAdmin ? (
-            <h1 className="dark:text-white">...Loading</h1>
+            <h1 className="">...Loading</h1>
           ) : facultiesAdmin?.data?.length ? (
             facultiesAdmin.data.map((item: any) => (
               <div className="each_faculties_admin_block" key={item.id}>
                 <EachFacultyAdmin
-                  key={item.id}
-                  id={item.id}
                   facultyImg={item.facultyImg}
                   facultyName={item.facultyName}
                 />
@@ -417,6 +413,10 @@ const FacultiesAdmin = () => {
             <h1 className="dark:text-white">Faculties not found</h1>
           )}
         </section>
+        <ModalAddFaculty
+          modalAddFaculty={modalAddFaculty}
+          setModalAddFaculty={setModalAddFaculty}
+        />
 
         {/* Edit Faculty Dialog */}
         <Dialog
@@ -694,7 +694,7 @@ const FacultiesAdmin = () => {
         </Dialog>
 
         <section className="section_3_pagination">
-          <div className="for_pagionation_of_faculties flex justify-center dark:bg-white mt-6">
+          <div className="for_pagionation_of_faculties flex justify-center mt-6">
             <TablePagination
               component="div"
               count={facultiesAdmin?.items || 0}

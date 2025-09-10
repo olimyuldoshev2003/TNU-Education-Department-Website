@@ -1,18 +1,14 @@
 const EachFacultyAdmin = ({
-  id,
   facultyImg,
   facultyName,
 }: {
-  id: string;
   facultyImg: string;
   facultyName: string;
 }) => {
   return (
     <>
-      <div className="each_faculty_admin_component" key={id}>
         <div
           className="relative w-[max-content] cursor-pointer hover:scale-105 duration-200"
-          // key={item.slug}
         >
           <img
             src={facultyImg}
@@ -23,7 +19,6 @@ const EachFacultyAdmin = ({
             {facultyName}
           </h1>
         </div>
-      </div>
     </>
   );
 };

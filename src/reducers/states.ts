@@ -81,7 +81,7 @@ const initialState: IStates = {
   loadingFacultiesAdmin: false,
   facultiesAdmin: { data: [], items: 0 },
   loadingDepartmentsAdmin: false,
-  departmentsAdmin: [],
+  departmentsAdmin: {data: [], items: 0},
   loadingTeachersAdmin: false,
   teachersAdmin: [],
   loadingPublicationsAdmin: false,
