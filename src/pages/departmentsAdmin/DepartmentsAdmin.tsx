@@ -19,10 +19,10 @@ const DepartmentsAdmin = () => {
   );
 
   const [modalAddDepartment, setModalAddDepartment] = useState<boolean>(false);
-  const [modalEditDepartment, setModalEditDepartment] =
-    useState<boolean>(false);
-  const [modalDeleteDepartment, setModalDeleteDepartment] =
-    useState<boolean>(false);
+    // const [modalEditDepartment, setModalEditDepartment] =
+    //   useState<boolean>(false);
+    // const [modalDeleteDepartment, setModalDeleteDepartment] =
+    //   useState<boolean>(false);
 
   // Pagination
   const [page, setPage] = useState<number>(0);
@@ -110,6 +110,11 @@ const DepartmentsAdmin = () => {
               <DialogTitle id="alert-dialog-title">
                 {"Add Department"}
               </DialogTitle>
+              <div className="blocks_input_add_department">
+                <div className="block_img_select_input">
+                  
+                </div> 
+              </div>
               <DialogActions>
                 <Button
                   variant="outlined"
