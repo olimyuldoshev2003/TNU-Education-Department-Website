@@ -184,7 +184,7 @@
       "departmentImg": "https://media.istockphoto.com/id/1439425791/photo/digital-technology-software-development-concept-coding-programmer-working-on-laptop-with.jpg?s=612x612&w=0&k=20&c=43WZfDZcnI2lULx83NVAtFiGyzKHzi4HyLqYZgggX-c=",
       "departmentName": "Информатика",
       "about": "Кафедраи илмҳои компютерӣ ва технологияҳои иттилоотӣ бо барномаҳои пешрафта дар муҳандисии нармафзор ва зеҳни сунъӣ",
-      "yearOfOpening": "1991",
+      "yearOfOpening": 1991,
       "headOfDepartment": "Қосимов И. Л."
     },
     {
@@ -193,7 +193,7 @@
       "departmentImg": "https://t3.ftcdn.net/jpg/07/79/71/58/360_F_779715864_NUNSmQNlnkhaUei0ezaZXj186X9EYOQj.jpg",
       "departmentName": "Моделҳои математикӣ ва компютерӣ",
       "about": "Омӯзиши мутахассисонаи моделсозии математикӣ ва усулҳои ҳисоббарор",
-      "yearOfOpening": "2013",
+      "yearOfOpening": 2013,
       "headOfDepartment": "Ғаффоров А."
     },
     {
@@ -202,7 +202,7 @@
       "departmentImg": "https://www.physicsandastronomy.pitt.edu/sites/default/files/feature-image/galaxy_1.jpg",
       "departmentName": "Астрономия",
       "about": "Маркази таҳқиқоти астрофизика ва кашфиёти кайҳонӣ",
-      "yearOfOpening": "",
+      "yearOfOpening": 1990,
       "headOfDepartment": ""
     }
   ],
