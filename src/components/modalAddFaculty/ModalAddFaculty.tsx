@@ -23,13 +23,9 @@ const Transition = React.forwardRef(function Transition(
 const ModalAddFaculty = ({
   modalAddFaculty,
   setModalAddFaculty,
-  // page,
-  // rowsPerPage,
 }: {
   modalAddFaculty: boolean;
   setModalAddFaculty: Dispatch<SetStateAction<boolean>>;
-  // page: number;
-  // rowsPerPage: number;
 }) => {
   const dispatch = useAppDispatch();
 
@@ -43,6 +39,7 @@ const ModalAddFaculty = ({
   const [imgAddingFromType, setImgAddingFromType] =
     useState<string>("internalImg");
   const [imgValidationError, setImgValidationError] = useState<string>("");
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
 
   // Function to validate image URL
   const validateImageUrl = (url: string): Promise<boolean> => {
@@ -57,15 +54,40 @@ const ModalAddFaculty = ({
         if (!img.complete) {
           resolve(false);
         }
-      }, 2000);
+      }, 5000);
     });
+  };
+
+  // Function to validate file type and size
+  const validateFile = (file: File): boolean => {
+    const validImageTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+    ];
+    if (!validImageTypes.includes(file.type)) {
+      setImgValidationError(
+        "Please select a valid image file (JPG, PNG, GIF, WEBP)"
+      );
+      return false;
+    }
+
+    // Check file size (max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      setImgValidationError("Image size must be less than 5MB");
+      return false;
+    }
+
+    return true;
   };
 
   // Function to handle external image URL input
   const handleExternalImageInput = async (url: string) => {
     if (!url.trim()) {
       setImgAddFaculty(null);
-      setImgValidationError("");
+      setImgValidationError("Image URL is required");
       return;
     }
 
@@ -78,6 +100,22 @@ const ModalAddFaculty = ({
       return;
     }
 
+    // Check if URL points to an image
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    const isImageUrl = imageExtensions.some((ext) =>
+      url.toLowerCase().includes(ext)
+    );
+
+    if (!isImageUrl) {
+      setImgValidationError(
+        "URL must point to an image file (JPG, PNG, GIF, WEBP)"
+      );
+      setImgAddFaculty(null);
+      return;
+    }
+
+    setIsImageLoading(true);
+
     // Check if the image exists and is accessible
     const isValid = await validateImageUrl(url);
 
@@ -88,22 +126,35 @@ const ModalAddFaculty = ({
       setImgAddFaculty(null);
       setImgValidationError("Image not found or inaccessible");
     }
+
+    setIsImageLoading(false);
   };
 
   function handChangeImgAddFaculty(event: any) {
     if (imgAddingFromType === "internalImg") {
       const file = event.target.files[0];
 
-      if (file) {
-        const reader = new FileReader();
-
-        reader.onload = (event: any) => {
-          setImgAddFaculty(event.target.result);
-          setImgValidationError("");
-        };
-
-        reader.readAsDataURL(file);
+      if (!file) {
+        setImgValidationError("Please select an image file");
+        return;
       }
+
+      if (!validateFile(file)) {
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = (event: any) => {
+        setImgAddFaculty(event.target.result);
+        setImgValidationError("");
+      };
+
+      reader.onerror = () => {
+        setImgValidationError("Failed to read the image file");
+      };
+
+      reader.readAsDataURL(file);
     } else {
       handleExternalImageInput(event.target.value);
     }
@@ -138,10 +189,11 @@ const ModalAddFaculty = ({
   function handleAddFaculty(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    // Use fallback image if external URL is invalid
-    const finalImage =
-      imgAddFaculty ||
-      "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
+    // Validate all fields including image
+    if (!imgAddFaculty) {
+      setImgValidationError("Faculty image is required");
+      return;
+    }
 
     if (
       inpFacultyNameValue.trim().length === 0 ||
@@ -151,32 +203,36 @@ const ModalAddFaculty = ({
       inpFacultyAmountStudentsValue.trim().length === 0
     ) {
       alert("Fill all required fields");
-    } else {
-      let newFaculty = {
-        id: Date.now().toString(),
-        facultyImg: finalImage,
-        facultyName: inpFacultyNameValue,
-        about: inpFacultyAboutValue,
-        yearOfOpening: Number(inpOpenedYearValue),
-        dean: inpFacultyDeanValue,
-        students: Number(inpFacultyAmountStudentsValue),
-      };
-
-      dispatch(
-        addFacultyAdmin({
-          newFaculty: newFaculty,
-        })
-      );
-
-      setModalAddFaculty(false);
-      setImgAddFaculty(null);
-      setInpFacultyNameValue("");
-      setInpFacultyAboutValue("");
-      setInpOpenedYearValue("");
-      setInpFacultyDeanValue("");
-      setInpFacultyAmountStudentsValue("");
-      setImgValidationError("");
+      return;
     }
+
+    // Use fallback image if external URL is invalid
+    const finalImage = imgAddFaculty;
+
+    let newFaculty = {
+      id: Date.now().toString(),
+      facultyImg: finalImage,
+      facultyName: inpFacultyNameValue,
+      about: inpFacultyAboutValue,
+      yearOfOpening: Number(inpOpenedYearValue),
+      dean: inpFacultyDeanValue,
+      students: Number(inpFacultyAmountStudentsValue),
+    };
+
+    dispatch(
+      addFacultyAdmin({
+        newFaculty: newFaculty,
+      })
+    );
+
+    setModalAddFaculty(false);
+    setImgAddFaculty(null);
+    setInpFacultyNameValue("");
+    setInpFacultyAboutValue("");
+    setInpOpenedYearValue("");
+    setInpFacultyDeanValue("");
+    setInpFacultyAmountStudentsValue("");
+    setImgValidationError("");
   }
 
   // Get the image source for preview
@@ -210,16 +266,23 @@ const ModalAddFaculty = ({
               <DialogTitle>{"Add Faculty"}</DialogTitle>
               <div className="block_inputs_add_faculty">
                 <div className="block_1_img_and_img_input flex flex-col gap-3">
-                  <img
-                    src={getImageSrc()}
-                    alt="Faculty preview"
-                    className="w-[70px] h-[70px] rounded-full object-cover"
-                    onError={(e) => {
-                      // Fallback if image fails to load
-                      e.currentTarget.src =
-                        "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
-                    }}
-                  />
+                  <div className="relative inline-block">
+                    <img
+                      src={getImageSrc()}
+                      alt="Faculty preview"
+                      className="w-[70px] h-[70px] rounded-full object-cover"
+                      onError={(e) => {
+                        // Fallback if image fails to load
+                        e.currentTarget.src =
+                          "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
+                      }}
+                    />
+                    {isImageLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-full">
+                        <div className="w-5 h-5 border-t-2 border-white border-solid rounded-full animate-spin"></div>
+                      </div>
+                    )}
+                  </div>
 
                   <select
                     name="imageSourceType"
@@ -239,21 +302,23 @@ const ModalAddFaculty = ({
                     <div className="flex flex-col gap-1">
                       <input
                         type="file"
-                        accept="image/*"
+                        accept="image/jpeg, image/png, image/gif, image/webp"
                         onChange={handChangeImgAddFaculty}
                         className="w-full cursor-pointer"
+                        required
                       />
                       <p className="text-xs text-gray-500">
-                        Supported formats: JPG, PNG, GIF
+                        Supported formats: JPG, PNG, GIF, WEBP (Max 5MB)
                       </p>
                     </div>
                   ) : imgAddingFromType === "externalImg" ? (
                     <div className="flex flex-col gap-1">
                       <input
-                        type="text"
+                        type="url"
                         placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
                         onChange={handChangeImgAddFaculty}
                         className="w-full outline-none px-2 py-1 border-[1px] border-gray-500 rounded-[5px]"
+                        required
                       />
                       {imgValidationError && (
                         <p className="text-red-500 text-xs">
@@ -378,7 +443,7 @@ const ModalAddFaculty = ({
                   variant="contained"
                   fullWidth
                   type="submit"
-                  disabled={!!imgValidationError}
+                  disabled={!!imgValidationError || isImageLoading}
                 >
                   Add
                 </Button>

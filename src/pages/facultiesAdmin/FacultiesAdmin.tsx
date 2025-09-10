@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalAddFaculty from "../../components/modalAddFaculty/ModalAddFaculty";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { TablePagination, TextField } from "@mui/material";
+import { TablePagination, TextareaAutosize, TextField } from "@mui/material";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
   getAndPaginateFacultiesAdmin,
@@ -48,6 +48,7 @@ const FacultiesAdmin = () => {
   const [externalImageUrl, setExternalImageUrl] = useState<string>("");
   const [isValidating, setIsValidating] = useState<boolean>(false);
   const [selectedFileName, setSelectedFileName] = useState<string>("");
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
 
   // States from redux
   const { loadingFacultiesAdmin, facultiesAdmin } = useAppSelector(
@@ -79,6 +80,7 @@ const FacultiesAdmin = () => {
     setExternalImageUrl("");
     setIsValidating(false);
     setSelectedFileName("");
+    setIsImageLoading(false);
   }
 
   function handleCloseModalDeleteFaculty(): void {
@@ -93,22 +95,50 @@ const FacultiesAdmin = () => {
       img.onerror = () => resolve(false);
       img.src = url;
 
+      // Set a timeout to avoid hanging on invalid URLs
       setTimeout(() => {
         if (!img.complete) {
           resolve(false);
         }
-      }, 2000);
+      }, 5000);
     });
+  };
+
+  // Function to validate file type and size
+  const validateFile = (file: File): boolean => {
+    const validImageTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+    ];
+    if (!validImageTypes.includes(file.type)) {
+      setImgValidationError(
+        "Please select a valid image file (JPG, PNG, GIF, WEBP)"
+      );
+      return false;
+    }
+
+    // Check file size (max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      setImgValidationError("Image size must be less than 5MB");
+      return false;
+    }
+
+    return true;
   };
 
   // Function to handle external image URL input
   const handleExternalImageInput = async (url: string) => {
     setExternalImageUrl(url);
     setIsValidating(true);
+    setIsImageLoading(true);
 
     if (!url.trim()) {
-      setImgValidationError("");
+      setImgValidationError("Image URL is required");
       setIsValidating(false);
+      setIsImageLoading(false);
       return;
     }
 
@@ -118,42 +148,65 @@ const FacultiesAdmin = () => {
     } catch (e) {
       setImgValidationError("Please enter a valid URL");
       setIsValidating(false);
+      setIsImageLoading(false);
       return;
     }
 
-    // Validate image accessibility
-    try {
-      const isValid = await validateImageUrl(url);
+    // Check if URL points to an image
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    const isImageUrl = imageExtensions.some((ext) =>
+      url.toLowerCase().includes(ext)
+    );
 
-      if (isValid) {
-        setInpModalEditValue({ ...inpModalEditValue, facultyImg: url });
-        setImgValidationError("");
-      } else {
-        setImgValidationError("Image not found or inaccessible");
-      }
-    } catch (error) {
-      setImgValidationError("Error validating image URL");
-    } finally {
+    if (!isImageUrl) {
+      setImgValidationError(
+        "URL must point to an image file (JPG, PNG, GIF, WEBP)"
+      );
       setIsValidating(false);
+      setIsImageLoading(false);
+      return;
     }
+
+    // Check if the image exists and is accessible
+    const isValid = await validateImageUrl(url);
+
+    if (isValid) {
+      setInpModalEditValue({ ...inpModalEditValue, facultyImg: url });
+      setImgValidationError("");
+    } else {
+      setImgValidationError("Image not found or inaccessible");
+    }
+
+    setIsValidating(false);
+    setIsImageLoading(false);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setInpModalEditValue({
-          ...inpModalEditValue,
-          facultyImg: e.target?.result as string,
-        });
-        setImgValidationError("");
-        setExternalImageUrl("");
-        setIsValidating(false);
-        setSelectedFileName(file.name);
-      };
-      reader.readAsDataURL(file);
+    if (!file) {
+      setImgValidationError("Please select an image file");
+      return;
     }
+
+    if (!validateFile(file)) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setInpModalEditValue({
+        ...inpModalEditValue,
+        facultyImg: e.target?.result as string,
+      });
+      setImgValidationError("");
+      setExternalImageUrl("");
+      setIsValidating(false);
+      setSelectedFileName(file.name);
+    };
+    reader.onerror = () => {
+      setImgValidationError("Failed to read the image file");
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -168,6 +221,12 @@ const FacultiesAdmin = () => {
 
   const handleEditFaculty = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate image first
+    if (!inpModalEditValue.facultyImg) {
+      setImgValidationError("Faculty image is required");
+      return;
+    }
 
     if (
       !inpModalEditValue.facultyName.trim() ||
@@ -187,9 +246,7 @@ const FacultiesAdmin = () => {
     }
 
     const updatedFaculty = {
-      facultyImg:
-        inpModalEditValue.facultyImg ||
-        "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=",
+      facultyImg: inpModalEditValue.facultyImg,
       facultyName: inpModalEditValue.facultyName,
       about: inpModalEditValue.about,
       yearOfOpening: Number(inpModalEditValue.yearOfOpening),
@@ -210,6 +267,7 @@ const FacultiesAdmin = () => {
     setExternalImageUrl("");
     setIsValidating(false);
     setSelectedFileName("");
+    setIsImageLoading(false);
   };
 
   const getImageSrc = () => {
@@ -233,9 +291,9 @@ const FacultiesAdmin = () => {
       } else if (inpModalEditValue.facultyImg) {
         // If it's a data URL (from file upload), clear the external URL field
         setExternalImageUrl("");
-        // setImgValidationError(
-        //   "Switch to upload image to use the current image"
-        // );
+        setImgValidationError(
+          "Switch to upload image to use the current image"
+        );
       } else {
         setExternalImageUrl("");
       }
@@ -244,6 +302,7 @@ const FacultiesAdmin = () => {
       setExternalImageUrl("");
       setImgValidationError("");
       setIsValidating(false);
+      setIsImageLoading(false);
     }
   };
 
@@ -325,16 +384,18 @@ const FacultiesAdmin = () => {
                       ) {
                         // If it's a data URL (previously uploaded file)
                         setImgAddingFromType("internalImg");
-                        setSelectedFileName(item.facultyImg.slice(0, 34));
+                        setSelectedFileName("Uploaded image");
                         setExternalImageUrl("");
                         setImgValidationError("");
                         setIsValidating(false);
+                        setIsImageLoading(false);
                       } else {
                         setExternalImageUrl("");
                         setImgAddingFromType("internalImg");
                         setImgValidationError("");
                         setIsValidating(false);
                         setSelectedFileName("");
+                        setIsImageLoading(false);
                       }
                     }}
                   >
@@ -380,15 +441,22 @@ const FacultiesAdmin = () => {
               </DialogHeader>
               <div className="block_inputs_add_faculty space-y-4 mt-4">
                 <div className="block_1_img_and_img_input flex flex-col gap-3">
-                  <img
-                    src={getImageSrc()}
-                    alt="Faculty preview"
-                    className="w-[70px] h-[70px] rounded-full object-cover mx-auto"
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
-                    }}
-                  />
+                  <div className="relative inline-block mx-auto">
+                    <img
+                      src={getImageSrc()}
+                      alt="Faculty preview"
+                      className="w-[70px] h-[70px] rounded-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src =
+                          "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=";
+                      }}
+                    />
+                    {isImageLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-full">
+                        <div className="w-5 h-5 border-t-2 border-white border-solid rounded-full animate-spin"></div>
+                      </div>
+                    )}
+                  </div>
 
                   <select
                     className="cursor-pointer outline-none px-2 py-2 border border-gray-300 rounded-md"
@@ -403,31 +471,37 @@ const FacultiesAdmin = () => {
                     <div className="flex flex-col gap-1">
                       <input
                         type="file"
-                        accept="image/*"
+                        accept="image/jpeg, image/png, image/gif, image/webp"
                         onChange={handleFileChange}
                         className="w-full cursor-pointer"
                         id="fileInput"
+                        required={!inpModalEditValue.facultyImg}
                       />
                       {selectedFileName && (
                         <p className="text-xs text-green-600">
-                          Selected: {selectedFileName}...
+                          Selected: {selectedFileName}
                         </p>
                       )}
                       <p className="text-xs text-gray-500">
-                        Supported formats: JPG, PNG, GIF
+                        Supported formats: JPG, PNG, GIF, WEBP (Max 5MB)
                       </p>
+                      {imgValidationError && (
+                        <p className="text-red-500 text-xs">
+                          {imgValidationError}
+                        </p>
+                      )}
                     </div>
                   ) : (
                     <div className="flex flex-col gap-1">
                       <TextField
-                        type="text"
+                        type="url"
                         label="Enter image URL (e.g., https://example.com/image.jpg)"
                         variant="outlined"
                         value={externalImageUrl}
                         onChange={(e) =>
                           handleInputChange("facultyImg", e.target.value)
                         }
-                        required
+                        required={!inpModalEditValue.facultyImg}
                         error={!!imgValidationError}
                         helperText={imgValidationError}
                       />
@@ -463,13 +537,25 @@ const FacultiesAdmin = () => {
                   <label htmlFor="facultyAbout" className="cursor-pointer">
                     About this faculty <span className="text-[red]">*</span>
                   </label>
-                  <textarea
+                  {/* <textarea
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px] h-[200px]"
                     id="facultyAbout"
                     placeholder="Enter about this faculty"
                     value={inpModalEditValue.about || ""}
                     onChange={(e) => handleInputChange("about", e.target.value)}
                     required
+                    /> */}
+                  <TextareaAutosize
+                    className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
+                    id="facultyAbout"
+                    placeholder="Enter about this faculty"
+                    value={inpModalEditValue.about || ""}
+                    onChange={(e) => handleInputChange("about", e.target.value)}
+                    required
+                    aria-label="empty textarea"
+                    style={{
+                      height: `200px`,
+                    }}
                   />
                 </div>
 
@@ -548,9 +634,11 @@ const FacultiesAdmin = () => {
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                   type="submit"
-                  disabled={!!imgValidationError || isValidating}
+                  disabled={
+                    !!imgValidationError || isValidating || isImageLoading
+                  }
                 >
-                  {isValidating ? "Validating..." : "Update"}
+                  {isValidating || isImageLoading ? "Validating..." : "Update"}
                 </Button>
               </DialogFooter>
             </form>
