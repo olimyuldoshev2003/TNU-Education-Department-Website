@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalAddFaculty from "../../components/modalAddFaculty/ModalAddFaculty";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { TablePagination, TextareaAutosize, TextField } from "@mui/material";
+import {
+  TablePagination,
+  // TextareaAutosize,
+  TextField,
+} from "@mui/material";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
   getAndPaginateFacultiesAdmin,
@@ -534,18 +538,18 @@ const FacultiesAdmin = () => {
                 />
 
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="facultyAbout" className="cursor-pointer">
+                  {/* <label htmlFor="facultyAbout" className="cursor-pointer">
                     About this faculty <span className="text-[red]">*</span>
-                  </label>
-                  {/* <textarea
+                  </label> */}
+                  <textarea
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px] h-[200px]"
                     id="facultyAbout"
                     placeholder="Enter about this faculty"
                     value={inpModalEditValue.about || ""}
                     onChange={(e) => handleInputChange("about", e.target.value)}
                     required
-                    /> */}
-                  <TextareaAutosize
+                  />
+                  {/* <TextareaAutosize
                     className="border-[1px] border-gray-400 px-2 py-1 rounded-[5px] outline-none text-[14px]"
                     id="facultyAbout"
                     placeholder="Enter about this faculty"
@@ -556,7 +560,7 @@ const FacultiesAdmin = () => {
                     style={{
                       height: `200px`,
                     }}
-                  />
+                  /> */}
                 </div>
 
                 <TextField

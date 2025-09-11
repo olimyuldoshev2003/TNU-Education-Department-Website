@@ -12,7 +12,7 @@ import {
   Select,
   SelectChangeEvent,
   TablePagination,
-  TextareaAutosize,
+  // TextareaAutosize,
   TextField,
 } from "@mui/material";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
@@ -225,11 +225,12 @@ const DepartmentsAdmin = () => {
 
     // Validate all fields including image
     if (!imgAddDepartment) {
-      setImgValidationError("Faculty image is required");
+      setImgValidationError("Department image is required");
       return;
     }
 
     if (
+      facultyIdDepartment.trim().length === 0 ||
       inpDepartmentNameValue.trim().length === 0 ||
       inpDepartmentAboutValue.trim().length === 0 ||
       inpOpenedYearValue.trim().length === 0 ||
@@ -253,8 +254,8 @@ const DepartmentsAdmin = () => {
     };
 
     // dispatch(
-    //   addFacultyAdmin({
-    //     newFaculty: newFaculty,
+    //   addDepartmentAdmin({
+    //     newDepartment: newDepartment,
     //   })
     // );
 
@@ -344,7 +345,7 @@ const DepartmentsAdmin = () => {
           aria-describedby="alert-dialog-description"
         >
           <div className="block_modal_add_department px-2 max-w-[360px]">
-            <form action="">
+            <form action="" onSubmit={handleAddDepartment}>
               <DialogTitle id="alert-dialog-title">
                 {"Add Department"}
               </DialogTitle>
@@ -506,6 +507,40 @@ const DepartmentsAdmin = () => {
                     }}
                     maxRows={4}
                   /> */}
+                </div>
+                <div className="block_5_department_opening_year mt-4">
+                  <TextField
+                    type="number"
+                    label="Enter the opening year (YYYY)"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    InputProps={{
+                      inputProps: {
+                        min: 1000,
+                        max: new Date().getFullYear(),
+                      },
+                    }}
+                    onInput={(e) => {
+                      const input = e.target as HTMLInputElement;
+                      if (input.value.length > 4) {
+                        input.value = input.value.slice(0, 4);
+                      }
+                    }}
+                    value={inpOpenedYearValue}
+                    onChange={handleChangeOpenedYearValue}
+                  />
+                </div>
+                <div className="block_6_head_of_deparment">
+                  <TextField
+                    type="text"
+                    label="Head of department"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    value={inpHeadOfDepartmentValue}
+                    onChange={handleChangeHeadOfDepartmentValue}
+                  />
                 </div>
               </div>
               <DialogActions>

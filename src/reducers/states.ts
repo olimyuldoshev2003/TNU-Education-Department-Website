@@ -21,7 +21,8 @@ import {
   getFacultiesForId,
   getDepartmentsForId,
   getTeachersForId,
-  getPublicationsForId, // Make sure this is imported
+  getPublicationsForId,
+  addDepartmentAdmin, // Make sure this is imported
 } from "../api/api";
 
 export interface IStates {
@@ -348,6 +349,24 @@ export const statesSlice = createSlice({
       state.loadingDepartmentsAdmin = false;
     });
 
+    // Departments Admin - Add
+    builder.addCase(addDepartmentAdmin.pending, (state: any) => {
+      state.loadingDepartmentsAdmin = true;
+    });
+
+    builder.addCase(addDepartmentAdmin.fulfilled, (state: any, action: any) => {
+      state.loadingDepartmentsAdmin = false;
+      // Add the new faculty to the current list
+      if (state.departmentsAdmin && state.departmentsAdmin.data) {
+        state.departmentsAdmin.data.push(action.payload);
+        state.departmentsAdmin.items += 1;
+      }
+    });
+
+    builder.addCase(addDepartmentAdmin.rejected, (state: any) => {
+      state.loadingDepartmentsAdmin = false;
+    });
+
     // Teachers Admin
     builder.addCase(getAndPaginateTeachersAdmin.pending, (state: any) => {
       state.loadingTeachersAdmin = true;
@@ -405,7 +424,7 @@ export const statesSlice = createSlice({
       getDepartmentsForId.fulfilled,
       (state: any, action: any) => {
         state.loadingDepartmentsForId = false;
-        state.departmentsForId = action.payload;        
+        state.departmentsForId = action.payload;
       }
     );
 

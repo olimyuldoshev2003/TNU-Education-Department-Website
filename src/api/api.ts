@@ -147,7 +147,7 @@ export const getAndPaginateFacultiesAdmin = createAsyncThunk(
   }
 );
 
-// FIXED: This was the main issue - now returns the created faculty
+// POST - Add a faculty
 export const addFacultyAdmin = createAsyncThunk(
   "api/addFacultyAdmin",
   async function (obj: any) {
@@ -213,6 +213,25 @@ export const getAndPaginateDepartmentsAdmin = createAsyncThunk(
     }
   }
 );
+
+export const addDepartmentAdmin = createAsyncThunk(
+  "api/addDepartmentAdmin",
+  async function (obj: any) {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3000/faculties`,
+        obj.newDepartment
+      );
+
+      // Return the created department data
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+
 
 export const getAndPaginateTeachersAdmin = createAsyncThunk(
   "api/getAndPaginateTeachersAdmin",
