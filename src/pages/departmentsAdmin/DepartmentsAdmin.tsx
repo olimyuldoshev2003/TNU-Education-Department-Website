@@ -18,6 +18,7 @@ import {
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import {
+  addDepartmentAdmin,
   getAndPaginateDepartmentsAdmin,
   getFacultiesForId,
 } from "../../api/api";
@@ -230,7 +231,7 @@ const DepartmentsAdmin = () => {
     }
 
     if (
-      facultyIdDepartment.trim().length === 0 ||
+      facultyIdDepartment === "" ||
       inpDepartmentNameValue.trim().length === 0 ||
       inpDepartmentAboutValue.trim().length === 0 ||
       inpOpenedYearValue.trim().length === 0 ||
@@ -253,11 +254,11 @@ const DepartmentsAdmin = () => {
       headOfDepartment: inpHeadOfDepartmentValue,
     };
 
-    // dispatch(
-    //   addDepartmentAdmin({
-    //     newDepartment: newDepartment,
-    //   })
-    // );
+    dispatch(
+      addDepartmentAdmin({
+        newDepartment: newDepartment,
+      })
+    );
 
     setModalAddDepartment(false);
     setImgAddDepartment(null);
@@ -265,6 +266,7 @@ const DepartmentsAdmin = () => {
     setInpDepartmentNameValue("");
     setInpDepartmentAboutValue("");
     setInpOpenedYearValue("");
+    setInpHeadOfDepartmentValue("");
     setImgValidationError("");
   }
 
@@ -531,7 +533,7 @@ const DepartmentsAdmin = () => {
                     onChange={handleChangeOpenedYearValue}
                   />
                 </div>
-                <div className="block_6_head_of_deparment">
+                <div className="block_6_head_of_deparment mt-4">
                   <TextField
                     type="text"
                     label="Head of department"

@@ -219,7 +219,7 @@ export const addDepartmentAdmin = createAsyncThunk(
   async function (obj: any) {
     try {
       const { data } = await axios.post(
-        `http://localhost:3000/faculties`,
+        `http://localhost:3000/departments`,
         obj.newDepartment
       );
 
