@@ -243,3 +243,69 @@ export const getAndPaginatePublicationsAdmin = createAsyncThunk(
     }
   }
 );
+
+// For id
+
+// Faculties for id
+export const getFacultiesForId = createAsyncThunk(
+  "api/getFacultiesForId",
+  async function () {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/faculties`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+
+
+// Departments for id
+export const getDepartmentsForId = createAsyncThunk(
+  "api/getDepartmentsForId",
+  async function () {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/departments`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+// Teachers for id
+export const getTeachersForId = createAsyncThunk(
+  "api/getTeachersForId",
+  async function () {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/teachers`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);
+
+// Publications for id
+export const getPublicationsForId = createAsyncThunk(
+  "api/getPublicationsForId",
+  async function () {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/publications`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+);

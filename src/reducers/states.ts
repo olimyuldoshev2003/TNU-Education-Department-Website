@@ -17,7 +17,11 @@ import {
   getUser,
   addFacultyAdmin,
   editFacultyAdmin,
-  deleteFacultyAdmin, // Make sure this is imported
+  deleteFacultyAdmin,
+  getFacultiesForId,
+  getDepartmentsForId,
+  getTeachersForId,
+  getPublicationsForId, // Make sure this is imported
 } from "../api/api";
 
 export interface IStates {
@@ -50,6 +54,15 @@ export interface IStates {
   teachersAdmin: any;
   loadingPublicationsAdmin: boolean;
   publicationsAdmin: any;
+
+  loadingFacultiesForId: boolean;
+  facultiesForId: any;
+  loadingDepartmentsForId: boolean;
+  departmentsForId: any;
+  loadingTeachersForId: boolean;
+  teachersForId: any;
+  loadingPublicationsForId: boolean;
+  publicationsForId: any;
 }
 
 const initialState: IStates = {
@@ -81,11 +94,21 @@ const initialState: IStates = {
   loadingFacultiesAdmin: false,
   facultiesAdmin: { data: [], items: 0 },
   loadingDepartmentsAdmin: false,
-  departmentsAdmin: {data: [], items: 0},
+  departmentsAdmin: { data: [], items: 0 },
   loadingTeachersAdmin: false,
   teachersAdmin: [],
   loadingPublicationsAdmin: false,
   publicationsAdmin: [],
+
+  // For id
+  loadingFacultiesForId: false,
+  facultiesForId: [],
+  loadingDepartmentsForId: false,
+  departmentsForId: [],
+  loadingTeachersForId: false,
+  teachersForId: [],
+  loadingPublicationsForId: false,
+  publicationsForId: [],
 };
 
 export const statesSlice = createSlice({
@@ -357,6 +380,68 @@ export const statesSlice = createSlice({
 
     builder.addCase(getAndPaginatePublicationsAdmin.rejected, (state: any) => {
       state.loadingPublicationsAdmin = false;
+    });
+
+    // Faculties for id
+    builder.addCase(getFacultiesForId.pending, (state: any) => {
+      state.loadingFacultiesForId = true;
+    });
+
+    builder.addCase(getFacultiesForId.fulfilled, (state: any, action: any) => {
+      state.loadingFacultiesForId = false;
+      state.facultiesForId = action.payload;
+    });
+
+    builder.addCase(getFacultiesForId.rejected, (state: any) => {
+      state.loadingFacultiesForId = false;
+    });
+
+    // Departments for id
+    builder.addCase(getDepartmentsForId.pending, (state: any) => {
+      state.loadingDepartmentsForId = true;
+    });
+
+    builder.addCase(
+      getDepartmentsForId.fulfilled,
+      (state: any, action: any) => {
+        state.loadingDepartmentsForId = false;
+        state.departmentsForId = action.payload;        
+      }
+    );
+
+    builder.addCase(getDepartmentsForId.rejected, (state: any) => {
+      state.loadingDepartmentsForId = false;
+    });
+
+    // Teachers for id
+    builder.addCase(getTeachersForId.pending, (state: any) => {
+      state.loadingTeachersForId = true;
+    });
+
+    builder.addCase(getTeachersForId.fulfilled, (state: any, action: any) => {
+      state.loadingTeachersForId = false;
+      state.teachersForId = action.payload;
+    });
+
+    builder.addCase(getTeachersForId.rejected, (state: any) => {
+      state.loadingTeachersForId = false;
+    });
+
+    // Publications for id
+    builder.addCase(getPublicationsForId.pending, (state: any) => {
+      state.loadingPublicationsForId = true;
+    });
+
+    builder.addCase(
+      getPublicationsForId.fulfilled,
+      (state: any, action: any) => {
+        state.loadingPublicationsForId = false;
+        state.publicationsForId = action.payload;
+      }
+    );
+
+    builder.addCase(getPublicationsForId.rejected, (state: any) => {
+      state.loadingPublicationsForId = false;
     });
   },
 });
